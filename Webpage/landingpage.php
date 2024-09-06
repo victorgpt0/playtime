@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>Playtime</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <link rel='stylesheet' type='text/css' media='screen' href='css/landingpage.css'>
+    
+</head>
+<body>
+    <div img="images/GrassBackground2.jpg" class="background-img">
+        <nav>
+            <div class="mainNav">
+                <h3>PLAYTIME</h3>
+                <br>
+                <a href=" ">Home</a>
+                <a href=" ">About Us</a>
+                <a href=" ">Contact Us</a>
+                <br>
+                <button type="button" id="btn1">Login</button>
+                <button type="button" id="btn2">Register</button>
+            </div>
+        </nav>
+        
+        <main>
+            <h1>BEST TURF BOOKING PLATFORM IN YOUR AREA</h1>
+            <p>Unlock Your Perfect Play. Book the Best Turf in Just a Few Clicks. Just say the time and place and your playtime will be worth</p>
+
+            <div class="search">
+                <form action=" " method=" ">
+                
+                <label for="type">Type</label>
+                <select name="type" id="type">
+                    <option value="football">Football</option>
+                    <option value="cricket">Cricket</option>
+                    <option value="basketball">Basketball</option>
+                    <option value="volleyball">Volleyball</option>
+                </select>
+
+                <label for="location">Location</label>
+                <select name="location" id="location">
+                    <option value="Langata">Langata</option>
+                    <option value="SouthC">South C</option>
+                    <option value="Karen">Karen</option>
+                    <option value="Kileleshwa">Kileleshwa</option>
+                </select>
+
+                <label for="date">Date</label>
+                <input type="date" name="date" id="date">
+
+                <label for="time">Time</label>
+                <input type="time" name="time" id="time">
+
+                <button type="button" id="search">Search</button>
+
+                </form>
+            </div>
+            <br>
+            <br>
+            <div>
+                <button type="button" id="btn3">Explore</button>
+            </div>
+        </main>
+    </div>
+    <footer>
+        <p>Playtime &copy; 2019</p>
+    </footer>
+
+</body>
+</html>
