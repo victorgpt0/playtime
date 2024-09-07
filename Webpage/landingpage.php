@@ -82,6 +82,7 @@
                     arena owner to register their business and 
                     enable their customers to book sessions in advance.
                 </p>
+                <p id="copyright">Playtime &copy; 2024</p>
             </div>
             <div class="subfooterDiv">
                 <h4>Contact Us</h4>
@@ -91,7 +92,7 @@
                 <h4>Follow Us</h4>
             </div>
         </div>
-        <p>Playtime &copy; 2019</p>
+        
     </footer>
 
 </body>
