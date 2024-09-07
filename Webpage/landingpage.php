@@ -63,7 +63,34 @@
             </div>
         </main>
     </div>
+
+    <div class="explore">
+        <h3>Explore turfs near you</h3>
+    </div>
+
+    <div class="register-turf">
+        <p>Register your Turf with us</p>
+        <button type="button" id="btn4">Register</button>
+    </div>
+    <br>
     <footer>
+        <div class="footerDiv">
+            <div class="subfooterDiv">
+                <h4>PLAYTIME</h4>
+                <p>
+                    Playtime is a system that enables a sports 
+                    arena owner to register their business and 
+                    enable their customers to book sessions in advance.
+                </p>
+            </div>
+            <div class="subfooterDiv">
+                <h4>Contact Us</h4>
+
+            </div>
+            <div class="subfooterDiv">
+                <h4>Follow Us</h4>
+            </div>
+        </div>
         <p>Playtime &copy; 2019</p>
     </footer>
 

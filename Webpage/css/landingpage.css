@@ -30,7 +30,7 @@
 }
 
 .mainNav h3{
-    color: #fff;
+    color: #FFD700;
     font-size: 20px;
     margin: 0;
     padding: 0;
@@ -157,7 +157,7 @@ main p{
 }
 
 .search button {
-    background-color: #228B22;
+    background-color: #4169E1;
     color: white;
     border: none;
     padding: 10px;
@@ -167,7 +167,7 @@ main p{
 
 
 .search button:hover {
-    background-color: #27408B;
+    background-color: #228B22;
 }
 
 
@@ -190,4 +190,77 @@ main p{
 #btn3:hover{
     background-color: white;
     color: #228B22;
+}
+
+.explore{
+    padding-top: 5%;
+    padding-left: 2%;
+    height: 500px;
+}
+
+.register-turf{
+    background-image: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.5))
+    ,url('../images/GrassBackground3.jpg');
+    background-size: cover;
+    background-attachment: fixed;
+    background-position: center;
+    border-radius: 30px;
+    width: 500px;
+    height: 150px;
+    margin: 0 auto;
+}
+
+.register-turf p{
+    color: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0;
+    font-weight: 600;
+    padding-top: 7%;
+    padding-bottom: 4%;
+}
+
+#btn4{
+    color: white;
+    width: 120px;
+    padding: 12px;
+    background-color: #228B22;
+    border: solid 1px #228B22;
+    border-radius: 10px;
+    outline: none;
+    font-size: 12px;
+    font-weight: 600;
+    margin: 0 auto;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+}
+
+#btn4:hover{
+    background-color: white;
+    color: #228B22;
+}
+
+.footerDiv{
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    width: auto;
+    height: 400px;
+    background-color: #000000;
+    color: #fff;
+}
+
+.subfooterDiv{
+    height: 400px;
+    width: 200px;
+    background-color: #000000;
+    color: #fff;
+    padding-top: 5%;
+    margin: 0 100px;
+}
+
+.subfooterDiv h4{
+    padding-bottom: 10%;
 }
