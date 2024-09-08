@@ -9,7 +9,7 @@
     
 </head>
 <body>
-    <div img="images/GrassBackground2.jpg" class="background-img">
+    <div class="background-img">
         <nav>
             <div class="mainNav">
                 <h3>PLAYTIME</h3>
@@ -25,7 +25,10 @@
         
         <main>
             <h1>BEST TURF BOOKING PLATFORM IN YOUR AREA</h1>
-            <p>Unlock Your Perfect Play. Book the Best Turf in Just a Few Clicks. Just say the time and place and your playtime will be worth</p>
+            <p>
+                Unlock Your Perfect play. Book the Best Turf in a Few Clicks. 
+                Say the Time and Place and your Playtime will be Worth
+            </p>
 
             <div class="search">
                 <form action=" " method=" ">
