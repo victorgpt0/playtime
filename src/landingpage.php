@@ -18,8 +18,10 @@
                 <a href=" ">About Us</a>
                 <a href=" ">Contact Us</a>
                 <br>
-                <button type="button" id="btn1">Login</button>
-                <button type="button" id="btn2">Register</button>
+                <div>
+                    <button type="button" id="btn1">Login</button>
+                    <button type="button" id="btn2">Register</button>
+                </div>
             </div>
         </nav>
         
