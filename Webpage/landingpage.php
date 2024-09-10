@@ -12,7 +12,7 @@
     <div class="background-img">
         <nav>
             <div class="mainNav">
-                <h3>PLAYTIME</h3>
+                <h3>PLAYHUB</h3>
                 <br>
                 <a href=" ">Home</a>
                 <a href=" ">About Us</a>
