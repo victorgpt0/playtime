@@ -1,0 +1,155 @@
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Pacifico',cursive;
+    background-color: purple;
+    background-size: cover;
+}
+
+.main {
+    width: 100%;
+    height: 100vh;
+    background: rgba(255, 255, 255, 0.1);
+    position: relative;
+}
+
+.icon {
+    color: pink;
+    font-size: 35px;
+}
+
+.content {
+    width: 100%;
+    height: calc(100vh - 80px);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: white;
+}
+
+h1 {
+    font-size: 50px;
+}
+
+.cn {
+    background: burlywood;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    margin: 20px 0;
+}
+
+.cn a {
+    text-decoration: none;
+    color: white;
+}
+
+.form {
+    background: pink;
+    padding: 40px;
+    border-radius: 10px;
+    box-sizing: border-box;
+}
+
+.form h2 {
+    color: white;
+    margin-bottom: 20px;
+}
+
+.form input {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    border: none;
+    border-radius: 5px;
+    box-sizing: border-box;
+}
+
+.form .btnn {
+    background: burlywood;
+    color: black;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.form .btnn a {
+    text-decoration: none;
+    color: white;
+}
+
+.link {
+    color: white;
+}
+
+.icons a {
+    margin: 0 10px;
+    color: white;
+    font-size: 24px;
+}
+
+.icons a:hover {
+    color: #ff7200;
+}
+@media (max-width: 768px) {
+    h1 {
+       font-size: 36px;
+    }
+ 
+    .cn {
+       padding: 8px 16px;
+       margin: 15px 0;
+    }
+ 
+    .form {
+       padding: 30px;
+    }
+ 
+    .form h2 {
+       font-size: 24px;
+    }
+ }
+ :root {
+    --bg-color: purple;
+    --text-color: white;
+    --button-bg: burlywood;
+    --button-text: black;
+    --form-bg: pink;
+ }
+ 
+ body {
+    background-color: var(--bg-color);
+    color: var(--text-color);
+ }
+ 
+ .cn {
+    background-color: var(--button-bg);
+    color: var(--button-text);
+ }
+ 
+ .form {
+    background-color: var(--form-bg);
+ }
+ 
+ .dark-mode {
+    --bg-color: black;
+    --text-color: white;
+    --button-bg: #444;
+    --button-text: white;
+    --form-bg: #333;
+ }
+
+.cn:hover, .form .btnn:hover {
+    transform: scale(1.05);
+    transition: transform 0.3s ease;
+ }
+ body {
+    background: linear-gradient(to right, purple, pink);
+ }
+ 
+ 
