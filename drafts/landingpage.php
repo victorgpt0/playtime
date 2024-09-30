@@ -15,7 +15,7 @@
                 <h3>PLAYTIME</h3>
                 <br>
                 <a href=" ">Home</a>
-                <a href=" ">About Us</a>
+                <a href="about.html">About Us</a>
                 <a href="contact.html">Contact Us</a>
                 <br>
                 <div>
