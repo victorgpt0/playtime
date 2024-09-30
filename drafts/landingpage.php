@@ -16,7 +16,7 @@
                 <br>
                 <a href=" ">Home</a>
                 <a href=" ">About Us</a>
-                <a href=" ">Contact Us</a>
+                <a href="contact.html">Contact Us</a>
                 <br>
                 <div>
                     <button type="button" id="btn1">Login</button>
