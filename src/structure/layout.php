@@ -47,8 +47,8 @@ class Layout
     public function loggedout(){
         ?>
         <div>
-                    <button type="button" id="btn1">Login</button>
-                    <button type="button" id="btn2">Register</button>
+                    <button type="button" id="btn1" onclick="window.location.href='../drafts/index3.html'">Login</button>
+                    <button type="button" id="btn2" onclick="window.location.href='../drafts/index3.html'">Register</button>
                 </div>
 
         <?php
