@@ -12,24 +12,26 @@ class Layout
             <meta http-equiv='X-UA-Compatible' content='IE=edge'>
             <title><?php echo $title;?></title>
             <meta name='viewport' content='width=device-width, initial-scale=1'>
+            <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+            <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.min.css">
+            <script src="node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
             <link rel='stylesheet' type='text/css' media='screen' href='../assets/css/style.css'>
         </head>
 
-        <body>
 
         <?php
     }
 
     public function navbar(){
         ?>
-        <div class="background-img">
-        <nav>
+        <body>
+        <nav class="navbar fixed-top">
             <div class="mainNav">
                 <h3>PLAYTIME</h3>
                 <br>
-                <a href=" ">Home</a>
-                <a href=" ">About Us</a>
-                <a href=" ">Contact Us</a>
+                <a href="index.php">Home</a>
+                <a href="about.php">About Us</a>
+                <a href="contact.php">Contact Us</a>
                 <br>
                 <?php
                 if(isset($_SESSION['id'])){
@@ -40,6 +42,8 @@ class Layout
                 ?>
             </div>
         </nav>
+        
+                    
 
         <?php
 
@@ -67,29 +71,32 @@ class Layout
     public function footer()
     {
         ?>
-        <footer>
-        <div class="footerDiv">
-            <div class="subfooterDiv">
+        
+        
+        <div class="footer">
+        <div class="subfooterDiv">
                 <h4>PLAYTIME</h4>
                 <p>
-                    Playtime is a system that enables a sports 
-                    arena owner to register their business and 
-                    enable their customers to book sessions in advance.
+                    Playtime is a system that enables sports 
+                    arena owners to register their business and 
+                    allows customers to book sessions in advance.
                 </p>
                 <p id="copyright">Playtime &copy; 2024</p>
             </div>
             <div class="subfooterDiv">
                 <h4>Contact Us</h4>
-
+                <p>Email: playtime@gmail.com</p>
+                <p>Phone: +254 234 567 8900</p>
             </div>
             <div class="subfooterDiv">
                 <h4>Follow Us</h4>
+                <p>Facebook:@playtime_fb </p>
+                <p>Twitter: @playtime</p>
+                <p>Instagram: @skibidi_playtime</p>
             </div>
         </div>
         
-    </footer>
-
-        </body>
+    </body>
         </html>
 
         <?php

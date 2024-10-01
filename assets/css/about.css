@@ -13,15 +13,11 @@
 body {
     margin: 0;
     padding: 0;
-}
-
-.background-img {
     background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.7)),
     url('../images/GrassBackground3.jpg');
     background-size: cover;
     background-attachment: fixed;
     background-position: center;
-    padding: 0 5%;
     min-height: 100vh;
     display: flex;
     flex-direction: column;
@@ -80,16 +76,24 @@ body {
     color: #228B22;
 }
 
-main {
-    padding-top: 100px;
-    flex-grow: 1;
+.container{
+    color: #fff;
+    text-align: center;
+    margin-bottom: 40px;
+    position: relative;
+    margin-top:100px;
+
+    
 }
 
-main h1 {
+
+.container h1 {
     color: #fff;
     font-size: 40px;
     text-align: center;
     margin-bottom: 40px;
+    position: relative;
+    
 }
 
 .about-content {

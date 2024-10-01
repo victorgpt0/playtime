@@ -11,17 +11,11 @@
 }
 
 body {
-    margin: 0;
-    padding: 0;
-}
-
-.background-img {
     background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.7)),
     url('../images/GrassBackground3.jpg');
     background-size: cover;
     background-attachment: fixed;
     background-position: center;
-    padding: 0 5%;
     min-height: 100vh;
     display: flex;
     flex-direction: column;
@@ -85,7 +79,7 @@ main {
     flex-grow: 1;
 }
 
-main h1 {
+.container h1 {
     color: #fff;
     font-size: 40px;
     text-align: center;
@@ -133,7 +127,7 @@ main p {
     resize: vertical;
 }
 
-#btn3 {
+#btn4contact{
     background-color: #228B22;
     color: white;
     border: none;
@@ -145,7 +139,7 @@ main p {
     width: 100%;
 }
 
-#btn3:hover {
+#btn4contact:hover {
     background-color: #1e7a1e;
 }
 
