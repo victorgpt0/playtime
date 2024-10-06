@@ -1,6 +1,8 @@
 <?php
+
 require 'database/constants.php';
 require 'database/dbconnection.php';
+
 function AutoLoad($class){
     $directories=['forms','structure'];
     foreach($directories as $dir){

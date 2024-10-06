@@ -1,42 +1,32 @@
 <?php
-
-session_start();
-
+require 'load.php';
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    $username = $conn->real_escape_string($_POST['username']);
+    // Get form data
+    $username = $_POST['username'];
     $password = $_POST['password'];
-    $user_group = (int) $_POST['user_group'];
 
-    $stmt = $conn->prepare("SELECT id, password, user_group FROM users WHERE username = ?");
-    $stmt->bind_param("s", $username);
+    // Check if user exists
+    $stmt = $conn->prepare("SELECT * FROM tbl_users WHERE username = :username");
+    $stmt->bindParam(':username', $username);
     $stmt->execute();
-    $result = $stmt->get_result();
 
-    if ($result->num_rows > 0) {
-        $user = $result->fetch_assoc();
+    if ($stmt->rowCount() == 1) {
+        $user = $stmt->fetch(PDO::FETCH_ASSOC);
 
+        // Verify password
         if (password_verify($password, $user['password'])) {
-            $_SESSION['username'] = $username;
-            $_SESSION['user_group'] = $user['user_group'];
-
-            if ($user['user_group'] == 1) {
-                header("");
-                exit();
-            } elseif ($user['user_group'] == 2) {
-                header("");
-                exit();
-            } else {
-                echo "Invalid user group.";
-            }
+            echo "Login successful!";
+            // You can store user info in session for further access
+            session_start();
+            $_SESSION['userid'] = $user['userid'];
+            $_SESSION['username'] = $user['username'];
+            // Redirect or load user dashboard
         } else {
-            echo "Invalid password.";
+            echo "Invalid password!";
         }
     } else {
-        echo "Invalid username or user group.";
+        echo "User does not exist!";
     }
-
-    $stmt->close();
 }
-
-$conn->close();
+?>
