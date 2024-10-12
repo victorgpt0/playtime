@@ -26,5 +26,13 @@ foreign key (genderId) references tbl_gender(genderId) on delete no action on up
 foreign key(roleId) references tbl_role(roleId) on delete no action on update no action
 );
 
+INSERT INTO `tbl_gender` (`genderId`, `gender`) VALUES
+(1, 'Male'),
+(2, 'Female');
 
+INSERT INTO `tbl_role` (`roleId`, `roles`) VALUES
+(1, 'Admin'),
+(2, 'Owner'),
+(3, 'Staff'),
+(4, 'Captain');
 

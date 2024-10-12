@@ -11,7 +11,7 @@ class Layout
             <meta charset='utf-8'>
             <meta http-equiv='X-UA-Compatible' content='IE=edge'>
             <title><?php echo $title;?></title>
-            <link rel="icon" href="../assets/images/favicon.svg" type="image/svg+xml">
+            <link rel="icon" href="../assets/icons/favicon.svg" type="image/svg+xml">
             <meta name='viewport' content='width=device-width, initial-scale=1'>
             <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
             <link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.min.css">

@@ -7,7 +7,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $password = $_POST['password'];
 
     // Check if user exists
-    $stmt = $conn->prepare("SELECT * FROM tbl_users WHERE username = :username");
+    //$stmt = $conn->prepare("SELECT * FROM tbl_users WHERE username = :username");
     $stmt->bindParam(':username', $username);
     $stmt->execute();
 
@@ -29,4 +29,3 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         echo "User does not exist!";
     }
 }
-?>
