@@ -24,5 +24,4 @@ spl_autoload_register('AutoLoad');
 //HTML objects 
 $ObjLayout = new Layout();
 $ObjBody = new Body();
-
-
+$ObjForms = new forms();
