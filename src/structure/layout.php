@@ -36,7 +36,7 @@ class Layout
                 <a href="contact.php">Contact Us</a>
                 <br>
                 <?php
-                if(isset($_SESSION['id'])){
+                if(isset($_SESSION['user']['u_id'])){
                     $this->loggedin();
                 }else{
                     $this->loggedout();
@@ -63,7 +63,7 @@ class Layout
     public function loggedin(){
         ?>
         <div>
-                    <button type="button" id="btn2">Logout</button>
+                    <a href="logout.php"><button type="button" id="btn2">Logout</button></a>
                 </div>
 
         <?php

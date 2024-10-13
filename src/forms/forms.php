@@ -70,7 +70,7 @@ class forms
                 <i class="bx bx-lock-alt"></i>
             </div>
             <?php print isset($err['passw_length_err']) ? '<div class="invalid">' . $err['passw_length_err'] . '</div>' : ''; ?>
-            <?php print isset($success['passw_length_err']) ? '<div class="valid">' . $err['passw_length_err'] . '</div>' : ''; ?>
+            <?php print isset($success['passw_length_err']) ? '<div class="valid">' . $success['passw_length_err'] . '</div>' : ''; ?>
             <?php print isset($err['passw_lwrcse_err']) ? '<div class="invalid">' . $err['passw_lwrcse_err'] . '</div>' : ''; ?>
             <?php print isset($success['passw_lwrcse_err']) ? '<div class="valid">' . $success['passw_lwrcse_err'] . '</div>' : ''; ?>
             <?php print isset($err['passw_uprcse_err']) ? '<div class="invalid">' . $err['passw_uprcse_err'] . '</div>' : ''; ?>
@@ -110,7 +110,7 @@ class forms
 
     }
 
-    public function login()
+    public function login($ObjGlobal)
     {
         ?>
 
@@ -123,16 +123,25 @@ class forms
                         <span>Don't have an account? <a href="signup.php">Sign Up</a></span>
                         <header>Login</header>
                     </div>
+                    <?php $ObjGlobal->getMsg('login_msg');
+                    $err=$ObjGlobal->getMsg('login_err');
+                    ?>
+                    <?php print isset($err['user_nonexistent_err']) ? '<div class="invalid">' . $err['user_nonexistent_err'] . '</div>' : ''; ?>
+                    <form action="<?php print basename($_SERVER['PHP_SELF']); ?>" method="post">
                     <div class="input-box">
-                        <input type="text" class="input-field" placeholder="Username or Email">
+                        <input type="text" class="input-field" name="name" placeholder="Username or Email" <?php print isset($_SESSION['name']) ? $_SESSION['name']: '';
+                        unset($_SESSION['name']);?>>
                         <i class="bx bx-user"></i>
                     </div>
+                    <?php print isset($err['empty_name_err']) ? '<div class="invalid">' . $err['empty_name_err'] . '</div>' : ''; ?>
                     <div class="input-box">
-                        <input type="password" class="input-field" placeholder="Password">
+                        <input type="password" class="input-field" name="passw" placeholder="Password" <?php print isset($_POST['passw']) ? $_POST['name']: '';
+                        unset($_POST['passw']);?>>
                         <i class="bx bx-lock-alt"></i>
                     </div>
+                    <?php print isset($err['empty_passw_err']) ? '<div class="invalid">' . $err['empty_passw_err'] . '</div>' : ''; ?>
                     <div class="input-box">
-                        <input type="submit" class="submit" value="Sign In">
+                        <input type="submit" name="login" class="submit" value="Sign In">
                     </div>
                     <div class="two-col">
                         <div class="one">
@@ -143,6 +152,7 @@ class forms
                             <label><a href="#">Forgot password?</a></label>
                         </div>
                     </div>
+                    </form>
                 </div>
             </div>
         </div>

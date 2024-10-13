@@ -1,5 +1,5 @@
 <?php
-
+session_start();
 require 'database/constants.php';
 require 'database/dbconnection.php';
 
@@ -28,3 +28,4 @@ $ObjGlobal= new globals();
 
 $ObjAuth= new auth();
 $ObjAuth->signup($conn, $ObjGlobal, $conf);
+$ObjAuth->login($conn,$ObjGlobal);

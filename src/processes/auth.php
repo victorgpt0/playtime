@@ -132,6 +132,7 @@ class auth
                 if($insert === TRUE){
                     header('Location: owner.php');
                 }
+                //update logic for other app users i.e. staff,captain
             }else{
                 $ObjGlobal->setMsg('error_msg','Error(s) Fill all input fields appropriately','invalid');
                 $ObjGlobal->setMsg('signup_err',$signup_err,'invalid');
@@ -143,6 +144,54 @@ class auth
         }
 
 
+    }
+    public function login($conn,$ObjGlobal){
+
+        if(isset($_POST['login'])){
+            $login_err=[];
+
+            $name=$_SESSION['name']=$conn->escape_values(strtolower($_POST['name']));
+            $passw=$_POST['passw'];
+            if(empty($name)){
+                $login_errors['empty_name_err']='Username or Email required';
+            }
+            if(empty($passw)){
+                $login_errors['empty_passw_err']='Password cannot be empty';
+            }
+            // Check if the username already exists
+            $username_err = $conn->select_or('tbl_users', [
+                'username' => $name,
+                'email'=> $name
+            ]);
+
+            if (empty($username_err)) {
+                $login_err['user_nonexistent_err']='User is not Registered!';
+            }
+
+            if(!count($login_err)){
+                $user_login=$conn->select_or('tbl_users',[
+                    'username'=>$name,
+                    'email'=>$name
+                ]);
+    
+                // var_dump($user_login);
+    
+                if($user_login){
+                    if(password_verify($passw,$user_login[0]['password'])){
+                        $ObjUser = new user($user_login[0]['userid'], $user_login[0]['username'],  $user_login[0]['email'], $user_login[0]['roleId']);
+                        $ObjUser->setUser();
+    
+                        unset($_SESSION['name']);
+                        // header('Location: index.php');
+                        die(var_dump($_SESSION['user']));
+                    }
+                }
+    
+            }else{
+                $ObjGlobal->setMsg('login_msg','Error(s): Fill input fields appropriately','invalid');
+                $ObjGlobal->setMsg('login_err',$login_err,'invalid');
+            }
+        }
     }
 
 }
