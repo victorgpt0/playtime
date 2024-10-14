@@ -1,22 +1,32 @@
-*{  
+
+
+@font-face { font-family: 'Montserrat'; 
+    src: url('../font/Montserrat-VariableFont_wght.ttf'); 
+}*{  
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: 'Poppins', sans-serif;
+    font-family: 'Montserrat', sans-serif;
 }
 body{
-    background: url("background.png");
+    background: url("../assets/images/GrassBackground3.jpg");
+    background-color: black;
+    color: #fff;
     background-size: cover;
     background-repeat: no-repeat;
     background-attachment: fixed;
-    overflow: hidden;
+    overflow: auto;
 }
-.wrapper{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 110vh;
-    background: rgba(39, 39, 39, 0.4);
+.container-sm{
+    min-height: 100vh;
+    border-radius: 20px;
+    background: rgba(0, 0, 0, 0.4);
+}
+.btn-close{
+    background-color: white;
+    margin-left: 20px;
+    margin-top: 25px;
+    scale: 1.25;
 }
 .nav{
     position: fixed;
@@ -85,22 +95,22 @@ body{
     overflow: hidden;
     z-index: 2;
 }
-.login-container{
+/* .login-container{
     position: absolute;
     left: 4px;
     width: 500px;
     display: flex;
     flex-direction: column;
     transition: .5s ease-in-out;
-}
-.register-container{
+} */
+/* .register-container{
     position: absolute;
     right: -520px;
     width: 500px;
     display: flex;
     flex-direction: column;
     transition: .5s ease-in-out;
-}
+} */
 .top span{
     color: #fff;
     font-size: small;
@@ -123,6 +133,41 @@ header{
     display: flex;
     gap: 10px;
 }
+.invalid{
+    color: wheat;
+    background-image: url(/assets/icons/invalid.png);
+    background-size: 20px;
+    background-repeat: no-repeat;
+    background-position: left center;
+    padding-left: 30px;
+    background-color: rgba(255, 51, 51, 0.1);
+    border-radius: 5px;
+    font-size: smaller;
+    text-align: left;
+    width: 100%;
+    margin-bottom: 10px;
+}
+.valid{
+    color: wheat;
+    background-image: url(/assets/icons/valid.png);
+    background-size: 20px;
+    background-repeat: no-repeat;
+    background-position: left center;
+    padding-left: 30px;
+    background-color: rgba(51, 255, 51, 0.1);
+    border-radius: 5px;
+    font-size: smaller;
+    text-align: left;
+    width: 100%;
+    margin-bottom: 15px;
+}
+.input-box{
+    position: relative;
+}
+.input-box .invalid{
+    position: absolute;
+}
+
 .input-field{
     font-size: 15px;
     background: rgba(255, 255, 255, 0.2);
@@ -135,6 +180,7 @@ header{
     outline: none;
     transition: .2s ease;
 }
+
 .input-field:hover, .input-field:focus{
     background: rgba(255, 255, 255, 0.25);
 }
@@ -146,6 +192,9 @@ header{
     top: -35px;
     left: 17px;
     color: #fff;
+}
+.input-box label{
+    color: white;
 }
 .submit{
     font-size: 15px;
@@ -177,7 +226,7 @@ header{
 }
 .two label a{
     text-decoration: none;
-    color: #fff;
+    color: rgb(130, 203, 13);
 }
 .two label a:hover{
     text-decoration: underline;

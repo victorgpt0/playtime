@@ -7,6 +7,7 @@ class Dbconnection
     private $DB_USER;
     private $DB_PASS;
     private $DB_NAME;
+    private $post_value;
 
     public function __construct($DB_HOST, $DB_PORT, $DB_USER, $DB_PASS, $DB_NAME)
     {
@@ -37,5 +38,116 @@ class Dbconnection
     public function getConnection(){
         return $this->connection;
     }
+    public function insert($tbl, $data){
+        ksort($data);
+        
+        $keys='`' . implode('`, `', array_keys($data)) . '`';
+        $values= "'" . implode("', '", array_values($data)) . "'";
+        $sql="INSERT INTO $tbl ($keys) VALUES ($values)";
+
+        try{
+            $this->connection->exec($sql);
+            return TRUE;
+        } catch(PDOException $e){
+            return $sql. " <br> ".$e->getMessage();
+        }
+    
+    }
+    public function select_and($tbl, $conditions){
+        
+        $sql="SELECT * FROM $tbl";
+
+        $clauses=[];
+
+        if(!empty($conditions)){
+            $sql .= " WHERE ";        
+        
+        foreach($conditions as $key => $value){
+            $clauses[]="$key = :$key";
+            
+        }
+        $sql .= implode(" AND ",$clauses);
+        
+        }
+
+        $stmt=$this->connection->prepare($sql);
+        foreach($conditions as $key => $value){
+            $stmt->bindValue(":$key", $value);
+        }
+
+        //return $stmt->debugDumpParams();
+
+        try{
+            $stmt->execute();
+            return $stmt->fetchAll(PDO::FETCH_ASSOC);
+            
+        }catch(PDOException $e){
+            return $sql. " <br> ".$e->getMessage();
+        }
+    }
+
+    public function select_or($tbl, $conditions){
+        
+        $sql="SELECT * FROM $tbl";
+
+        $clauses=[];
+
+        if(!empty($conditions)){
+            $sql .= " WHERE ";        
+        
+        foreach($conditions as $key => $value){
+            $clauses[]="$key = :$key";
+            
+        }
+        $sql .= implode(" OR ",$clauses);
+        
+        }
+
+        $stmt=$this->connection->prepare($sql);
+        foreach($conditions as $key => $value){
+            $stmt->bindValue(":$key", $value);
+        }
+
+        //return $stmt->debugDumpParams();
+
+        try{
+            $stmt->execute();
+            return $stmt->fetchAll(PDO::FETCH_ASSOC);
+            
+        }catch(PDOException $e){
+            return $sql. " <br> ".$e->getMessage();
+        }
+    }
+    public function select_join($tbl,$joins){
+        $sql="SELECT * FROM $tbl";
+
+        foreach($joins as $join){
+            $sql .=" " . $join['type']. " JOIN ". $join['table']. " ON ". $join['on'];
+        }
+
+
+        $stmt=$this->connection->prepare($sql);
+
+        //return $stmt->debugDumpParams();
+
+        try{
+            $stmt->execute();
+            return $stmt->fetchAll(PDO::FETCH_ASSOC);
+            
+        }catch(PDOException $e){
+            return $sql. " <br> ".$e->getMessage();
+        }
+    }
+
+    public function escape_values($post_value){
+        $this->post_value = addslashes($post_value);
+        return $this->post_value;
+    }
+    
+    
+    public function getLastInsertId(){
+        return $this->connection->lastInsertId(); 
+    }
+
 
 }

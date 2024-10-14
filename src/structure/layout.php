@@ -11,11 +11,13 @@ class Layout
             <meta charset='utf-8'>
             <meta http-equiv='X-UA-Compatible' content='IE=edge'>
             <title><?php echo $title;?></title>
+            <link rel="icon" href="../assets/icons/favicon.svg" type="image/svg+xml">
             <meta name='viewport' content='width=device-width, initial-scale=1'>
             <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
-            <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.min.css">
-            <script src="node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+            <link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.min.css">
+            <script src="../node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
             <link rel='stylesheet' type='text/css' media='screen' href='../assets/css/style.css'>
+            
         </head>
 
 
@@ -34,7 +36,7 @@ class Layout
                 <a href="contact.php">Contact Us</a>
                 <br>
                 <?php
-                if(isset($_SESSION['id'])){
+                if(isset($_SESSION['user']['u_id'])){
                     $this->loggedin();
                 }else{
                     $this->loggedout();
@@ -51,8 +53,8 @@ class Layout
     public function loggedout(){
         ?>
         <div>
-                    <button type="button" id="btn1" onclick="window.location.href='../drafts/index3.html'">Login</button>
-                    <button type="button" id="btn2" onclick="window.location.href='../drafts/index3.html'">Register</button>
+                    <button type="button" id="btn1" onclick="window.location.href='login.php'">Login</button>
+                    <button type="button" id="btn2" onclick="window.location.href='signup.php'">Register</button>
                 </div>
 
         <?php
@@ -61,7 +63,7 @@ class Layout
     public function loggedin(){
         ?>
         <div>
-                    <button type="button" id="btn2">Logout</button>
+                    <a href="logout.php"><button type="button" id="btn2">Logout</button></a>
                 </div>
 
         <?php

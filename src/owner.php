@@ -39,6 +39,36 @@
                 <button type="submit">Add Facility</button>
             </form>
         </div>
+        <!-- Add New Staff -->
+<div class="form-section">
+    <h2>Add New Staff</h2>
+    <form method="POST" action="owner_module.php">
+        <label for="staffName">Staff Name:</label>
+        <input type="text" id="staffName" name="staffName" required>
+
+        <label for="staffPosition">Position:</label>
+        <input type="text" id="staffPosition" name="staffPosition" required>
+
+        <label for="staffSalary">Salary:</label>
+        <input type="number" id="staffSalary" name="staffSalary" required>
+
+        <label for="staffContact">Contact:</label>
+        <input type="text" id="staffContact" name="staffContact" required>
+
+        <button type="submit" name="addStaff">Add Staff</button>
+    </form>
+</div>
+<!-- Remove Staff -->
+<div class="form-section">
+    <h2>Remove Staff</h2>
+    <form method="POST" action="owner_module.php">
+        <label for="staffID">Staff ID:</label>
+        <input type="number" id="staffID" name="staffID" required>
+        <button type="submit" name="removeStaff">Remove Staff</button>
+    </form>
+</div>
+
+
 
         <?php
 // Backend logic (PHP and database connections) can be added here to fetch data dynamically.
@@ -240,3 +270,64 @@
 </body>
 
 </html>
+<?php
+$servername = "localhost"; // Update with your server name
+$username = "root"; // Database username
+$password = ""; // Database password
+$dbname = "DB_NAME"; // Database name (update with your actual database name)
+
+// Create connection
+$conn = new mysqli($servername, $username, $password, $dbname);
+
+// Check connection
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
+}
+
+// Add Staff
+if (isset($_POST['addStaff'])) {
+    $staffName = $_POST['staffName'];
+    $staffPosition = $_POST['staffPosition'];
+    $staffSalary = $_POST['staffSalary'];
+    $staffContact = $_POST['staffContact'];
+
+    $sql = "INSERT INTO staff (staffName, staffPosition, staffSalary, staffContact) VALUES ('$staffName', '$staffPosition', '$staffSalary', '$staffContact')";
+
+    if ($conn->query($sql) === TRUE) {
+        echo "New staff added successfully!";
+    } else {
+        echo "Error: " . $sql . "<br>" . $conn->error;
+    }
+}
+
+// Remove Staff
+if (isset($_POST['removeStaff'])) {
+    $staffID = $_POST['staffID'];
+
+    $sql = "DELETE FROM staff WHERE staffID = '$staffID'";
+
+    if ($conn->query($sql) === TRUE) {
+        echo "Staff removed successfully!";
+    } else {
+        echo "Error deleting record: " . $conn->error;
+    }
+}
+
+// Fetch and Display Staff
+$sql = "SELECT staffID, staffName, staffPosition FROM staff";
+$result = $conn->query($sql);
+
+if ($result->num_rows > 0) {
+    echo "<h2>Staff List:</h2>";
+    echo "<ul>";
+    while ($row = $result->fetch_assoc()) {
+        echo "<li> ID: " . $row["staffID"] . " - Name: " . $row["staffName"] . " - Position: " . $row["staffPosition"] . "</li>";
+    }
+    echo "</ul>";
+} else {
+    echo "No staff found.";
+}
+
+$conn->close();
+?>
+
