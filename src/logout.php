@@ -1,9 +1,9 @@
 <?php
 require 'load.php';
 
-session_destroy();
-
 user::clearUser();
+
+session_destroy();
 
 header("Location: index.php");
 

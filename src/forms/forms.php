@@ -125,17 +125,18 @@ class forms
                     </div>
                     <?php $ObjGlobal->getMsg('login_msg');
                     $err=$ObjGlobal->getMsg('login_err');
+                    //var_dump($err);
                     ?>
                     <?php print isset($err['user_nonexistent_err']) ? '<div class="invalid">' . $err['user_nonexistent_err'] . '</div>' : ''; ?>
                     <form action="<?php print basename($_SERVER['PHP_SELF']); ?>" method="post">
                     <div class="input-box">
-                        <input type="text" class="input-field" name="name" placeholder="Username or Email" <?php print isset($_SESSION['name']) ? $_SESSION['name']: '';
+                        <input type="text" class="input-field" name="name" placeholder="Username or Email" <?php print isset($_SESSION['name']) ? 'value='.$_SESSION['name']: '';
                         unset($_SESSION['name']);?>>
                         <i class="bx bx-user"></i>
                     </div>
                     <?php print isset($err['empty_name_err']) ? '<div class="invalid">' . $err['empty_name_err'] . '</div>' : ''; ?>
                     <div class="input-box">
-                        <input type="password" class="input-field" name="passw" placeholder="Password" <?php print isset($_POST['passw']) ? $_POST['name']: '';
+                        <input type="password" class="input-field" name="passw" placeholder="Password" <?php print isset($_POST['passw']) ? 'value='.$_POST['passw']: '';
                         unset($_POST['passw']);?>>
                         <i class="bx bx-lock-alt"></i>
                     </div>
