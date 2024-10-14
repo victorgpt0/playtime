@@ -90,7 +90,7 @@
 </head>
 
 <body>
-    <h1 id="ownerh1">Welcome to the Owner's Module</h1>
+    <h1 id="ownerh1"></h1>
     
     <div class="container">
         <!-- Usage Analytics and Peak Seasons -->
