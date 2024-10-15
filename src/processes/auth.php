@@ -182,8 +182,8 @@ class auth
                         $ObjUser->setUser();
     
                         unset($_SESSION['name']);
-                        // header('Location: index.php');
-                        die(var_dump($_SESSION['user']));
+                        header('Location: owner.php');
+                        //die(var_dump($_SESSION['user']));
                     }
                 }
     
