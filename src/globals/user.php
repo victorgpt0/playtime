@@ -37,5 +37,6 @@ class user{
         unset($_SESSION['user']);
     }
 
+    
 
 }

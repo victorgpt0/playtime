@@ -1,7 +1,7 @@
 <?php
 class forms
 {
-    public function signup_form($ObjGlobal)
+    public function signup_form($ObjGlobal, $client)
     {
         ?>
         <div class="container-sm mt-5">
@@ -107,7 +107,7 @@ class forms
                     <div class="input-box">
                     <p class="liw d-flex justify-content-center">Sign up with</p>
                 <div class="icons d-flex justify-content-center">
-                    <a href="<?php ?>" ><ion-icon name="logo-google"></ion-icon></a>
+                    <a href="<?php print $client->createAuthUrl(); ?>" ><ion-icon name="logo-google"></ion-icon></a>
                 </div>
                 <script src="https://unpkg.com/ionicons@5.4.0/dist/ionicons.js"></script>
                     </div>
@@ -121,7 +121,7 @@ class forms
 
     }
 
-    public function login($ObjGlobal)
+    public function login($ObjGlobal, $client)
     {
         ?>
 
@@ -171,7 +171,7 @@ class forms
                     <div class="input-box">
                     <p class="liw d-flex justify-content-center">Log in with</p>
                 <div class="icons d-flex justify-content-center">
-                    <a href="<?php //print $client->createAuthUrl();?>" ><ion-icon name="logo-google"></ion-icon></a>
+                    <a href="<?php print $client->createAuthUrl();?>" ><ion-icon name="logo-google"></ion-icon></a>
                 </div>
                 <script src="https://unpkg.com/ionicons@5.4.0/dist/ionicons.js"></script>
                     </div>

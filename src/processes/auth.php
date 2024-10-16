@@ -130,7 +130,14 @@ class auth
                 $data = array_combine($key, $value);
                 $insert = $conn->insert('tbl_users', $data);
                 if ($insert === TRUE) {
+                    $id=$conn->getLastInsertId();
+                    $user_signup=$conn->select_and('tbl_users',['userid'=>$id]);
+
+                    $user= new user($user_signup[0]['userid'],$user_signup[0]['username'], $user_signup[0]['email'], $user_signup[0]['roleId']);
+                    $user->setUser();
+                    
                     header('Location: owner.php');
+
                 }
                 //update logic for other app users i.e. staff,captain
             } else {
