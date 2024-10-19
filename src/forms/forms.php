@@ -1,7 +1,7 @@
 <?php
 class forms
 {
-    public function signup_form($ObjGlobal)
+    public function signup_form($ObjGlobal, $client)
     {
         ?>
         <div class="container-sm mt-5">
@@ -100,6 +100,17 @@ class forms
             <div class="input-box mt-3">
                 <input type="submit" class="submit" name="signup" value="Register">
             </div>
+            <br>
+                    <div class="d-flex justify-content-center">
+                        <p>OR</p>
+                    </div>
+                    <div class="input-box">
+                    <p class="liw d-flex justify-content-center">Sign up with</p>
+                <div class="icons d-flex justify-content-center">
+                    <a href="<?php print $client->createAuthUrl(); ?>" ><ion-icon name="logo-google"></ion-icon></a>
+                </div>
+                <script src="https://unpkg.com/ionicons@5.4.0/dist/ionicons.js"></script>
+                    </div>
             </form>
         </div>
         </div>
@@ -110,7 +121,7 @@ class forms
 
     }
 
-    public function login($ObjGlobal)
+    public function login($ObjGlobal, $client)
     {
         ?>
 
@@ -125,17 +136,18 @@ class forms
                     </div>
                     <?php $ObjGlobal->getMsg('login_msg');
                     $err=$ObjGlobal->getMsg('login_err');
+                    //var_dump($err);
                     ?>
                     <?php print isset($err['user_nonexistent_err']) ? '<div class="invalid">' . $err['user_nonexistent_err'] . '</div>' : ''; ?>
-                    <form action="<?php print basename($_SERVER['PHP_SELF']); ?>" method="post">
+                    <form action="<?php print basename($_SERVER['PHP_SELF']); ?>" id="postForm" method="post">
                     <div class="input-box">
-                        <input type="text" class="input-field" name="name" placeholder="Username or Email" <?php print isset($_SESSION['name']) ? $_SESSION['name']: '';
+                        <input type="text" class="input-field" name="name" placeholder="Username or Email" <?php print isset($_SESSION['name']) ? 'value='.$_SESSION['name']: '';
                         unset($_SESSION['name']);?>>
                         <i class="bx bx-user"></i>
                     </div>
                     <?php print isset($err['empty_name_err']) ? '<div class="invalid">' . $err['empty_name_err'] . '</div>' : ''; ?>
                     <div class="input-box">
-                        <input type="password" class="input-field" name="passw" placeholder="Password" <?php print isset($_POST['passw']) ? $_POST['name']: '';
+                        <input type="password" class="input-field" name="passw" placeholder="Password" <?php print isset($_POST['passw']) ? 'value='.$_POST['passw']: '';
                         unset($_POST['passw']);?>>
                         <i class="bx bx-lock-alt"></i>
                     </div>
@@ -151,6 +163,17 @@ class forms
                         <div class="two">
                             <label><a href="#">Forgot password?</a></label>
                         </div>
+                    </div>
+                    <br>
+                    <div class="d-flex justify-content-center">
+                        <p>OR</p>
+                    </div>
+                    <div class="input-box">
+                    <p class="liw d-flex justify-content-center">Log in with</p>
+                <div class="icons d-flex justify-content-center">
+                    <a href="<?php print $client->createAuthUrl();?>" ><ion-icon name="logo-google"></ion-icon></a>
+                </div>
+                <script src="https://unpkg.com/ionicons@5.4.0/dist/ionicons.js"></script>
                     </div>
                     </form>
                 </div>

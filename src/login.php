@@ -2,4 +2,4 @@
 require 'load.php';
 
 $ObjLayout->head('Login');
-$ObjForms->login($ObjGlobal);
+$ObjForms->login($ObjGlobal, $client);

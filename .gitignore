@@ -1,2 +1,3 @@
 *.env
-/src/api/*
+/src/database/constants.php
+node_modules

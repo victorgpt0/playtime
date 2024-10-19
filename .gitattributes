@@ -1,0 +1,3 @@
+src/plugins/vendor/**/tests export-ignore
+src/plugins/vendor/**/doc export-ignore
+src/plugins/vendor/**/examples export-ignore
