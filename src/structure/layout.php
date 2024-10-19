@@ -24,6 +24,34 @@ class Layout
         <?php
     }
 
+    public function head_ownerdash($title)
+    {
+        ?>
+        <!DOCTYPE html>
+        <html lang="en">
+
+        <head>
+            <meta charset='utf-8'>
+            <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+            <title><?php echo $title;?></title>
+            <link rel="icon" href="../assets/icons/favicon.svg" type="image/svg+xml">
+            <meta name='viewport' content='width=device-width, initial-scale=1'>
+            <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+            
+            
+            <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+            <script src="https://kit.fontawesome.com/yourcode.js" crossorigin="anonymous"></script>
+            <link rel='stylesheet' type='text/css' media='screen' href='../assets/css/owner-dash.css'>
+            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
+            
+            
+        </head>
+
+
+        <?php
+    }
+
     public function navbar(){
         ?>
         <body>
@@ -50,12 +78,91 @@ class Layout
         <?php
 
     }
+
+    public function navbar_ownerdash(){
+        ?>
+        <body>
+        <nav>
+            <div class="sidebar">
+                <h3>PLAYTIME</h3>
+                <br>
+                <br>
+                
+                <ul	class="nav">
+                    <div class="side-div">
+                        <li><a href=" ">
+                            <i class="fas fa-server"></i>
+                            <span> Dashboard </span>
+                        </a>
+                        </li>
+                    </div>
+
+                    <div class="side-div">
+                        <li><a href=" ">
+                            <i class="fas fa-plus"></i>
+                            <span> Add Facility </span>
+                        </a>
+                        </li>
+                    </div>
+
+                    <div class="side-div">
+                    <li><a href=" ">
+                        <i class="fas fa-user"></i>
+                        <span> Profile </span>
+                    </a>
+                    </li>
+                    </div>
+
+
+                    <div class="side-div">
+                    <li><a href=" ">
+                        <i class="fas fa-users"></i>
+                        <span> Staff </span>
+                    </a>
+                    </li>
+                    </div>
+
+                    <div class="side-div">
+                    <li><a href=" ">
+                        <i class="fas fa-cogs"></i>
+                        <span> Settings </span>
+                    </a>
+                    </li>
+                    </div>
+
+                    <br>
+                    <br>
+                    <br>
+                    <br>
+                    
+                    <div class="side-div">
+                    <li>
+                    <a href="logout.php">
+                    <i class="fas fa-sign-out-alt"></i>
+                        <span> Logout </span>
+                    </a>
+                    </li>
+                    </div>
+                    
+            
+                </ul>
+                
+            </div>
+        </nav>
+        
+                    
+
+        <?php
+
+    }
+
+
     public function loggedout(){
         ?>
         <div>
-                    <button type="button" id="btn1" onclick="window.location.href='login.php'">Login</button>
-                    <button type="button" id="btn2" onclick="window.location.href='signup.php'">Register</button>
-                </div>
+            <button type="button" id="btn1" onclick="window.location.href='login.php'">Login</button>
+            <button type="button" id="btn2" onclick="window.location.href='signup.php'">Register</button>
+        </div>
 
         <?php
     }
@@ -63,8 +170,8 @@ class Layout
     public function loggedin(){
         ?>
         <div>
-                    <a href="logout.php"><button type="button" id="btn2">Logout</button></a>
-                </div>
+            <a href="logout.php"><button type="button" id="btn2">Logout</button></a>
+        </div>
 
         <?php
 

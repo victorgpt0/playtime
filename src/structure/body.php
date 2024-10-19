@@ -119,4 +119,158 @@ class Body{
         </div>
         <?php
     }
+
+    public function dashboard(){
+        ?>
+        <main>
+        <h1 id="ownerh1">Welcome back, [OwnerName]!</h1>
+        
+        <div class="dashboard-content">  
+            <div class="dashboard-section">
+                <div>
+                    <p id="dash-num">Ksh 250,000</p>
+                    
+                    <p id="dash-p">Earnings</p>
+                </div>
+
+                <i class="fas fa-dollar-sign"></i>
+            </div>
+
+            <div class="dashboard-section">
+                <div>
+                    <p id="dash-num">17</p>
+                    
+                    <p id="dash-p">Past Bookings</p>
+                </div>
+
+                <i class="far fa-calendar-check"></i>
+            </div>
+
+            <div class="dashboard-section">
+                <div>
+                    <p id="dash-num">5</p>
+                    
+                    <p id="dash-p">Facilities</p>
+                </div>
+
+                <i class="fas fa-building"></i>
+            </div>
+
+            <div class="dashboard-section">
+                <div>
+                    <p id="dash-num">14</p>
+                    
+                    <p id="dash-p">Employees</p>
+                </div>
+
+                <i class="fas fa-users"></i>
+            </div>
+
+        </div>
+
+        <ul	class="ul2">
+            <div class="btn1">
+                <li><a href=" ">
+                    <span> Upcoming Booked Sessions </span>
+                    <i class="far fa-arrow-alt-circle-right"></i>
+                </a>
+                </li>
+            </div>
+        </ul>
+        </main>
+        <?php
+    }
+    public function analytics(){
+        ?>
+    <div class="container">
+
+        <h2>Usage Analytics: Income and Peak Seasons</h2>
+        <div class="form-section">
+            <div class="chart-container">
+                <canvas id="incomeChart"></canvas>
+            </div>
+            <div class="chart-container">
+                <canvas id="bookingsChart"></canvas>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        
+        var incomeData = [5000, 7000, 8000, 10000, 6000, 11000, 9500, 12000, 13000, 9000, 8000, 14000]; 
+        var bookingData = [50, 65, 70, 80, 55, 85, 75, 90, 100, 60, 70, 95]; 
+        var months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+
+       
+        var ctx1 = document.getElementById('incomeChart').getContext('2d');
+        var incomeChart = new Chart(ctx1, {
+            type: 'line',
+            data: {
+                labels: months,
+                datasets: [{
+                    label: 'Income Generated ($)',
+                    data: incomeData,
+                    backgroundColor: 'rgba(54, 162, 235, 0.2)',
+                    borderColor: 'rgba(54, 162, 235, 1)',
+                    borderWidth: 1,
+                    fill: true
+                }]
+            },
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        title: {
+                            display: true,
+                            text: 'Income ($)'
+                        }
+                    },
+                    x: {
+                        title: {
+                            display: true,
+                            text: 'Month'
+                        }
+                    }
+                }
+            }
+        });
+
+        
+        var ctx2 = document.getElementById('bookingsChart').getContext('2d');
+        var bookingsChart = new Chart(ctx2, {
+            type: 'bar',
+            data: {
+                labels: months,
+                datasets: [{
+                    label: 'Number of Bookings',
+                    data: bookingData,
+                    backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                    borderColor: 'rgba(75, 192, 192, 1)',
+                    borderWidth: 1,
+                    fill: true
+                }]
+            },
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        title: {
+                            display: true,
+                            text: 'Number of Bookings'
+                        }
+                    },
+                    x: {
+                        title: {
+                            display: true,
+                            text: 'Month'
+                        }
+                    }
+                }
+            }
+        });
+    </script>
+        <?php
+    }
 }
+
+
