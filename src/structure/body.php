@@ -128,42 +128,42 @@ class Body{
         <div class="dashboard-content">  
             <div class="dashboard-section">
                 <div>
-                    <p id="dash-num">Ksh 250,000</p>
+                    <p id="dash-num1">Ksh 250,000</p>
                     
                     <p id="dash-p">Earnings</p>
                 </div>
 
-                <i class="fas fa-dollar-sign"></i>
+                <i class="fas fa-dollar-sign" id="ic1"></i>
             </div>
 
             <div class="dashboard-section">
                 <div>
-                    <p id="dash-num">17</p>
+                    <p id="dash-num2">17</p>
                     
                     <p id="dash-p">Past Bookings</p>
                 </div>
 
-                <i class="far fa-calendar-check"></i>
+                <i class="far fa-calendar-check" id="ic2"></i>
             </div>
 
             <div class="dashboard-section">
                 <div>
-                    <p id="dash-num">5</p>
+                    <p id="dash-num3">5</p>
                     
                     <p id="dash-p">Facilities</p>
                 </div>
 
-                <i class="fas fa-building"></i>
+                <i class="fas fa-building" id="ic3"></i>
             </div>
 
             <div class="dashboard-section">
                 <div>
-                    <p id="dash-num">14</p>
+                    <p id="dash-num4">14</p>
                     
                     <p id="dash-p">Employees</p>
                 </div>
 
-                <i class="fas fa-users"></i>
+                <i class="fas fa-users" id="ic4"></i>
             </div>
 
         </div>
@@ -185,11 +185,11 @@ class Body{
     <div class="container">
 
         <h2>Usage Analytics: Income and Peak Seasons</h2>
-        <div class="form-section">
-            <div class="chart-container">
+        <div class="form-sec">
+            <div class="chart-cont">
                 <canvas id="incomeChart"></canvas>
             </div>
-            <div class="chart-container">
+            <div class="chart-cont">
                 <canvas id="bookingsChart"></canvas>
             </div>
         </div>

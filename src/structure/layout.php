@@ -31,21 +31,18 @@ class Layout
         <html lang="en">
 
         <head>
+
             <meta charset='utf-8'>
             <meta http-equiv='X-UA-Compatible' content='IE=edge'>
             <title><?php echo $title;?></title>
             <link rel="icon" href="../assets/icons/favicon.svg" type="image/svg+xml">
             <meta name='viewport' content='width=device-width, initial-scale=1'>
             <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
-            
-            
             <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
             <script src="https://kit.fontawesome.com/yourcode.js" crossorigin="anonymous"></script>
             <link rel='stylesheet' type='text/css' media='screen' href='../assets/css/owner-dash.css'>
             <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 
-            
-            
         </head>
 
 
@@ -99,8 +96,8 @@ class Layout
 
                     <div class="side-div">
                         <li><a href=" ">
-                            <i class="fas fa-plus"></i>
-                            <span> Add Facility </span>
+                        <i class="fas fa-building"></i>
+                            <span> Facilities </span>
                         </a>
                         </li>
                     </div>

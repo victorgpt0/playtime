@@ -65,6 +65,7 @@ li a i{
   font-size: 20px;
 }
 
+
 li a span{
   font-size: 13px;
   font-weight: 600;
@@ -143,9 +144,48 @@ h1 {
 
 .dashboard-section i{
   font-size: 50px;
-  color: #228B22;
   padding-left: 40px;
 
+}
+
+#ic1{
+  color: #FFD700;
+}
+
+#ic2{
+  color: #4169E1;
+}
+
+#ic3{
+  color: #FF4500;
+}
+
+#ic4{
+  color: #228B22;
+}
+
+#dash-num1{
+  font-size: 20px;
+  font-weight: 600;
+  color:  #FFD700;
+}
+
+#dash-num2{
+  font-size: 20px;
+  font-weight: 600;
+  color:  #4169E1;
+}
+
+#dash-num3{
+  font-size: 20px;
+  font-weight: 600;
+  color:  #FF4500;
+}
+
+#dash-num4{
+  font-size: 20px;
+  font-weight: 600;
+  color:  #228B22;
 }
 
 #dash-p{
@@ -154,23 +194,10 @@ h1 {
   color:#585b5b;
 }
 
-#dash-num{
-  font-size: 20px;
-  font-weight: 600;
-  color:  #228B22;
-}
 
-.form-section{
-  /*display: flex;*/
-  width: 800px;
-  height: 100%; 
-  padding-top: 0px;
-  
-}
-
-.chart-container{
-  width: 600px;
-  height: 100%;
+.chart-cont{
+  width: 650px;
+  height: 300px;
   
 }
 
