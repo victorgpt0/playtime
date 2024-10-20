@@ -91,7 +91,7 @@ li a span{
   margin: 0 auto; 
   padding-top: px;
   /*border: 1px solid black;*/
-  margin-top: 40px;
+  margin-top: 20px;
   margin-bottom: 2px;
 }
 
@@ -226,7 +226,6 @@ h1 {
 
 .btnmain{
   display: flex;
-  
 }
 
 .btn1{
@@ -242,13 +241,13 @@ h1 {
   display: flex;
   margin: 0 auto;
   background-color: black;
-  margin-bottom: 2%;
+  margin-bottom: 6%;
   margin-left: 300px;
 }
 
 .btn1:hover{
   color: black;
-  transition: 0.5s;
+  transition: 0.3s;
   /*margin-left: 20px;*/
   background-color: white;
   border: 2px solid black;
@@ -266,7 +265,7 @@ h1 {
 
 .ul2 li a:hover{
   color: black;
-  transition: 0.5s;
+  transition: 0.4s;
   margin-left: 35px;
   background-color: white;
   

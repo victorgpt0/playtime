@@ -138,7 +138,7 @@ class Body{
 
             <div class="dashboard-section">
                 <div>
-                    <p id="dash-num2">17</p>
+                    <p id="dash-num2">895</p>
                     
                     <p id="dash-p">Past Bookings</p>
                 </div>
@@ -153,7 +153,7 @@ class Body{
                     <p id="dash-p">Facilities</p>
                 </div>
 
-                <i class="fas fa-building" id="ic3"></i>
+                <i class="fa-solid fa-futbol" id="ic3"></i>
             </div>
 
             <div class="dashboard-section">
@@ -197,7 +197,7 @@ class Body{
 
     <script>
         
-        var incomeData = [5000, 7000, 8000, 10000, 6000, 11000, 9500, 12000, 13000, 9000, 8000, 14000]; 
+        var incomeData = [5000, 7000, 8000, 10000, 16000, 25000, 19000, 18000, 20000, 24000, 30000, 27000]; 
         var bookingData = [50, 65, 70, 80, 55, 85, 75, 90, 100, 60, 70, 95]; 
         var months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
 

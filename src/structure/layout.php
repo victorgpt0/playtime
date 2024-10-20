@@ -96,7 +96,7 @@ class Layout
 
                     <div class="side-div">
                         <li><a href=" ">
-                        <i class="fas fa-building"></i>
+                        <i class="fa-solid fa-futbol"></i>
                             <span> Facilities </span>
                         </a>
                         </li>
