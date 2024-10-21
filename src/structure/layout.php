@@ -152,6 +152,82 @@ class Layout
         <?php
 
     }
+    public function navbar_userdash(){
+        ?>
+        <body>
+        <nav>
+            <div class="sidebar">
+                <h3>PLAYTIME</h3>
+                <br>
+                <br>
+                
+                <ul	class="nav">
+                    <div class="side-div">
+                        <li><a href=" ">
+                            <i class="fas fa-server"></i>
+                            <span> Dashboard </span>
+                        </a>
+                        </li>
+                    </div>
+
+                    <div class="side-div">
+                        <li><a href=" ">
+                        <i class="fa-solid fa-futbol"></i>
+                            <span> Facilities </span>
+                        </a>
+                        </li>
+                    </div>
+
+                    <div class="side-div">
+                    <li><a href=" ">
+                        <i class="fas fa-user"></i>
+                        <span> Profile </span>
+                    </a>
+                    </li>
+                    </div>
+
+
+                    <div class="side-div">
+                    <li><a href=" ">
+                        <i class="fas fa-users"></i>
+                        <span> Staff </span>
+                    </a>
+                    </li>
+                    </div>
+
+                    <div class="side-div">
+                    <li><a href=" ">
+                        <i class="fas fa-cogs"></i>
+                        <span> Settings </span>
+                    </a>
+                    </li>
+                    </div>
+
+                    <br>
+                    <br>
+                    <br>
+                    <br>
+                    
+                    <div class="side-div">
+                    <li>
+                    <a href="logout.php">
+                    <i class="fas fa-sign-out-alt"></i>
+                        <span> Logout </span>
+                    </a>
+                    </li>
+                    </div>
+                    
+            
+                </ul>
+                
+            </div>
+        </nav>
+        
+                    
+
+        <?php
+
+    }
 
 
     public function loggedout(){

@@ -17,7 +17,7 @@
   background-position: center;
   padding: 0% 0%;
   font-size: 20px;
-  width: 230px;
+  width: 180px;
   height: 100%;
   position: fixed;
   top: 0;
@@ -130,9 +130,10 @@ h1 {
   height: 50px;
   text-align: center;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-start;
   display: flex;
-  margin: 0 auto;  
+  margin:0 auto;  
+  padding: 25px;
   
 }
 
