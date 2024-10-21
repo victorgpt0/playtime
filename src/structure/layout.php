@@ -15,7 +15,6 @@ class Layout
             <meta name='viewport' content='width=device-width, initial-scale=1'>
             <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
             <link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.min.css">
-            <script src="../node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
             <link rel='stylesheet' type='text/css' media='screen' href='../assets/css/style.css'>
             
         </head>
@@ -42,6 +41,8 @@ class Layout
             <script src="https://kit.fontawesome.com/yourcode.js" crossorigin="anonymous"></script>
             <link rel='stylesheet' type='text/css' media='screen' href='../assets/css/owner-dash.css'>
             <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+            <link href="../../assets/css/captain.css" rel="stylesheet">
+            <link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.min.css">
 
         </head>
 
@@ -155,6 +156,7 @@ class Layout
     public function navbar_userdash(){
         ?>
         <body>
+            
         <nav>
             <div class="sidebar">
                 <h3>PLAYTIME</h3>
@@ -170,13 +172,7 @@ class Layout
                         </li>
                     </div>
 
-                    <div class="side-div">
-                        <li><a href=" ">
-                        <i class="fa-solid fa-futbol"></i>
-                            <span> Facilities </span>
-                        </a>
-                        </li>
-                    </div>
+                   
 
                     <div class="side-div">
                     <li><a href=" ">
@@ -187,13 +183,7 @@ class Layout
                     </div>
 
 
-                    <div class="side-div">
-                    <li><a href=" ">
-                        <i class="fas fa-users"></i>
-                        <span> Staff </span>
-                    </a>
-                    </li>
-                    </div>
+                    
 
                     <div class="side-div">
                     <li><a href=" ">
@@ -277,11 +267,36 @@ class Layout
                 <p>Instagram: @skibidi_playtime</p>
             </div>
         </div>
-        
-    </body>
+        <?php
+    }
+    public function close_js(){
+        ?>
+        <script src="../node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+        </body>
         </html>
 
         <?php
+    }
+    
 
+        
+
+    
+    public function navbar_left(){
+        ?>
+        <style>
+            .navbar-nav{
+                height:100vh;
+                
+            }
+
+            .nav-link img{
+                width:50px;
+                height:50px;
+            }
+        </style>
+        
+
+        <?php
     }
 }

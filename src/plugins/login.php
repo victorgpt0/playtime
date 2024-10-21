@@ -28,8 +28,8 @@ if (isset($_GET['code'])) {
     //get user profile
     $goauth = new Google_Service_Oauth2($client);
     $google_info = $goauth->userinfo->get();
-    echo '<pre>';
-    print_r($google_info);
+    //echo '<pre>';
+    //print_r($google_info);
 
     $email = $google_info['email'];
     $email_exists = $conn->select_and('tbl_users', [

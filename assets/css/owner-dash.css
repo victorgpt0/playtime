@@ -134,7 +134,9 @@ h1 {
   display: flex;
   margin:0 auto;  
   padding: 25px;
-  
+}
+.side-div a{
+  text-decoration: none;
 }
 
 .side-div:hover{
@@ -202,7 +204,7 @@ h1 {
   
 }
 
-.container h2{
+.container1 h2{
   padding-top: 10px;
   margin-left: 25px;
   font-size: 18px;
@@ -211,7 +213,7 @@ h1 {
   
 }
 
-.container{
+.container1{
   background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0));
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
