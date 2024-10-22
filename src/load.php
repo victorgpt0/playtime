@@ -2,6 +2,7 @@
 session_start();
 require 'database/constants.php';
 require 'database/dbconnection.php';
+require_once 'plugins/vendor/autoload.php';
 
 function AutoLoad($class){
     $directories=['forms','structure','processes','globals'];
@@ -15,6 +16,22 @@ function AutoLoad($class){
 }
 spl_autoload_register('AutoLoad');
 
+$config = json_decode(file_get_contents('plugins/api/oauth.json'), true);
+//var_dump($config);
+
+$clientID = $config['web']['client_id'];
+$clientSecret = $config['web']['client_secret'];
+$redirect_uri = 'http://localhost:3000/src/plugins/login.php';
+
+//create client request to google
+
+$client = new Google_Client();
+$client->setClientId($clientID);
+$client->setClientSecret($clientSecret);
+$client->setRedirectUri($redirect_uri);
+$client->addScope('profile');
+$client->addScope('email');
+              
 //db object
 //$conn = new Dbconnection(DB_HOSTNAME, DB_PORT, DB_USER, DB_PASS, DB_NAME);
 $conn=new Dbconnection(DB_HOSTNAME_ALT,DB_PORT_ALT,DB_USER_ALT,DB_PASS_ALT,DB_NAME_ALT);
@@ -26,6 +43,7 @@ $ObjForms = new forms();
 //Backend Objects
 $ObjGlobal= new globals();
 
+//processes
 $ObjAuth= new auth();
 $ObjAuth->signup($conn, $ObjGlobal, $conf);
 $ObjAuth->login($conn,$ObjGlobal);
