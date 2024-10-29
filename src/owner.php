@@ -279,5 +279,3 @@ $ObjLayout->navbar();
 
 </html>
 
-
-

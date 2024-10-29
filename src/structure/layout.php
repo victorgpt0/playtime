@@ -96,7 +96,7 @@ class Layout
                     </div>
 
                     <div class="side-div">
-                        <li><a href=" ">
+                        <li><a href="facilities.php">
                         <i class="fa-solid fa-futbol"></i>
                             <span> Facilities </span>
                         </a>
@@ -113,9 +113,9 @@ class Layout
 
 
                     <div class="side-div">
-                    <li><a href=" ">
+                    <li><a href="workers.php">
                         <i class="fas fa-users"></i>
-                        <span> Staff </span>
+                        <span> Workers </span>
                     </a>
                     </li>
                     </div>
@@ -124,6 +124,22 @@ class Layout
                     <li><a href=" ">
                         <i class="fas fa-cogs"></i>
                         <span> Settings </span>
+                    </a>
+                    </li>
+                    </div>
+
+                    <div class="side-div">
+                    <li><a href="feedback.php">
+                        <i class=" "></i>
+                        <span> Feedback </span>
+                    </a>
+                    </li>
+                    </div>
+
+                    <div class="side-div">
+                    <li><a href="maintenance.php">
+                        <i class=" "></i>
+                        <span> Maintenance Request </span>
                     </a>
                     </li>
                     </div>
