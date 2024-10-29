@@ -125,13 +125,11 @@ class auth
             
             if(!count($signup_err)){
                 // Insert the user into the database
-<<<<<<< HEAD
                 $key=['fullname','email', 'username', 'password', 'genderId', 'roleId'];
                 $value=[$fullname,$email,$username,$hashedPassword,$genderId,$roleId];
                 $data=array_combine($key,$value);
                 $insert=$conn->insert('tbl_users',$data);
                 if($insert === TRUE){
-=======
                 $key = ['fullname', 'email', 'username', 'password', 'genderId', 'roleId'];
                 $value = [$fullname, $email, $username, $hashedPassword, $genderId, $roleId];
                 $data = array_combine($key, $value);
@@ -143,7 +141,6 @@ class auth
                     $user= new user($user_signup[0]['userid'],$user_signup[0]['username'], $user_signup[0]['email'], $user_signup[0]['roleId']);
                     $user->setUser();
                     
->>>>>>> d00e45efdd51d71907c786979b9348fbbde9b352
                     header('Location: owner.php');
 
                 }
@@ -160,6 +157,7 @@ class auth
 
 
     }
+}
     public function login($conn,$ObjGlobal){
 
         if(isset($_POST['login'])){
