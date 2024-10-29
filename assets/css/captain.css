@@ -1,0 +1,13 @@
+#main-content{
+    margin-left: 200px;
+}
+#searchbar{
+    margin-top: 50px;
+    width: 30%;
+}
+#maps{
+    height: 50vh;
+}
+#previous{
+    gap: 30px;
+}

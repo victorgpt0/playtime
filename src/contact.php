@@ -4,3 +4,4 @@ $ObjLayout->head('About Us');
 $ObjLayout->navbar();
 $ObjBody->contact_us();
 $ObjLayout->footer();
+$ObjLayout->close_js();
