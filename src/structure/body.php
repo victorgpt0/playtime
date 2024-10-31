@@ -316,6 +316,38 @@ class Body
             </div>
         </div>
 
+    <?php
+    }
+    public function calendar($client)
+    {
+    ?>
+        <div class="container" id="main-content">
+            <div id="calendar">
+                <?php
+
+                $service= new Google_Service_Calendar($client);
+                
+                $optParams=[
+                    'maxResults'=>10,
+                    'orderBy'=>'startTime',
+                    'singleEvents'=>true,
+                    'timeMin'=>date('c')
+                ];
+                $results=$service->events->listEvents('primary',$optParams);
+
+                if (count($results->getItems()) == 0) {
+                    echo "No upcoming events found.";
+                } else {
+                    echo "Upcoming events:<br/>";
+                    foreach ($results->getItems() as $event) {
+                        $start = $event->start->dateTime ?: $event->start->date;
+                        echo $event->getSummary() . " (" . $start . ")<br/>";
+                    }
+                }
+                ?>
+            </div>
+        </div>
+
 <?php
     }
 }

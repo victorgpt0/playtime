@@ -121,7 +121,7 @@ class forms
 
     }
 
-    public function login($ObjGlobal, $client)
+    public function login($ObjGlobal, $google_oauth)
     {
         ?>
 
@@ -171,8 +171,12 @@ class forms
                     <div class="input-box">
                     <p class="liw d-flex justify-content-center">Log in with</p>
                 <div class="icons d-flex justify-content-center">
-                    <a href="<?php print $client->createAuthUrl();?>" ><ion-icon name="logo-google"></ion-icon></a>
+                    <a href="<?php print $google_oauth->createAuthUrl();?>" ><ion-icon name="logo-google"></ion-icon></a>
                 </div>
+                <!-- <div>
+                    <p id="test"></p>
+                    <button onclick="test()">Run JS</button>
+                </div> -->
                 <script src="https://unpkg.com/ionicons@5.4.0/dist/ionicons.js"></script>
                     </div>
                     </form>

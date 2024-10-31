@@ -11,22 +11,29 @@ class auth
             $lname = $_SESSION['lname'] = $conn->escape_values(ucwords(strtolower($_POST['lname'])));
             $fullname = implode(' ', [$fname, $lname]);
 
-            $email = $_SESSION['email'] = $conn->escape_values(strtolower($_POST['email']));
-            $username = $_SESSION['username'] = $conn->escape_values(strtolower($_POST['username']));
+            // Get form data
+            $email =$_SESSION['email']= $conn->escape_values(strtolower($_POST['email']));
+            $username =$_SESSION['username']=$conn->escape_values(strtolower($_POST['username'])); 
             $password = $_POST['password'];
-            $confirmpassword = $_POST['confirmpassword'];
-            $roleId = 2; 
-            $agree = $_POST['agree'];
+            $confirmpassword=$_POST['confirmpassword'];
+
+            $roleId = 2; // Role dropdown
+
+            $agree=$_POST['agree'];
 
             if (isset($_POST['gender'])) {
                 if (count($_POST['gender']) > 1) {
                     $signup_err['one_gender_err'] = 'You can only choose one Gender.';
                 }
-                foreach ($_POST['gender'] as $gender) {
-                    $genderId = ($gender === 'Male') ? 1 : 2;
+                foreach($_POST['gender'] as $gender){
+                    if($gender==='Male'){
+                        $genderId=1;
+                    }else{
+                        $genderId=2;
+                    }
                 }
-            } else {
-                $signup_err['empty_gender_err'] = 'Select your Gender';
+            }else{
+                $signup_err['empty_gender_err']='Select your Gender';
             }
 
             // Server-side validation
@@ -85,42 +92,57 @@ class auth
                 $signup_err['agree_err'] = 'You must agree before submitting!';
             }
 
+            
+            // Hash the password
             $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
 
-            if (!count($signup_err)) {
+            
+            if(!count($signup_err)){
+                // Insert the user into the database
+                $key=['fullname','email', 'username', 'password', 'genderId', 'roleId'];
+                $value=[$fullname,$email,$username,$hashedPassword,$genderId,$roleId];
+                $data=array_combine($key,$value);
+                $insert=$conn->insert('tbl_users',$data);
+                if($insert === TRUE){
                 $key = ['fullname', 'email', 'username', 'password', 'genderId', 'roleId'];
                 $value = [$fullname, $email, $username, $hashedPassword, $genderId, $roleId];
                 $data = array_combine($key, $value);
                 $insert = $conn->insert('tbl_users', $data);
                 if ($insert === TRUE) {
-                    $id = $conn->getLastInsertId();
-                    $user_signup = $conn->select_and('tbl_users', ['userid' => $id]);
+                    $id=$conn->getLastInsertId();
+                    $user_signup=$conn->select_and('tbl_users',['userid'=>$id]);
 
-                    $user = new user($user_signup[0]['userid'], $user_signup[0]['username'], $user_signup[0]['email'], $user_signup[0]['roleId']);
+                    $user= new user($user_signup[0]['userid'],$user_signup[0]['username'], $user_signup[0]['email'], $user_signup[0]['roleId']);
                     $user->setUser();
                     
                     header('Location: owner.php');
+
                 }
-            } else {
-                $ObjGlobal->setMsg('error_msg', 'Error(s): Fill all input fields appropriately', 'invalid');
-                $ObjGlobal->setMsg('signup_err', $signup_err, 'invalid');
-                $ObjGlobal->setMsg('success', $success, 'valid');
+                //update logic for other app users i.e. staff,captain
+            }else{
+                $ObjGlobal->setMsg('error_msg','Error(s) Fill all input fields appropriately','invalid');
+                $ObjGlobal->setMsg('signup_err',$signup_err,'invalid');
+                $ObjGlobal->setMsg('success',$success,'valid');
             }
+
+
+
         }
     }
+}
 
-    public function login($conn, $ObjGlobal)
-    {
-        if (isset($_POST['login'])) {
-            $login_err = [];
+    public function login($conn,$ObjGlobal){
 
-            $name = $_SESSION['name'] = $conn->escape_values(strtolower($_POST['name']));
-            $passw = $_POST['passw'];
-            if (empty($name)) {
-                $login_err['empty_name_err'] = 'Username or Email required';
+        if(isset($_POST['login'])){
+            $login_err=[];
+
+            $name=$_SESSION['name']=$conn->escape_values(strtolower($_POST['name']));
+            $passw=$_POST['passw'];
+            if(empty($name)){
+                $login_errors['empty_name_err']='Username or Email required';
             }
-            if (empty($passw)) {
-                $login_err['empty_passw_err'] = 'Password cannot be empty';
+            if(empty($passw)){
+                $login_errors['empty_passw_err']='Password cannot be empty';
             }
 
             $username_err = $conn->select_or('tbl_users', [
@@ -129,7 +151,7 @@ class auth
             ]);
 
             if (empty($username_err)) {
-                $login_err['user_nonexistent_err'] = 'User is not registered!';
+                $login_err['user_nonexistent_err']='User is not Registered!';
             }
 
             if (!count($login_err)) {
@@ -137,10 +159,12 @@ class auth
                     'username' => $name,
                     'email' => $name
                 ]);
-
-                if ($user_login) {
-                    if (password_verify($passw, $user_login[0]['password'])) {
-                        $ObjUser = new user($user_login[0]['userid'], $user_login[0]['username'], $user_login[0]['email'], $user_login[0]['roleId']);
+    
+                // var_dump($user_login);
+    
+                if($user_login){
+                    if(password_verify($passw,$user_login[0]['password'])){
+                        $ObjUser = new user($user_login[0]['userid'], $user_login[0]['username'],  $user_login[0]['email'], $user_login[0]['roleId']);
                         $ObjUser->setUser();
 
                         unset($_SESSION['name']);

@@ -2,10 +2,9 @@
 session_start();
 require 'database/constants.php';
 require 'database/dbconnection.php';
-require_once 'plugins/vendor/autoload.php';
 
 function AutoLoad($class){
-    $directories=['forms','structure','processes','globals'];
+    $directories=['forms','structure','processes','globals','plugins'];
     foreach($directories as $dir){
         $file=dirname(__FILE__).DIRECTORY_SEPARATOR.$dir.DIRECTORY_SEPARATOR.$class.'.php';
 
@@ -16,22 +15,11 @@ function AutoLoad($class){
 }
 spl_autoload_register('AutoLoad');
 
-$config = json_decode(file_get_contents('plugins/api/oauth.json'), true);
-//var_dump($config);
+//google tokens
+$google_oauth=new google();
+$client=$google_oauth->getClient();
 
-$clientID = $config['web']['client_id'];
-$clientSecret = $config['web']['client_secret'];
-$redirect_uri = 'http://localhost:3000/src/plugins/login.php';
 
-//create client request to google
-
-$client = new Google_Client();
-$client->setClientId($clientID);
-$client->setClientSecret($clientSecret);
-$client->setRedirectUri($redirect_uri);
-$client->addScope('profile');
-$client->addScope('email');
-              
 //db object
 //$conn = new Dbconnection(DB_HOSTNAME, DB_PORT, DB_USER, DB_PASS, DB_NAME);
 $conn=new Dbconnection(DB_HOSTNAME_ALT,DB_PORT_ALT,DB_USER_ALT,DB_PASS_ALT,DB_NAME_ALT);
