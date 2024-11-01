@@ -287,7 +287,11 @@ class Body
                     <button class="btn btn-outline-success" type="submit">Search</button>
                 </form>
             </div>
-
+        <?php
+    }
+    public function captain()
+    {
+        ?>
             <div id="maps">
 
             </div>
@@ -325,25 +329,17 @@ class Body
             <div id="calendar">
                 <?php
 
-                $service= new Google_Service_Calendar($client);
-                
-                $optParams=[
-                    'maxResults'=>10,
-                    'orderBy'=>'startTime',
-                    'singleEvents'=>true,
-                    'timeMin'=>date('c')
-                ];
-                $results=$service->events->listEvents('primary',$optParams);
+                $service = new Google_Service_Calendar($client);
 
-                if (count($results->getItems()) == 0) {
-                    echo "No upcoming events found.";
-                } else {
-                    echo "Upcoming events:<br/>";
-                    foreach ($results->getItems() as $event) {
-                        $start = $event->start->dateTime ?: $event->start->date;
-                        echo $event->getSummary() . " (" . $start . ")<br/>";
-                    }
-                }
+                $optParams = [
+                    'maxResults' => 10,
+                    'orderBy' => 'startTime',
+                    'singleEvents' => true,
+                    'timeMin' => date('c')
+                ];
+                $results = $service->events->listEvents('primary', $optParams);
+
+                print_r($results);
                 ?>
             </div>
         </div>

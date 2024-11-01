@@ -1,5 +1,11 @@
-<link rel="stylesheet" href="owner.css">
+<?php
+require 'load.php';
+$ObjLayout->head_ownerdash('Maintenance');
+$ObjLayout->navbar_ownerdash();
+?>
 
+<link rel="stylesheet" href="owner.css">
+<div class="container" id="main-content">
 <div class="form-section">
             <h2>Submit a Maintenance Request</h2>
             <form method="POST" action="">
@@ -17,4 +23,5 @@
 
                 <button type="submit">Submit Request</button>
             </form>
+        </div>
         </div>
