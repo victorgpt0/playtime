@@ -15,6 +15,7 @@ class google{
         $this->client->setClientSecret($this->config['web']['client_secret']);
         $this->client->setRedirectUri($this->redirect_uri);
         $this->client->addScope('https://www.googleapis.com/auth/userinfo.profile');
+        $this->client->addScope('email');
         $this->client->addScope('https://www.googleapis.com/auth/calendar');
         $this->client->setAccessType('offline');
         $this->client->setPrompt('consent');

@@ -1,3 +1,5 @@
 *.env
 /src/database/constants.php
 node_modules
+.vscode
+plugins/vendor

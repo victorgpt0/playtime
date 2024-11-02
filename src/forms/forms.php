@@ -1,7 +1,7 @@
 <?php
 class forms
 {
-    public function signup_form($ObjGlobal, $client)
+    public function signup_form($ObjGlobal, $google_oauth)
     {
         ?>
         <div class="container-sm mt-5">
@@ -107,7 +107,7 @@ class forms
                     <div class="input-box">
                     <p class="liw d-flex justify-content-center">Sign up with</p>
                 <div class="icons d-flex justify-content-center">
-                    <a href="<?php print $client->createAuthUrl(); ?>" ><ion-icon name="logo-google"></ion-icon></a>
+                    <a href="<?php print $google_oauth->createAuthUrl(); ?>" ><ion-icon name="logo-google"></ion-icon></a>
                 </div>
                 <script src="https://unpkg.com/ionicons@5.4.0/dist/ionicons.js"></script>
                     </div>
@@ -183,6 +183,43 @@ class forms
                 </div>
             </div>
         </div>
+        <?php
+    }
+
+    public function role_form(){
+        ?>
+        <div class="container-sm mt-5">
+            <a href="signup.php"><button type="button" class="btn-close" aria-label="Close"></button></a>
+            <div class="d-flex justify-content-center">
+                <div class="register-container">
+                <div class="top">
+                <p>USe ME aS</p>
+                </div>
+    <form action="<?php print basename($_SERVER['PHP_SELF']); ?>" method="post">
+                <div class="">
+                <div class="form-check">
+  <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1" value="<?php echo CAPTAIN;?>">
+  <label class="form-check-label" for="flexRadioDefault1">
+  To book available spaces for sports-related activities
+  </label>
+</div>
+<div class="form-check">
+  <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" checked value="<?php echo OWNER; ?>">
+  <label class="form-check-label" for="flexRadioDefault2">
+  Provide these sports spaces at an affordable price
+  </label>
+</div>
+                </div>
+            <div class="input-box">
+                <input type="submit" class="submit" name="role" value="Continue to app...">
+            </div>
+            </form>
+            </div>
+
+            </div>
+
+        </div>
+
         <?php
     }
 

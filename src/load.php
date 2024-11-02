@@ -17,8 +17,6 @@ spl_autoload_register('AutoLoad');
 
 //google tokens
 $google_oauth=new google();
-$client=$google_oauth->getClient();
-
 
 //db object
 //$conn = new Dbconnection(DB_HOSTNAME, DB_PORT, DB_USER, DB_PASS, DB_NAME);
@@ -35,3 +33,4 @@ $ObjGlobal= new globals();
 $ObjAuth= new auth();
 $ObjAuth->signup($conn, $ObjGlobal, $conf);
 $ObjAuth->login($conn,$ObjGlobal);
+$ObjAuth->role($conn);

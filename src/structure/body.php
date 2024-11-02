@@ -128,7 +128,7 @@ class Body
     {
     ?>
         <main>
-            <h1 id="ownerh1">Welcome back, [OwnerName]!</h1>
+            <!-- <h1 id="ownerh1">Welcome back, [OwnerName]!</h1> -->
 
             <div class="dashboard-content">
                 <div class="dashboard-section">

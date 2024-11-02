@@ -19,7 +19,16 @@ if (isset($_GET['code'])) {
         $ObjUser = new user($email_exists[0]['userid'], $email_exists[0]['username'], $email_exists[0]['email'], $email_exists[0]['roleId']);
         $ObjUser->setUser();
 
-        header('Location: ../index.php');
+        if($email_exists[0]['roleId']===2){
+            header('Location: owner-dash.php');
+
+        }elseif($email_exists[0]['roleId']===3){
+            header('Location: staff.php');
+
+        }elseif($email_exists[0]['roleId']===4){
+            header('Location: captain.php');
+
+        }
     } else {
         $fullname = ucwords(strtolower($google_info['name']));
 
@@ -45,7 +54,7 @@ if (isset($_GET['code'])) {
             $user = new user($goauth[0]['userid'], $goauth[0]['username'], $goauth[0]['email'], $goauth[0]['roleId']);
             $user->setUser();
 
-            header('Location: ../index.php');
+            header('Location: ../role.php');
         }
 
     }
