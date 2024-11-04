@@ -5,7 +5,7 @@
     <meta http-equiv='X-UA-Compatible' content='IE=edge'>
     <title>Playtime</title>
     <meta name='viewport' content='width=device-width, initial-scale=1'>
-    <link rel='stylesheet' type='text/css' media='screen' href='../assets/css/style.css'>
+    <link rel='stylesheet' type='text/css' media='screen' href='../assets/css/landingpage-draft.css'>
     
 </head>
 <body>
@@ -89,13 +89,16 @@
                 </p>
                 <p id="copyright">Playtime &copy; 2024</p>
             </div>
+
             <div class="subfooterDiv">
                 <h4>Contact Us</h4>
 
             </div>
+
             <div class="subfooterDiv">
                 <h4>Follow Us</h4>
             </div>
+            
         </div>
         
     </footer>
