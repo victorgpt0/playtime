@@ -1,0 +1,364 @@
+@font-face { font-family: 'Montserrat'; src: url('../font/Montserrat-VariableFont_wght.ttf'); }
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.mainNav{
+    color: #fff;
+    padding: 2% 2%;
+    font-size: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    height: 70px;
+    margin: 0 auto;
+    position: absolute;
+    top: 0;
+    left:0;
+
+    /*blur effect*/
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0));
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border-radius: 0px;
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+}
+
+.mainNav h3{
+    color: #FFD700;
+    font-size: 17px;
+    margin: 0;
+    padding: 0;
+    
+}
+
+.mainNav a{
+    color: #fff;
+    text-decoration: none;
+    font-size: 17px;
+}
+
+.mainNav a:hover{
+    color: #228B22;
+}
+
+body{
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    /*font-family: 'Roboto', sans-serif;*/
+}
+
+.background-img{
+    background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.7))
+    ,url('../images/GrassBackground3.jpg');
+    background-size: cover;
+    background-attachment: fixed;
+    background-position: center;
+    padding: 0 5%;
+    height: 100vh;
+    width: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 2%;
+}
+
+main h1{
+    color: #fff;
+    font-size: 40px;
+    text-align: center;
+    margin: 0;
+    padding-left: 250px;
+    padding-right: 250px;
+    justify-items: center;
+    align-items: center;
+    padding-top: 12%;
+}
+
+main p{
+    color: #fff;
+    font-size: 20px;
+    text-align: center;
+    margin: 0;
+    padding-top: 1%;
+    padding-left: 250px;
+    padding-right: 250px;
+    padding-bottom: 5%;
+    justify-items: center;
+    align-items: center;
+}
+
+#btn1{
+    color: white;
+    width: 120px;
+    padding: 12px;
+    background-color: transparent;
+    border: solid 1px white;
+    border-radius: 10px;
+    outline: none;
+    font-size: 15px;
+    font-weight: 600;
+    margin: 0;
+}
+
+#btn1:hover{
+    background-color: white;
+    color: #228B22;
+}
+
+#btn2{
+    color: #228B22;
+    width: 120px;
+    padding: 12px;
+    background-color: white;
+    border: solid 1px white;
+    border-radius: 10px;
+    outline: none;
+    font-size: 15px;
+    font-weight: 600;
+    margin: 0;
+}
+
+#btn2:hover{
+    background-color: transparent;
+    color: white;
+}
+
+.search{
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-row-gap: 10px;
+    max-width: 1050px;
+    margin: 0 auto;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+}
+
+.search select,
+.search input {
+    padding: 10px 20px;
+    width: 16%;
+    border: 0px solid #ccc;
+    border-radius: 5px;
+    margin-right:20px;
+}
+
+
+.search label {
+    font-size: 15px;
+    font-weight: 600;
+    color: #000000;
+}
+
+.search button {
+    background-color: #4169E1;
+    color: white;
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+
+.search button:hover {
+    background-color: #228B22;
+}
+
+
+#btn3{
+    color: white;
+    width: 120px;
+    padding: 12px;
+    background-color: transparent;
+    border: solid 1px white;
+    border-radius: 10px;
+    outline: none;
+    font-size: 15px;
+    font-weight: 600;
+    margin: 0 auto;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+}
+
+#btn3:hover{
+    background-color: white;
+    color: #228B22;
+}
+
+.explore{
+    padding-top: 5%;
+    padding-left: 2%;
+    height: 500px;
+    color: black;
+}
+
+.register-turf{
+    background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.7))
+    ,url('../images/GrassBackground3.jpg');
+    background-size: cover;
+    background-attachment: fixed;   
+    background-position: center;
+    border-radius: 30px;
+    width: 500px;
+    height: 150px;
+    margin: 0 auto;
+}
+
+.register-turf p{
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0;
+    font-weight: 600;
+    padding-top: 7%;
+    padding-bottom: 4%;
+}
+
+#btn4{
+    color: white;
+    width: 120px;
+    padding: 12px;
+    background-color: #228B22;
+    border: solid 1px #228B22;
+    border-radius: 10px;
+    outline: none;
+    font-size: 12px;
+    font-weight: 600;
+    margin: 0 auto;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+}
+
+#btn4:hover{
+    background-color: white;
+    color: #228B22;
+}
+
+.footer{
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    margin: 0 auto;
+    width: 100%;
+    background-color: #000000;
+    color: #fff;
+    
+}
+
+.subfooterDiv{
+    height: 200px;
+    width: 200px;
+    background-color: #000000;
+    color: #fff;
+    padding-top: 5%;
+    padding-left: 5%;
+    justify-items: center;
+    align-items: center;
+}
+
+.subfooterDiv h4{
+    padding-bottom: 10%;
+}
+
+#copyright{
+    padding-top: 10%;
+}
+
+
+@media screen and (max-width: 768px) {
+    .mainNav {
+        width: 100%;
+        padding: 2% 5%;
+        font-size: 16px;
+    }
+    
+    .mainNav h3 {
+        font-size: 18px;
+    }
+
+    .background-img {
+        padding: 0 2%;
+        height: auto;
+    }
+    
+    main h1 {
+        font-size: 30px;
+        padding-left: 50px;
+        padding-right: 50px;
+        padding-top: 10%;
+    }
+
+    main p {
+        font-size: 18px;
+        padding-left: 50px;
+        padding-right: 50px;
+    }
+
+    .search input, .search select {
+        width: 90%;
+        margin: 10px auto;
+    }
+
+    .search button {
+        width: 90%;
+        margin: 10px auto;
+    }
+
+    #btn1, #btn2 {
+        width: 100%;
+        margin-bottom: 10px;
+    }
+    
+    .register-turf {
+        width: 100%;
+        height: auto;
+        padding: 20px;
+    }
+}
+
+
+@media screen and (max-width: 480px) {
+    .mainNav {
+        flex-direction: column;
+        font-size: 14px;
+    }
+    
+    main h1 {
+        font-size: 24px;
+        padding: 10px;
+    }
+
+    main p {
+        font-size: 16px;
+        padding: 10px;
+    }
+
+    .search input, .search select, .search button {
+        width: 100%;
+        margin: 10px auto;
+    }
+
+    #btn1, #btn2 {
+        width: 100%;
+    }
+
+    .register-turf {
+        width: 100%;
+        height: auto;
+    }
+
+    .footer, .subfooterDiv {
+        flex-direction: column;
+        width: 100%;
+    }
+}
