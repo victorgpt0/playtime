@@ -179,13 +179,13 @@ class auth
                         $ObjUser->setUser();
 
                         unset($_SESSION['name']);
-                        if($user_login[0]['roleId']===2){
+                        if($user_login[0]['roleId']=== OWNER){
                             header('Location: owner-dash.php');
 
-                        }elseif($user_login[0]['roleId']===3){
+                        }elseif($user_login[0]['roleId']=== STAFF){
                             header('Location: staff.php');
 
-                        }elseif($user_login[0]['roleId']===4){
+                        }elseif($user_login[0]['roleId']=== CAPTAIN){
                             header('Location: captain.php');
 
                         }
@@ -208,9 +208,9 @@ class auth
             $result = $conn->update('tbl_users', $data, "userId=" . $_SESSION['user']['u_id']);
 
             if ($result === TRUE) {
-                if ($roleId === '2') {
+                if ($roleId === OWNER) {
                     header('Location: owner-dash.php');
-                } elseif ($roleId === '4') {
+                } elseif ($roleId === CAPTAIN) {
                     header('Location: captain.php');
                 }
                 $ObjUser = new user($_SESSION['user']['u_id'], $_SESSION['user']['username'], $_SESSION['user']['email'], $roleId);

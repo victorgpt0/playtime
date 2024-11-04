@@ -36,3 +36,47 @@ INSERT INTO `tbl_role` (`roleId`, `roles`) VALUES
 (3, 'Staff'),
 (4, 'Captain');
 
+CREATE TABLE `tbl_status` (
+  `statusId` tinyint(1) NOT NULL primary  key,
+  `status` varchar(20) NOT NULL
+);
+
+
+INSERT INTO `tbl_status` (`statusId`, `status`) VALUES
+(1, 'Available'),
+(2, 'Unavailable'),
+(3, 'Pending'),
+(4, 'Confirmed'),
+(5, 'Cancelled');
+
+
+CREATE TABLE `tbl_facilities` (
+  `facilityId` bigint(10) NOT NULL primary key auto_increment,
+  `name` varchar(255) NOT NULL,
+  `latitude` decimal(10,8) NOT NULL,
+  `longitude` decimal(11,8) NOT NULL,
+  `place_id` varchar(255) NOT NULL,
+  `price_per_hour` decimal(10,2) NOT NULL,
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
+  `updated_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
+  `userid` bigint(10) NOT NULL,
+  `statusId` tinyint(1) NOT NULL,
+  foreign key (userid) references tbl_users(userid) on delete no action on update no action,
+  foreign key (statusId) references tbl_status(statusId) on delete no action on update no action
+);
+
+CREATE TABLE `tbl_bookings` (
+  `booking_id` bigint(10) NOT NULL primary key auto_increment,
+  `facilityId` bigint(10) NOT NULL,
+  `userid` bigint(10) NOT NULL,
+  `booked_at` timestamp NOT NULL DEFAULT current_timestamp(),
+  `updated_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
+  `start_time` datetime NOT NULL,
+  `end_time` datetime NOT NULL,
+  `totalprice` decimal(10,2) NOT NULL,
+  `statusId` tinyint(1) NOT NULL,
+  foreign key (facilityId) references tbl_facilities(facilityId) on delete no action on update no action,
+  foreign key (userid) references tbl_users(userid) on delete no action on update no action,
+  foreign key (statusId) references tbl_status(statusId) on delete no action on update no action
+);
+
