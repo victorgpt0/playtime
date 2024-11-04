@@ -45,6 +45,7 @@ class Dbconnection
         $values= "'" . implode("', '", array_values($data)) . "'";
         $sql="INSERT INTO $tbl ($keys) VALUES ($values)";
 
+        // die($sql);
         try{
             $this->connection->exec($sql);
             return TRUE;
@@ -149,5 +150,34 @@ class Dbconnection
         return $this->connection->lastInsertId(); 
     }
 
+    public function update($tbl, $data, $where){
+        $sql="UPDATE $tbl SET ";
+        $clauses=[];
+        foreach($data as $key=>$value){
+            $clauses[]="$key = :$key";
+        }
+        $sql .=implode(' , ', $clauses);
+
+        $sql .=" WHERE $where";
+
+        
+        $stmt=$this->connection->prepare($sql);
+        //return $stmt->debugDumpParams();
+
+        foreach($data as $key => $value){
+            $stmt->bindValue(":$key",$value);
+        }
+
+        try{
+            $stmt->execute();
+            return TRUE;
+            
+        }catch(PDOException $e){
+            return $sql. " <br> ".$e->getMessage();
+        }
+
+
+
+    }
 
 }

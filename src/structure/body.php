@@ -128,7 +128,7 @@ class Body
     {
     ?>
         <main>
-            <h1 id="ownerh1">Welcome back, [OwnerName]!</h1>
+            <!-- <h1 id="ownerh1">Welcome back, [OwnerName]!</h1> -->
 
             <div class="dashboard-content">
                 <div class="dashboard-section">
@@ -287,7 +287,11 @@ class Body
                     <button class="btn btn-outline-success" type="submit">Search</button>
                 </form>
             </div>
-
+        <?php
+    }
+    public function captain()
+    {
+        ?>
             <div id="maps">
 
             </div>
@@ -313,6 +317,30 @@ class Body
                         </div>
                     </div>
                 </div>
+            </div>
+        </div>
+
+    <?php
+    }
+    public function calendar($client)
+    {
+    ?>
+        <div class="container" id="main-content">
+            <div id="calendar">
+                <?php
+
+                $service = new Google_Service_Calendar($client);
+
+                $optParams = [
+                    'maxResults' => 10,
+                    'orderBy' => 'startTime',
+                    'singleEvents' => true,
+                    'timeMin' => date('c')
+                ];
+                $results = $service->events->listEvents('primary', $optParams);
+
+                print_r($results);
+                ?>
             </div>
         </div>
 

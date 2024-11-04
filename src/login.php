@@ -2,5 +2,5 @@
 require 'load.php';
 
 $ObjLayout->head('Login');
-$ObjForms->login($ObjGlobal, $client);
+$ObjForms->login($ObjGlobal, $google_oauth);
 $ObjLayout->close_js();

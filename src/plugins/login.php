@@ -1,32 +1,12 @@
 <?php
-require_once 'vendor/autoload.php';
 require '../load.php';
-
-$config = json_decode(file_get_contents('api/oauth.json'), true);
-//var_dump($config);
-
-$clientID = $config['web']['client_id'];
-$clientSecret = $config['web']['client_secret'];
-$redirect_uri = 'http://localhost:3000/src/plugins/login.php';
-
-//create client request to google
-
-$client = new Google_Client();
-$client->setClientId($clientID);
-$client->setClientSecret($clientSecret);
-$client->setRedirectUri($redirect_uri);
-$client->addScope('profile');
-$client->addScope('email');
-
-
 
 
 if (isset($_GET['code'])) {
-    $token = $client->fetchAccessTokenWithAuthCode($_GET['code']);
-    $client->setAccessToken($token);
-
+    if($google_oauth->handleCallback($_GET['code'])){
+        
     //get user profile
-    $goauth = new Google_Service_Oauth2($client);
+    $goauth = new Google_Service_Oauth2($google_oauth->getClient());
     $google_info = $goauth->userinfo->get();
     //echo '<pre>';
     //print_r($google_info);
@@ -39,7 +19,16 @@ if (isset($_GET['code'])) {
         $ObjUser = new user($email_exists[0]['userid'], $email_exists[0]['username'], $email_exists[0]['email'], $email_exists[0]['roleId']);
         $ObjUser->setUser();
 
-        header('Location: ../index.php');
+        if($email_exists[0]['roleId']===2){
+            header('Location: owner-dash.php');
+
+        }elseif($email_exists[0]['roleId']===3){
+            header('Location: staff.php');
+
+        }elseif($email_exists[0]['roleId']===4){
+            header('Location: captain.php');
+
+        }
     } else {
         $fullname = ucwords(strtolower($google_info['name']));
 
@@ -65,12 +54,13 @@ if (isset($_GET['code'])) {
             $user = new user($goauth[0]['userid'], $goauth[0]['username'], $goauth[0]['email'], $goauth[0]['roleId']);
             $user->setUser();
 
-            header('Location: ../index.php');
+            header('Location: ../role.php');
         }
 
     }
 
 
 } else {
-    die('Go back to login page <a href="' . $client->createAuthUrl() . '">Login</a>');
+    die('Go back to login page <a href="' . $google_oauth->createAuthUrl() . '">Login</a>');
+}
 }
