@@ -202,19 +202,26 @@ class auth
     {
         if (isset($_POST['role'])) {
             $roleId = $conn->escape_values($_POST['flexRadioDefault']);
+            echo $roleId;
 
             $data = ['roleId' => $roleId];
 
             $result = $conn->update('tbl_users', $data, "userId=" . $_SESSION['user']['u_id']);
 
-            if ($result === TRUE) {
+            if ($result === true) {
+                echo 'result';
                 if ($roleId === OWNER) {
+                    echo 'OWNER';
                     header('Location: owner-dash.php');
+                    exit();
                 } elseif ($roleId === CAPTAIN) {
+                    echo 'CAPTAIN';
                     header('Location: captain.php');
+                    exit();
                 }
                 $ObjUser = new user($_SESSION['user']['u_id'], $_SESSION['user']['username'], $_SESSION['user']['email'], $roleId);
                 $ObjUser->setUser();
+                echo 'finished';
             }
         }
     }

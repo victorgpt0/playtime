@@ -198,13 +198,13 @@ class forms
     <form action="<?php print basename($_SERVER['PHP_SELF']); ?>" method="post">
                 <div class="">
                 <div class="form-check">
-  <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1" value="<?php echo CAPTAIN;?>">
+  <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1" value=<?php echo CAPTAIN;?>>
   <label class="form-check-label" for="flexRadioDefault1">
   To book available spaces for sports-related activities
   </label>
 </div>
 <div class="form-check">
-  <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" checked value="<?php echo OWNER; ?>">
+  <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" checked value=<?php echo OWNER; ?>>
   <label class="form-check-label" for="flexRadioDefault2">
   Provide these sports spaces at an affordable price
   </label>
