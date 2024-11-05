@@ -13,11 +13,3 @@ define('DB_USER_ALT', 'root');
 define('DB_PASS_ALT', 'Njorogez#17');
 define('DB_NAME_ALT', 'railway');
 
-//config variables
-$conf['valid_mail_domains']=["strathmore.edu","gmail.com","yahoo.com"];
-
-//roles
-define('ADMIN',1);
-define('OWNER',2);
-define('STAFF',3);
-define('CAPTAIN',4);
