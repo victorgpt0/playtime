@@ -5,6 +5,7 @@ define('DB_PORT', '24181');
 define('DB_USER', 'root');
 define('DB_PASS', 'VgqklvaWbwUcNZJkFXqoHDdSeIXnFwsk');
 define('DB_NAME', 'railway');
+
 //local db
 define('DB_HOSTNAME_ALT', 'localhost');
 define('DB_PORT_ALT', '3306');
