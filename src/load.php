@@ -27,11 +27,21 @@ $ObjLayout = new Layout();
 $ObjBody = new Body();
 $ObjForms = new forms();
 
+//form inputs
+$statuses=$conn->select_and('tbl_status',[]);
+$facilityType= $conn->select_and('tbl_f_types', []);
+
+
 //Backend Objects
 $ObjGlobal= new globals();
+$err=$ObjGlobal->getMsg('f_error');
+
 
 //processes
 $ObjAuth= new auth();
 $ObjAuth->signup($conn, $ObjGlobal, $conf);
 $ObjAuth->login($conn,$ObjGlobal);
 $ObjAuth->role($conn);
+
+$ObjOwner= new owner();
+$ObjOwner->facilities($conn,$ObjGlobal);

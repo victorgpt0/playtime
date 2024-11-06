@@ -36,6 +36,7 @@ class Layout
             <link rel="icon" href="../assets/icons/favicon.svg" type="image/svg+xml">
             <meta name='viewport' content='width=device-width, initial-scale=1'>
             <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+            <link href="../../assets/css/globals.css" rel="stylesheet">
             <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
             <script src="https://kit.fontawesome.com/yourcode.js" crossorigin="anonymous"></script>
             <link rel='stylesheet' type='text/css' media='screen' href='../assets/css/owner-dash.css'>

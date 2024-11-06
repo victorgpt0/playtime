@@ -83,7 +83,7 @@ class Dbconnection
             return $stmt->fetchAll(PDO::FETCH_ASSOC);
             
         }catch(PDOException $e){
-            return $sql. " <br> ".$e->getMessage();
+            return error_log($sql. " <br> ".$e->getMessage(),3,'../errors/error.log');
         }
     }
 

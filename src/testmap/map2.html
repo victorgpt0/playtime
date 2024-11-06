@@ -1,0 +1,127 @@
+<!--
+
+To run this demo, you need to replace 'YOUR_ACCESS_TOKEN' with an access token from ArcGIS that has the correct privileges.
+
+To get started, sign up for a free ArcGIS Location Platform account or a free trial of ArcGIS Online and create developer credentials.
+
+https://developers.arcgis.com/documentation/security-and-authentication/get-started/
+
+-->
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no" />
+
+    <!-- Load Leaflet from CDN -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" crossorigin="" />
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" crossorigin=""></script>
+    <!-- Load Esri Leaflet from CDN -->
+    <script src="https://unpkg.com/esri-leaflet@3.0.12/dist/esri-leaflet.js"></script>
+    <script src="https://unpkg.com/esri-leaflet-vector@4.2.5/dist/esri-leaflet-vector.js"></script>
+    <!-- Calcite components -->
+    <script type="module" src="https://js.arcgis.com/calcite-components/2.12.1/calcite.esm.js"></script>
+    <link rel="stylesheet" type="text/css" href="https://js.arcgis.com/calcite-components/2.12.1/calcite.css" />
+    <style>
+      body {
+          margin: 0;
+          padding: 0;
+          width:100%;
+          height:100%;
+          display:flex;
+          flex-direction:row;
+      }
+
+      #map {
+          position:absolute;
+
+          left:350px;
+
+          top:0;
+          bottom:0;
+          right:0;
+          font-family: Arial, Helvetica, sans-serif;
+          font-size: 14px;
+          color: #323232;
+          z-index: 1;
+      }
+
+      .contents {
+        position:absolute;
+        top:44px;
+        bottom:0;
+        left:0;
+        width:350px;
+        overflow-y: auto;
+        overflow-x: hidden;
+      }
+      #categorySelect {
+        margin: 5px;
+        width:340px;
+      }
+
+  </style>
+</head>
+<body>
+
+    <calcite-combobox id="categorySelect" placeholder="Filter by category" overlay-positioning="fixed" selection-mode="single">
+        <calcite-combobox-item value="10000" text-label="Arts and Entertainment"></calcite-combobox-item>
+        <calcite-combobox-item value="11000" text-label="Business and Professional Services"></calcite-combobox-item>
+        <calcite-combobox-item value="12000" text-label="Community and Government"></calcite-combobox-item>
+        <calcite-combobox-item value="13000" text-label="Dining and Drinking"></calcite-combobox-item>
+        <calcite-combobox-item value="15000" text-label="Health and Medicine"></calcite-combobox-item>
+        <calcite-combobox-item selected value="16000" text-label="Landmarks and Outdoors"></calcite-combobox-item>
+        <calcite-combobox-item value="17000" text-label="Retail"></calcite-combobox-item>
+        <calcite-combobox-item value="18000" text-label="Sports and Recreation"></calcite-combobox-item>
+        <calcite-combobox-item value="19000" text-label="Travel and Transportation"></calcite-combobox-item>
+    </calcite-combobox>
+    <div class="contents">
+        <calcite-flow id="flow">
+        <calcite-flow-item>
+            <calcite-list id="results">
+            <calcite-notice open><div slot="message">Click on the map to search for places around a location</div></calcite-notice>
+            </calcite-list>
+        </calcite-flow-item>
+        </calcite-flow>
+    </div>
+
+    <div id="map"></div>
+    <script>
+
+        const categorySelect = document.getElementById("categorySelect");
+        const resultPanel = document.getElementById("results");
+        const flow = document.getElementById("flow");
+        let infoPanel;
+
+        const setAttribute = (heading, icon, validValue) => {
+            if (validValue) {
+            const element = document.createElement("calcite-block");
+            element.heading = heading;
+            element.description = validValue;
+
+            const attributeIcon = document.createElement("calcite-icon");
+            attributeIcon.icon = icon;
+            attributeIcon.slot = "icon";
+            attributeIcon.scale = "m";
+
+            element.appendChild(attributeIcon);
+            infoPanel.appendChild(element);
+            }
+        };
+
+        const map = L.map("map", {
+            minZoom: 13
+        }).setView([33.98621, -118.46651], 14); //Latitude, longitude
+
+        const accessToken = "YOUR_ACCESS_TOKEN";
+
+        const basemapEnum = "arcgis/navigation";
+        L.esri.Vector.vectorBasemapLayer(basemapEnum, {
+            token: accessToken
+        }).addTo(map);
+
+        map.zoomControl.setPosition("bottomright");
+
+    </script>
+</body>
+</html>

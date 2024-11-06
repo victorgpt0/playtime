@@ -2,17 +2,17 @@ create database if not exists railway;
 
 use railway;
 
-create table tbl_gender(
+create table if not exists tbl_gender(
 genderId tinyint(1) not null primary key auto_increment,
 gender varchar(10) not null
 );
 
-create table tbl_role(
+create table if not exists tbl_role(
 roleId tinyint(1) not null primary key auto_increment,
 roles varchar(10) not null
 );
 
-create table tbl_users(
+create table if not exists tbl_users(
 userid bigint(10) not null primary key auto_increment,
 fullname varchar(50),
 email varchar(50) not null unique,
@@ -36,7 +36,7 @@ INSERT INTO `tbl_role` (`roleId`, `roles`) VALUES
 (3, 'Staff'),
 (4, 'Captain');
 
-CREATE TABLE `tbl_status` (
+CREATE TABLE if not exists `tbl_status` (
   `statusId` tinyint(1) NOT NULL primary  key,
   `status` varchar(20) NOT NULL
 );
@@ -50,7 +50,7 @@ INSERT INTO `tbl_status` (`statusId`, `status`) VALUES
 (5, 'Cancelled');
 
 
-CREATE TABLE `tbl_facilities` (
+CREATE TABLE if not exists `tbl_facilities` (
   `facilityId` bigint(10) NOT NULL primary key auto_increment,
   `name` varchar(255) NOT NULL,
   `latitude` decimal(10,8) NOT NULL,
@@ -65,7 +65,7 @@ CREATE TABLE `tbl_facilities` (
   foreign key (statusId) references tbl_status(statusId) on delete no action on update no action
 );
 
-CREATE TABLE `tbl_bookings` (
+CREATE TABLE if not exists `tbl_bookings` (
   `booking_id` bigint(10) NOT NULL primary key auto_increment,
   `facilityId` bigint(10) NOT NULL,
   `userid` bigint(10) NOT NULL,
