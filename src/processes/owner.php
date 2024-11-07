@@ -39,7 +39,8 @@ class owner{
             $data=array_combine($key,$value);
             try{
             if($conn->insert('tbl_facilities',$data)===true){
-                error_log('Success',3,'errors/error.log');
+                header("Location : facilities.php");
+                error_log("Success inserting to DB",3,'errors/error.log');
             }else{
                 error_log('Failure at owner.php insert()',3,'errors/error.log');
             }
