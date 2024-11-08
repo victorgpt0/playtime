@@ -3,3 +3,4 @@
 node_modules
 .vscode
 plugins/vendor
+src/database/constants.php
