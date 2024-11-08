@@ -15,7 +15,7 @@ class auth
 
             // Get form data
             $email = $_SESSION['email'] = $conn->escape_values(strtolower($_POST['email']));
-            $username = $_SESSION['username'] = $conn->escape_values(strtolower($_POST['username']));
+            $username = $_SESSION['username'] = $conn->escape_values(str_replace(' ','',strtolower($_POST['username'])));
             $password = $_POST['password'];
             $confirmpassword = $_POST['confirmpassword'];
 
@@ -147,7 +147,7 @@ class auth
         if (isset($_POST['login'])) {
             $login_err = [];
 
-            $name = $_SESSION['name'] = $conn->escape_values(strtolower($_POST['name']));
+            $name = $_SESSION['name'] = $conn->escape_values(str_replace(' ', '',strtolower($_POST['name'])));
             $passw = $_POST['passw'];
             if (empty($name)) {
                 $login_errors['empty_name_err'] = 'Username or Email required';
@@ -179,13 +179,13 @@ class auth
                         $ObjUser->setUser();
 
                         unset($_SESSION['name']);
-                        if($user_login[0]['roleId']=== OWNER){
+                        if(strval($user_login[0]['roleId'])=== OWNER){
                             header('Location: owner-dash.php');
 
-                        }elseif($user_login[0]['roleId']=== STAFF){
+                        }elseif(strval($user_login[0]['roleId'])=== STAFF){
                             header('Location: staff.php');
 
-                        }elseif($user_login[0]['roleId']=== CAPTAIN){
+                        }elseif(strval($user_login[0]['roleId'])=== CAPTAIN){
                             header('Location: captain.php');
 
                         }

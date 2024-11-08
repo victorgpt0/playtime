@@ -83,7 +83,7 @@ class Dbconnection
             return $stmt->fetchAll(PDO::FETCH_ASSOC);
             
         }catch(PDOException $e){
-            return $sql. " <br> ".$e->getMessage();
+            return error_log($sql. " <br> ".$e->getMessage(),3,'../errors/error.log');
         }
     }
 
@@ -119,15 +119,29 @@ class Dbconnection
             return $sql. " <br> ".$e->getMessage();
         }
     }
-    public function select_join($tbl,$joins){
+    public function select_join($tbl,$joins,$where){
         $sql="SELECT * FROM $tbl";
 
         foreach($joins as $join){
             $sql .=" " . $join['type']. " JOIN ". $join['table']. " ON ". $join['on'];
         }
 
+        $clauses=[];
 
+        if(!empty($where)){
+            $sql .= " WHERE ";        
+        
+        foreach($where as $key => $value){
+            $clauses[]="$key = :$key";
+            
+        }
+        $sql .= implode(" AND ",$clauses);
+        
+        }
         $stmt=$this->connection->prepare($sql);
+        foreach($where as $key => $value){
+            $stmt->bindValue(":$key", $value);
+        }
 
         //return $stmt->debugDumpParams();
 
