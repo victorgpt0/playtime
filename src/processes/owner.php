@@ -59,4 +59,64 @@ class owner{
         print "</div>";
        }       
     }
+    public function editFacility($conn, $ObjGlobal){
+        if(isset($_POST['editFacility'])){
+
+            $f_editerrors=[];
+    
+            print "<div class='container' id='main-content'>";
+    
+            $facilityEditName =$_SESSION['facilityEditName'] = $conn->escape_values(ucwords($_POST['facilityEditName']));
+            $facilityEditType = $_SESSION['facilityEditType']=$conn->escape_values($_POST['facilityEditType']);
+            $facilityEditPrice =$_SESSION['facilityEditPrice']=$conn->escape_values($_POST['facilityEditPrice']);
+            $editDescription= $_SESSION['editDescription']=$conn->escape_values($_POST['editDescription']);
+            // $latitude = $_SESSION['latitude']=$conn->escape_values($_POST['latitude']);
+            // $longitude =$_SESSION['longitude']=$conn->escape_values($_POST['longitude']);
+            // $address = $_SESSION['address']=$conn->escape_values($_POST['address']);
+    
+            $editStatus=$_SESSION['statusEditType']=$conn->escape_values($_POST['statusEditType']);
+            //print $facilityEditName.' '.$facilityEditType.' '.$facilityEditPrice.' '.$editStatus;
+            $facilityEditID=$_SESSION['facilityEditID']=$conn->escape_values($_POST['facilityEditID']);
+     
+            if($facilityEditType==='Other'){
+                $other=$_SESSION['otherFacilityEditType']=$conn->escape_values(ucwords(strtolower($_POST['otherFacilityEditType'])));
+                if(empty($other)){
+                    $f_editerrors['empty_input_err']='Fill all fields appropriately.';
+                }
+            }
+    
+            if(empty($facilityEditName) || empty($facilityEditType) || empty($facilityEditPrice) || empty($editDescription) ||empty($editStatus)){
+                $f_editerrors['empty_input_err']='Fill all fields appropriately.';
+            }
+        
+            if(!count($f_editerrors)){
+                
+                try{
+                    
+                if($conn->update('tbl_facilities',[
+                    'name'=>$facilityEditName,
+                    'description'=>$editDescription,
+                    'price_per_hour'=>$facilityEditPrice,
+                    'statusId'=>$editStatus,
+                    'typeId'=>$facilityEditType
+                ],'facilityId='.$facilityEditID) === true){
+                    error_log("Success updating to DB ",3,'errors/error.log');
+                }else{
+                    error_log('Failure at owner.php update()',3,'errors/error.log');
+                }
+            }catch(Exception $e){
+                error_log($e->getMessage());
+            }
+    
+    
+            }else{
+                $ObjGlobal->setMsg('f_editerror',$f_editerrors,'invalid');
+            }
+    
+            
+    
+            
+            print "</div>";
+           }   
+    }
 }

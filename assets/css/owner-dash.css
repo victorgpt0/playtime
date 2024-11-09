@@ -31,6 +31,9 @@
   border-right: 1px solid #ccc;
   
 }
+a {
+  text-decoration: none;
+}
 
 .sidebar h3{
   color: #FFD700;
@@ -196,8 +199,28 @@ h1 {
   font-weight: 600;
   color:#585b5b;
 }
-
-
+.available{
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    background-color: green;
+    color: white;
+    padding: 5px 10px;
+    font-size: 14px;
+    border-radius: 3px;
+    z-index: 1;
+}
+.unavailable{
+  position: absolute;
+    top: 10px;
+    left: 10px;
+    background-color: red;
+    color: white;
+    padding: 5px 10px;
+    font-size: 14px;
+    border-radius: 3px;
+    z-index: 1;
+}
 .chart-cont{
   width: 650px;
   height: 300px;

@@ -124,7 +124,7 @@ class Body
     <?php
     }
 
-    public function dashboard()
+    public function dashboard($facilityCard)
     {
     ?>
         <main>
@@ -153,9 +153,9 @@ class Body
 
                 <div class="dashboard-section">
                     <div>
-                        <p id="dash-num3">5</p>
+                        <p id="dash-num3"><?= count($facilityCard)?></p>
 
-                        <p id="dash-p">Facilities</p>
+                        <a href="facilities.php"><p id="dash-p">Facilities</p></a>
                     </div>
 
                     <i class="fa-solid fa-futbol" id="ic3"></i>

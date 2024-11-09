@@ -34,7 +34,7 @@ $facilityType= $conn->select_and('tbl_f_types', []);
 
 //Backend Objects
 $ObjGlobal= new globals();
-$err=$ObjGlobal->getMsg('f_error');
+
 
 
 //processes
@@ -45,6 +45,7 @@ $ObjAuth->role($conn);
 
 $ObjOwner= new owner();
 $ObjOwner->facilities($conn,$ObjGlobal);
+$ObjOwner->editFacility($conn,$ObjGlobal);
 
 
 //html from DB
