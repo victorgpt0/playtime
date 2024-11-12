@@ -283,7 +283,7 @@ class Body
         <div class="container" id="main-content">
             <div class="d-flex justify-content-center">
                 <form class="d-flex" id="searchbar" role="search">
-                    <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                    <input class="form-control me-2" type="search" placeholder="Search or pick on map" aria-label="Search">
                     <button class="btn btn-outline-success" type="submit">Search</button>
                 </form>
             </div>
@@ -292,9 +292,6 @@ class Body
     public function captain()
     {
         ?>
-            <div id="maps">
-
-            </div>
             <div>
                 <h3>Booking History</h3>
                 <div id="previous" class="d-flex">
@@ -319,6 +316,7 @@ class Body
                 </div>
             </div>
         </div>
+        
 
     <?php
     }

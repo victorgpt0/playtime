@@ -1,6 +1,6 @@
 const accessToken = "AAPTxy8BH1VEsoebNVZXo8HurFS7LISrPsZH3DuNlMdWT5xPsVsoHg3YKlpvK6VFP2OaO4ckEkoVxT88VQrbgw7CJ1M-l-1UL7_zOQ3vIgSmOwONl5mn8Wbvz7Ne39p2k57rzkfpfEPduky7hTHxFscAwZYH9BjhrUN4d9tf0wTP3hZn8JAJKnta19N4u21nOD3Ghje4AsDHRlNPUTQMqFIRUOM7QLr-qDzi6Srn3tlW4Fw.AT1_byREAv5a";
 
-const map = L.map("map", {
+const map = L.map("map2", {
   minZoom: 2,
   zoomControl: false // Disable default zoom control to customize its position
 });
@@ -72,24 +72,24 @@ function getCurrentPosition() {
       (error) => {
         console.error("Error getting location:", error);
         // If location access is denied, set a default view
-        map.setView([34.101, -1.339], 13); // Example coordinates
+        map.setView([34.101, -118.339], 13); // Example coordinates
       }
     );
   } else {
     // Fallback if geolocation is not supported
-    map.setView([34.101, -1.339], 13); // Default coordinates
+    map.setView([34.101, -118.339], 13); // Default coordinates
   }
 }
 
 // Call function to get user location
 getCurrentPosition();
 
-function markLocations(userLocations){
-// const userLocation = [
-//  { lat: -1.2921, lng: 36.8219, name: "Facility A" }, // Example data
-//  { lat: -1.2931, lng: 36.8229, name: "Facility B" }
-// ];
-//console.log("Locations received:", userLocations);
+// Add selected locations from the database (assumes `userLocations` array with each location having `lat`, `lng`)
+// This should be populated dynamically from your backend database
+const userLocations = [
+  { lat: -1.2921, lng: 36.8219, name: "Facility A" }, // Example data
+  { lat: -1.2931, lng: 36.8229, name: "Facility B" }
+];
 
 // Add markers for user-specific locations with a different color
 userLocations.forEach(loc => {
@@ -101,6 +101,5 @@ userLocations.forEach(loc => {
     })
   }).addTo(map);
 
-  userMarker.bindPopup(`<b>${loc.facilityName}</b><br><br><b>${loc.name}</b><p>${loc.lat}, ${loc.lng}</p>`);
+  userMarker.bindPopup(`<b>${loc.name}</b><p>${loc.lat}, ${loc.lng}</p>`);
 });
-}

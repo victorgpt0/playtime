@@ -10,7 +10,7 @@ class Layout
         <head>
             <meta charset='utf-8'>
             <meta http-equiv='X-UA-Compatible' content='IE=edge'>
-            <title><?php echo 'Playtime | ' . $title; ?></title>
+            <title><?php echo $title.' | Playtime' ; ?></title>
             <link rel="icon" href="../assets/icons/favicon.svg" type="image/svg+xml">
             <meta name='viewport' content='width=device-width, initial-scale=1'>
             <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
@@ -25,14 +25,14 @@ class Layout
     public function head_ownerdash($title)
     {
     ?>
-        <!DOCTYPE html>
+        
         <html lang="en">
 
         <head>
 
             <meta charset='utf-8'>
             <meta http-equiv='X-UA-Compatible' content='IE=edge'>
-            <title><?php echo 'Playtime | ' . $title; ?></title>
+            <title><?php echo $title.' | Playtime'; ?></title>
             <link rel="icon" href="../assets/icons/favicon.svg" type="image/svg+xml">
             <meta name='viewport' content='width=device-width, initial-scale=1'>
             <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
@@ -200,7 +200,28 @@ class Layout
 
                 <body>
 
-                    <nav>
+                    <nav class="navbar navbar-expand-lg navbar-light bg-light border-bottom">
+                    <div class="container-fluid">
+        <!-- Left-aligned content (Brand or logo) -->
+        <a class="navbar-brand" href="#">Brand</a>
+        
+        <!-- Right-aligned content -->
+        <div class="collapse navbar-collapse">
+            <ul class="navbar-nav ms-auto mb-2 mb-lg-0 d-flex align-items-center">
+                <li class="nav-item">
+                    <?php 
+                        print isset($_SESSION['user']['username']) 
+                            ? $_SESSION['user']['username'] 
+                            : '<a href="login.php"><button id="btn1" class="btn btn-primary">Login</button></a>';
+                    ?>
+                </li>
+                <li class="nav-item">
+                    <img src="../../assets/images/profile.png" alt="Profile Image" 
+                         style="height:50px; width:50px; border-radius:50%; margin-left:15px;">
+                </li>
+            </ul>
+        </div>
+    </div>
                         <div class="sidebar">
                             <h3>PLAYTIME</h3>
                             <br>

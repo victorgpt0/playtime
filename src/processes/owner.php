@@ -115,7 +115,6 @@ class owner{
     
             
     
-            
             print "</div>";
            }   
     }

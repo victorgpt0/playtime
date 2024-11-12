@@ -12,8 +12,8 @@ $ObjLayout->head_ownerdash('Facilities');
 </head>
 <?php
 $ObjLayout->navbar_ownerdash();
-$err=$ObjGlobal->getMsg('f_error');
-$editerr=$ObjGlobal->getMsg('f_editerror');
+$err = $ObjGlobal->getMsg('f_error');
+$editerr = $ObjGlobal->getMsg('f_editerror');
 ?>
 
 
@@ -22,22 +22,29 @@ $editerr=$ObjGlobal->getMsg('f_editerror');
     <div class="container-fluid mb-5">
         <div id="previous" class="d-flex">
             <?php
+            $userLocations = [];
             foreach ($facilityCard as $card) {
+                $userLocations[] = [
+                    'lat' => floatval($card['latitude']),
+                    'lng' => floatval($card['longitude']),
+                    'name' => $card['place_id'],
+                    'facilityName'=>$card['name']
+                ];
             ?>
                 <div class="card" style="width: 18rem">
                     <img src="../../assets/images/GrassBackground3.jpg" class="card-img-top" alt="">
                     <?php
-                        if(strval($card['statusId'])===AVAILABLE):
+                    if (strval($card['statusId']) === AVAILABLE):
                     ?>
-                    <div class="available">
-                        Available
-                    </div>
+                        <div class="available">
+                            Available
+                        </div>
                     <?php
-                    elseif(strval($card['statusId'])===UNAVAILABLE):                    
+                    elseif (strval($card['statusId']) === UNAVAILABLE):
                     ?>
-                    <div class="unavailable">
-                        Unavailable
-                    </div>
+                        <div class="unavailable">
+                            Unavailable
+                        </div>
                     <?php endif; ?>
 
                     <div class="card-body">
@@ -58,21 +65,26 @@ $editerr=$ObjGlobal->getMsg('f_editerror');
             <?php
             }
             ?>
+            <script>
+                const userLocations = <?= json_encode($userLocations); ?>;
+                console.log(userLocations);
+            </script>
+
         </div>
     </div>
-    
 
-    
-    
+
+
+
     <div class="edit-content" id="editContent">
-    <button class="collapsible-btn">
-        <h2>Edit Sports Facility</h2>
-    </button>
+        <button class="collapsible-btn">
+            <h2>Edit Sports Facility</h2>
+        </button>
         <div class="form-section">
-        <form action="<?php print basename($_SERVER['PHP_SELF']); ?>" method="post" id="editFacilityForm">
+            <form action="<?php print basename($_SERVER['PHP_SELF']); ?>" method="post" id="editFacilityForm">
                 <label for="facilityEditName">Facility Name:</label>
                 <input type="text" id="facilityEditName" name="facilityEditName" placeholder="Madaraka Football Arena#1" value="<?php print isset($_SESSION['facilityEditName']) ? $_SESSION['facilityEditName'] : '';
-                unset($_SESSION['facilityEditName']); ?>">
+                                                                                                                                unset($_SESSION['facilityEditName']); ?>">
 
                 <label for="facilityEditType">Facility Type:</label>
                 <select id="facilityEditType" name="facilityEditType" onchange="checkOtherOption()">
@@ -90,20 +102,20 @@ $editerr=$ObjGlobal->getMsg('f_editerror');
                                                         unset($_SESSION['facilityEditType']); ?>;">
                     <label for="otherFacilityEditType"><b>Please specify</b></label>
                     <input type="text" id="otherFacilityEditType" name="otherFacilityEditType" value="<?php print isset($_SESSION['otherFacilityEditType']) ? $_SESSION['otherFacilityEditType'] : '';
-                                                                                                unset($_SESSION['otherFacilityEditType']); ?>">
+                                                                                                        unset($_SESSION['otherFacilityEditType']); ?>">
                 </div>
 
                 <label for="editDescription">Description</label>
                 <input type="textarea" id="editDescription" name="editDescription" placeholder="7-a-side Football Turf" value="<?php print isset($_SESSION['editDescription']) ? $_SESSION['editDescription'] : '';
-                                                                                                        unset($_SESSION['editDescription']); ?>">
+                                                                                                                                unset($_SESSION['editDescription']); ?>">
 
                 <label for="facilityEditPrice">Price per Hour:</label>
                 <input type="number" id="facilityEditPrice" name="facilityEditPrice" placeholder="1500" value="<?php print isset($_SESSION['facilityEditPrice']) ? $_SESSION['facilityEditPrice'] : '';
 
 
-                                                                                                        unset($_SESSION['facilityEditPrice']); ?>">
+                                                                                                                unset($_SESSION['facilityEditPrice']); ?>">
 
-<label for="statusEditType">Status at the moment:</label>
+                <label for="statusEditType">Status at the moment:</label>
                 <select id="statusEditType" name="statusEditType">
                     <option value="0" <?php print isset($_SESSION['statusEditType']) && $_SESSION['statusEditType'] === '0' ? 'selected' : ''; ?>>Status of the facility...</option>
                     <?php
@@ -115,10 +127,10 @@ $editerr=$ObjGlobal->getMsg('f_editerror');
                     ?>
 
                 </select>
-                <input type="hidden" id="facilityEditID" name="facilityEditID" value="<?php print isset($_SESSION['facilityEditID']) ? $_SESSION['facilityEditID']: '';
-                unset($_SESSION['facilityEditID']);?>">
+                <input type="hidden" id="facilityEditID" name="facilityEditID" value="<?php print isset($_SESSION['facilityEditID']) ? $_SESSION['facilityEditID'] : '';
+                                                                                        unset($_SESSION['facilityEditID']); ?>">
 
-                
+
 
                 <input type="submit" class="submit" name="editFacility">
                 <?php
@@ -131,7 +143,7 @@ $editerr=$ObjGlobal->getMsg('f_editerror');
         </div>
 
     </div>
-        
+
 
 
     <button class="collapsible-btn" onclick="toggleContent('formContent')">
@@ -143,7 +155,7 @@ $editerr=$ObjGlobal->getMsg('f_editerror');
             <form action="<?php print basename($_SERVER['PHP_SELF']); ?>" method="post" id="addFacilityForm">
                 <label for="facilityName">Facility Name:</label>
                 <input type="text" id="facilityName" name="facilityName" placeholder="Madaraka Football Arena#1" value="<?php print isset($_SESSION['facilityName']) ? $_SESSION['facilityName'] : '';
-                unset($_SESSION['facilityName']); ?>">
+                                                                                                                        unset($_SESSION['facilityName']); ?>">
 
                 <label for="facilityType">Facility Type:</label>
                 <select id="facilityType" name="facilityType" onchange="checkOtherOption()">
@@ -174,7 +186,7 @@ $editerr=$ObjGlobal->getMsg('f_editerror');
 
                                                                                                         unset($_SESSION['facilityPrice']); ?>">
 
-<label for="statusType">Status at the moment:</label>
+                <label for="statusType">Status at the moment:</label>
                 <select id="statusType" name="statusType">
                     <option value="0" <?php print isset($_SESSION['statusType']) && $_SESSION['statusType'] === '0' ? 'selected' : ''; ?>>Status of the facility...</option>
                     <?php
@@ -195,7 +207,7 @@ $editerr=$ObjGlobal->getMsg('f_editerror');
                                                                                 unset($_SESSION['address']); ?>" placeholder="Address (Choose from the map below...)" readonly />
 
 
-                
+
 
                 <input type="submit" class="submit" name="facility">
                 <?php
@@ -266,13 +278,15 @@ $editerr=$ObjGlobal->getMsg('f_editerror');
         padding: 10px;
         transition: max-height 0.3s ease-out;
     }
-    .edit-content{
+
+    .edit-content {
         display: none;
         overflow: hidden;
         padding: 10px;
         transition: max-height 0.3s ease-out;
     }
-    .edit-content.show{
+
+    .edit-content.show {
         display: block;
     }
 </style>
@@ -302,12 +316,12 @@ $editerr=$ObjGlobal->getMsg('f_editerror');
     function toggleContent(id) {
         const content = document.getElementById(id);
         content.classList.toggle("hide");
-       }
+    }
 
-       function edit(element){
+    function edit(element) {
         const card = JSON.parse(element.getAttribute('data-card'));
 
-        document.getElementById("facilityEditID").value=card.facilityId;
+        document.getElementById("facilityEditID").value = card.facilityId;
         document.getElementById("facilityEditName").value = card.name;
         document.getElementById("editDescription").value = card.description;
         //document.getElementById("facilityLat").value = card.latitude;
@@ -316,11 +330,12 @@ $editerr=$ObjGlobal->getMsg('f_editerror');
         document.getElementById("facilityEditPrice").value = card.price_per_hour;
         document.getElementById("statusEditType").value = card.statusId;
         document.getElementById("facilityEditType").value = card.typeId;
-        
 
-        const content= document.getElementById("editContent");
+
+        const content = document.getElementById("editContent");
         content.classList.toggle("show");
-        
-       }
+
+    }
+    markLocations(userLocations);
 </script>
 </body>
