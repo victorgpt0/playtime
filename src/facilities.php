@@ -22,6 +22,7 @@ $editerr = $ObjGlobal->getMsg('f_editerror');
     <div class="container-fluid mb-5">
         <div id="previous" class="d-flex">
             <?php
+            if(isset($_SESSION['user'])){
             $userLocations = [];
             foreach ($facilityCard as $card) {
                 $userLocations[] = [
@@ -57,13 +58,17 @@ $editerr = $ObjGlobal->getMsg('f_editerror');
                                 <a href="#" class="btn btn-primary" data-card='<?php echo json_encode($card, JSON_HEX_APOS | JSON_HEX_QUOT); ?>' onclick="edit(this)">Edit</a>
                             </div>
                             <div class="col">
-                                <a href="#" class="btn btn-danger">Remove</a>
+                                <form action="<?php print basename($_SERVER['PHP_SELF']);?>" method="post">
+                                <input type="hidden" name="itemId" value=<?=$card['facilityId'];?>>
+                                                                <button type="submit" name="deleteFacility" class="btn btn-danger" onclick="return confirm('Are you sure you want to remove this Facility?\nThis action cannot be undone!');">Remove</button>
+                                </form>
                             </div>
                         </div>
                     </div>
                 </div>
             <?php
             }
+        }
             ?>
             <script>
                 const userLocations = <?= json_encode($userLocations); ?>;
@@ -337,5 +342,24 @@ $editerr = $ObjGlobal->getMsg('f_editerror');
 
     }
     markLocations(userLocations);
+
+    function deleteFacility(element, facilityId){
+        console.log(facilityId);
+        const isConfirmed=confirm("Are you sure you want to remove this Facility?\nThis action cannot be undone!");
+        if(isConfirmed){
+            const formData=new FormData();
+            formData.append('DfacilityId',facilityId);
+
+            fetch("owner.php",{
+                method: 'post',
+                body: formData
+            })
+            .then(response=>response.json())
+            .catch(error=>console.error("Error:",error));
+        }
+
+
+
+    }
 </script>
 </body>

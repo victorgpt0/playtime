@@ -86,18 +86,16 @@ class Layout
             <body>
             <nav class="navbar navbar-expand-lg navbar-light bg-light border-bottom">
     <div class="container-fluid">
-        <!-- Left-aligned content (Brand or logo) -->
-        <a class="navbar-brand" href="#">Brand</a>
         
         <!-- Right-aligned content -->
         <div class="collapse navbar-collapse">
             <ul class="navbar-nav ms-auto mb-2 mb-lg-0 d-flex align-items-center">
-                <li class="nav-item">
+                <li class="nav-item"><b>
                     <?php 
                         print isset($_SESSION['user']['username']) 
                             ? $_SESSION['user']['username'] 
                             : '<a href="login.php"><button id="btn1" class="btn btn-primary">Login</button></a>';
-                    ?>
+                    ?></b>
                 </li>
                 <li class="nav-item">
                     <img src="../../assets/images/profile.png" alt="Profile Image" 

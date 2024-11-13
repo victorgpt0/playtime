@@ -194,4 +194,35 @@ class Dbconnection
 
     }
 
+    public function deleteRecord($tbl,$where){
+        $sql="DELETE FROM $tbl";
+
+        $clauses=[];
+
+        if(!empty($where)){
+            $sql .= " WHERE ";        
+        
+        foreach($where as $key => $value){
+            $clauses[]="$key = :$key";
+            
+        }
+        $sql .= implode(" OR ",$clauses);
+        
+        }
+
+        $stmt=$this->connection->prepare($sql);
+        foreach($where as $key => $value){
+            $stmt->bindValue(":$key", $value);
+        }
+
+        //return $stmt->debugDumpParams();
+
+        try{
+            $stmt->execute();
+            return $stmt->fetchAll(PDO::FETCH_ASSOC);
+            
+        }catch(PDOException $e){
+            return $sql. " <br> ".$e->getMessage();
+        }
+    }
 }

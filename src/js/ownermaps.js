@@ -96,7 +96,7 @@ userLocations.forEach(loc => {
   const userMarker = L.marker([loc.lat, loc.lng], {
     icon: L.icon({
       iconUrl: '../assets/icons/push-pin.png',
-      iconSize: [25, 41],
+      iconSize: [25, 25],
       iconAnchor: [12, 41]
     })
   }).addTo(map);

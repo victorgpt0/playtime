@@ -47,6 +47,7 @@ $ObjAuth->role($conn);
 $ObjOwner = new owner();
 $ObjOwner->facilities($conn, $ObjGlobal);
 $ObjOwner->editFacility($conn, $ObjGlobal);
+$ObjOwner->deleteFacility($conn);
 
 
 //html from DB
