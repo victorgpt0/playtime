@@ -6,14 +6,16 @@ class captain
     {
         $connn=$conn->getConnection();
         if (isset($_GET['searchKeyword']) || isset($_GET['searchFilters'])) {
-            $keyword = isset($_GET['keyword']) ? '%' . $conn->escape_values($_GET['keyword']) . '%' : '%';
-            $type = isset($_GET['type']) ? $conn->escape_values($_GET['type']) : '';
+            $keyword2=$_SESSION['keyword']=isset($_GET['keyword']) ? $conn->escape_values($_GET['keyword']) : '';
+            $keyword =isset($_GET['keyword']) ? '%' . $conn->escape_values($_GET['keyword']) . '%' : '%';
+            $type = $_SESSION['type']= isset($_GET['type']) ? $conn->escape_values($_GET['type']) : '';
+            $price2=$_SESSION['price']= isset($_GET['currency-field']) ? $conn->escape_values($_GET['currency-field']) : '';
             $price = isset($_GET['currency-field']) ? $conn->escape_values(preg_replace('/[^0-9.]/', '', $_GET['currency-field'])) : '';
             $date = isset($_GET['date']) ? $conn->escape_values($_GET['date']) : '';
             $time = isset($_GET['time']) ? $conn->escape_values($_GET['time']) : '';
             //print $keyword.' '.$type.''.$price.' '.$date.' '.$time;
 
-            $sql = "SELECT * FROM tbl_facilities WHERE name LIKE ?";
+            $sql = "SELECT * FROM tbl_facilities WHERE name LIKE ?";    
 
             $params = [$keyword];
 

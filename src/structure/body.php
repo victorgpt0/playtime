@@ -291,7 +291,7 @@ class Body
                             <div class="row justify-content-center align-items-center g-3">
                                 <div class="col-auto">
                                     <div class="d-flex align-items-center">
-                                        <input class="form-control me-2" type="search" placeholder="Keyword" name="keyword">
+                                        <input class="form-control me-2" type="search" placeholder="Keyword" name="keyword" value="<?php print isset($_SESSION['keyword']) ? $_SESSION['keyword'] : ''; ?>">
                                         <button class="btn btn-outline-success px-4 me-2" type="submit" name="searchKeyword" style="width: 100px;">Search</button>
                                         <button type="button" class="btn btn-outline-primary px-4 collapsible-btn me-2" onclick="toggleContent('filters')" style="width: 100px;">
                                             Filters
@@ -319,13 +319,15 @@ class Body
                             <?php
                             // print_r($facilityType);
                             foreach ($facilityType as $row) {
-                                echo '<option value="' . $row['typeId'] . '" ' . (isset($_SESSION['facilityType']) && $_SESSION['facilityType'] === strval($row['typeId']) ? 'selected' : '') . '>' . $row['type'] . '</option>';
+                                echo '<option value="' . $row['typeId'] . '" ' . (isset($_SESSION['type']) && $_SESSION['type'] === strval($row['typeId']) ? 'selected' : '') . '>' . $row['type'] . '</option>';
                             }
+                            unset($_SESSION['type']);
                             ?>
                         </select>
 
                         <label for="currency-field">Price per Hour</label>
-                        <input type="text" name="currency-field" id="currency-field" pattern="^\KES\d{1,3}(,\d{3})*(\.\d+)?KES" value="" data-type="currency" placeholder="KES 1,000.00">
+                        <input type="text" name="currency-field" id="currency-field" pattern="^\KES\d{1,3}(,\d{3})*(\.\d+)?KES" value="<?php print isset($_SESSION['price']) ? $_SESSION['price'] : '';
+                                                                                                                                        unset($_SESSION['price']); ?>" data-type="currency" placeholder="KES 1,000.00">
                         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
                         <script>
                             // Jquery Dependency
@@ -431,65 +433,73 @@ class Body
         public function captain($searchResults)
         {
             ?>
-            <div class="container-fluid mt-5 mb-5">
-        <div id="previous" class="d-flex">
-            <?php
-            if(isset($_SESSION['user'])){
-            $userLocations = [];
-            foreach ($searchResults as $card) {
-                $userLocations[] = [
-                    'lat' => floatval($card['latitude']),
-                    'lng' => floatval($card['longitude']),
-                    'name' => $card['place_id'],
-                    'facilityName'=>$card['name']
-                ];
-            ?>
-                <div class="card" style="width: 18rem">
-                    <img src="../../assets/images/GrassBackground3.jpg" class="card-img-top" alt="">
+                <div class="container-fluid mt-5 mb-5">
                     <?php
-                    if (strval($card['statusId']) === AVAILABLE):
+                    if (isset($_SESSION['user'])) {
+                        if (isset($searchResults)) {
                     ?>
-                        <div class="available">
-                            Available
-                        </div>
+                            <h3>Results for: <?php print isset($_SESSION['keyword']) ? $_SESSION['keyword'] : '';
+                                                unset($_SESSION['keyword']); ?></h3>
+
                     <?php
-                    elseif (strval($card['statusId']) === UNAVAILABLE):
+                        }
+                    }
                     ?>
-                        <div class="unavailable">
-                            Unavailable
-                        </div>
-                    <?php endif; ?>
 
-                    <div class="card-body">
-                        <h5><?= print $card['name']; ?></h5>
-                        <p class="card-text"><?= $card['description'] ?></p>
-                        <p class="card-text"><?= $card['place_id'] ?></p>
-                        <p class="card-text"><b><?= $card['price_per_hour'] ?></b></p>
+                    <div id="previous" class="d-flex mt-5">
 
-                        <div class="d-flex justify-content-between">
-                        <button class="btn btn-primary">Book Now</button>
-                        <button class="btn" type="button" id="favouriteButton" onclick="toggleFavourite();"><img id="favouriteImg" src="../../assets/icons/heart.png" alt="Add to Favourites" style="width: 20px;"></button>
-                        <script>
-    function toggleFavourite() {
-        const favouriteIcon = document.getElementById("favouriteImg");
+                        <?php
+                        if (isset($_SESSION['user'])) {
+                            if (isset($searchResults)) {
+                                foreach ($searchResults as $card) {
+                        ?>
+                                    <div class="card" style="width: 18rem">
+                                        <img src="../../assets/images/GrassBackground3.jpg" class="card-img-top" alt="">
+                                        <?php
+                                        if (strval($card['statusId']) === AVAILABLE):
+                                        ?>
+                                            <div class="available">
+                                                Available
+                                            </div>
+                                        <?php
+                                        elseif (strval($card['statusId']) === UNAVAILABLE):
+                                        ?>
+                                            <div class="unavailable">
+                                                Unavailable
+                                            </div>
+                                        <?php endif; ?>
 
-        if (favouriteIcon.src.includes("heart.png")) {
-            favouriteIcon.src = "../../assets/icons/heart_red.png";
-        } else {
-            favouriteIcon.src = "../../assets/icons/heart.png"; 
-        }
-    }
-</script>
-                        </div>
-                        
+                                        <div class="card-body">
+                                            <h5><?= print $card['name']; ?></h5>
+                                            <p class="card-text"><?= $card['description'] ?></p>
+                                            <p class="card-text"><?= $card['place_id'] ?></p>
+                                            <p class="card-text"><b>KES <?= $card['price_per_hour'] ?></b> per Hour</p>
+
+                                            <div class="d-flex justify-content-between">
+                                                <button class="btn btn-primary" type="button">Book Now</button>
+                                                <button class="btn" type="button" id="favouriteButton" onclick="toggleFavourite();"><img id="favouriteImg" src="../../assets/icons/heart.png" alt="Add to Favourites" style="width: 20px;"></button>
+                                                <script>
+                                                    function toggleFavourite() {
+                                                        const favouriteIcon = document.getElementById("favouriteImg");
+
+                                                        if (favouriteIcon.src.includes("heart.png")) {
+                                                            favouriteIcon.src = "../../assets/icons/heart_red.png";
+                                                        } else {
+                                                            favouriteIcon.src = "../../assets/icons/heart.png";
+                                                        }
+                                                    }
+                                                </script>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                        <?php
+                                }
+                            }
+                        }
+                        ?>
                     </div>
                 </div>
-            <?php
-            }
-        }
-            ?>
-            </div>
-    </div>
                 <div class="mt-5">
                     <h3>Booking History</h3>
                     <div id="previous" class="d-flex">

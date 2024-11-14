@@ -81,7 +81,10 @@ if(isset($_SESSION['user'])){
             'lng' => floatval($card['longitude']),
             'name' => $card['place_id'],
             'facilityName'=>$card['name'],
-            'facilityId'=>$card['facilityId']
+            'facilityId'=>$card['facilityId'],
+            'price'=>$card['price_per_hour'],
+            'type'=>$card['type'],
+            'status'=>$card['status']
         ];
     }
 

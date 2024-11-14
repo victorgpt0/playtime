@@ -232,6 +232,14 @@ class Layout
                                     </li>
                                 </div>
 
+                                <div class="side-div">
+                                    <li><a href=" ">
+                                            <i class="bx bxs-bookmark-heart"></i>
+                                            <span> Favourites </span>
+                                        </a>
+                                    </li>
+                                </div>
+
 
 
                                 <div class="side-div">
