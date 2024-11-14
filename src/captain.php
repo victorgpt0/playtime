@@ -2,19 +2,21 @@
 require 'load.php';
 $ObjLayout->head_ownerdash('Dashboard');
 $ObjLayout->navbar_userdash();
-$ObjBody->searchbar();
+$ObjBody->searchbar($facilityType);
 
 ?>
 <head>
     <link rel="stylesheet" href="owner.css">
+    <link rel="stylesheet" href="../assets/css/landingpage.css">
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" crossorigin="" />
     <link rel="stylesheet" type="text/css" href="https://js.arcgis.com/calcite-components/2.12.1/calcite.css" />
     <link rel="stylesheet" href="https://unpkg.com/esri-leaflet-geocoder@3.1.4/dist/esri-leaflet-geocoder.css">
 
 </head>
 <div class="container-fluid d-flex">
-<div id="map2"></div>
+<div id="map2" class="collapsible-content"></div>
 </div>
+</form>
 <style>
     #map2 {
         height: 400px;
@@ -28,27 +30,26 @@ $ObjBody->searchbar();
     }
 
     .collapsible-btn {
-        background-color: #f1f1f1;
-        color: #333;
-        padding: 10px;
-        text-align: left;
-        border: none;
-        border-radius: 10px;
-        outline: none;
-        font-size: 18px;
-        width: 100%;
+        /* background-color: #000;
+        color: #fff; */
+        width: 10%;
         cursor: pointer;
     }
+    /* .collapsible-btn:hover{
+        color:black;
+        background-color:grey;
+    } */
+
 
     .collapsible-content {
-        display: block;
-    }
-
-    .collapsible-content.hide {
         display: none;
         overflow: hidden;
         padding: 10px;
         transition: max-height 0.3s ease-out;
+    }
+
+    .collapsible-content.show {
+        display: block;
     }
     .edit-content{
         display: none;
@@ -69,9 +70,43 @@ $ObjBody->searchbar();
 <script src="https://unpkg.com/@esri/arcgis-rest-places@1/dist/bundled/places.umd.js"></script>
 <script src="https://unpkg.com/esri-leaflet-geocoder@3.1.4/dist/esri-leaflet-geocoder.js"></script>
 
-<script src="js/captainmaps.js"></script>
 
 
 <?php
-$ObjBody->captain();
+if(isset($_SESSION['user'])){
+    $userLocations=[];
+    foreach($facilityCard as $card){
+        $userLocations[]=[
+            'lat' => floatval($card['latitude']),
+            'lng' => floatval($card['longitude']),
+            'name' => $card['place_id'],
+            'facilityName'=>$card['name'],
+            'facilityId'=>$card['facilityId']
+        ];
+    }
+
+}
+$ObjBody->captain($searchResults);
 $ObjLayout->close_js();
+?>
+
+<script src="js/captainmaps.js"></script>
+<script>
+    const userLocations=<?=json_encode($userLocations)?>;
+    console.log(userLocations);
+    markLocations(userLocations);
+
+    function toggleContent(id) {
+        const content = document.getElementById(id);
+        content.classList.toggle("show");
+        if (id === 'map2' && content.classList.contains('show')) {
+        // Small delay to ensure the container is fully visible
+        setTimeout(() => {
+            if (map) {  // Assuming your map instance is stored in window.map
+                map.invalidateSize();
+            }
+        }, 100);
+    }
+    }
+</script>
+

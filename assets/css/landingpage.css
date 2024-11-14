@@ -143,11 +143,11 @@ main p{
 
 .search select,
 .search input {
-    padding: 10px 20px;
-    width: 16%;
+    padding: 10px 10px;
+    width: 14%;
     border: 0px solid #ccc;
     border-radius: 5px;
-    margin-right:20px;
+    margin-right:12px;
 }
 
 

@@ -153,7 +153,7 @@ $editerr = $ObjGlobal->getMsg('f_editerror');
 
     <button class="collapsible-btn" onclick="toggleContent('formContent')">
         <h2>Add New Sports Facility</h2>
-        <h5>(Click to Hide)</h5>
+        <h5>(Click to Show)</h5>
     </button>
     <div class="collapsible-content" id="formContent">
         <div class="form-section">
@@ -273,11 +273,11 @@ $editerr = $ObjGlobal->getMsg('f_editerror');
         cursor: pointer;
     }
 
-    .collapsible-content {
+    .collapsible-content.show {
         display: block;
     }
 
-    .collapsible-content.hide {
+    .collapsible-content {
         display: none;
         overflow: hidden;
         padding: 10px;
@@ -320,7 +320,15 @@ $editerr = $ObjGlobal->getMsg('f_editerror');
 
     function toggleContent(id) {
         const content = document.getElementById(id);
-        content.classList.toggle("hide");
+        content.classList.toggle("show");
+        if (id === 'formContent' && content.classList.contains('show')) {
+        // Small delay to ensure the container is fully visible
+        setTimeout(() => {
+            if (map) {  // Assuming your map instance is stored in window.map
+                map.invalidateSize();
+            }
+        }, 100);
+    }
     }
 
     function edit(element) {

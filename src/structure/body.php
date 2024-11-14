@@ -153,9 +153,11 @@ class Body
 
                 <div class="dashboard-section">
                     <div>
-                        <p id="dash-num3"><?= count($facilityCard)?></p>
+                        <p id="dash-num3"><?= count($facilityCard) ?></p>
 
-                        <a href="facilities.php"><p id="dash-p">Facilities</p></a>
+                        <a href="facilities.php">
+                            <p id="dash-p">Facilities</p>
+                        </a>
                     </div>
 
                     <i class="fa-solid fa-futbol" id="ic3"></i>
@@ -277,71 +279,267 @@ class Body
     <?php
     }
 
-    public function searchbar()
+    public function searchbar($facilityType)
     {
     ?>
-        <div class="container" id="main-content">
-            <div class="d-flex justify-content-center">
-                <form class="d-flex" id="searchbar" role="search">
-                    <input class="form-control me-2" type="search" placeholder="Search or pick on map" aria-label="Search">
-                    <button class="btn btn-outline-success" type="submit">Search</button>
-                </form>
-            </div>
-        <?php
-    }
-    public function captain()
-    {
-        ?>
-            <div>
-                <h3>Booking History</h3>
-                <div id="previous" class="d-flex">
-
-                    <div class="card" style="width: 18rem;">
-                        <img src="../../assets/images/GrassBackground3.jpg" class="card-img-top" alt="">
-                        <div class="card-body">
-                            <h5 class="card-title">SU Sports Complex<br>Pitch A</h5>
-                            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                            <a href="#" class="btn btn-primary">Go Again</a>
+        <form action="<?php print basename($_SERVER['PHP_SELF']); ?>" method="get">
+            <div class="container" id="main-content">
+                <div style="border: grey solid 1px; border-radius:10px;">
+                    <h4 class=" d-flex mt-3 justify-content-center">Search or Pick Marker on Map</h4>
+                    <div class="d-flex justify-content-center align-items-center">
+                        <div class="container">
+                            <div class="row justify-content-center align-items-center g-3">
+                                <div class="col-auto">
+                                    <div class="d-flex align-items-center">
+                                        <input class="form-control me-2" type="search" placeholder="Keyword" name="keyword">
+                                        <button class="btn btn-outline-success px-4 me-2" type="submit" name="searchKeyword" style="width: 100px;">Search</button>
+                                        <button type="button" class="btn btn-outline-primary px-4 collapsible-btn me-2" onclick="toggleContent('filters')" style="width: 100px;">
+                                            Filters
+                                        </button>
+                                        <button type="button" class="btn btn-outline-secondary px-4 collapsible-btn" onclick="toggleContent('map2')" style="width: 100px;">
+                                            Map
+                                        </button>
+                                        <script>
+                                            function toggleContent(id) {
+                                                const content = document.getElementById(id);
+                                                content.classList.toggle("show");
+                                            }
+                                        </script>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
+                    <div class="search collapsible-content" id="filters">
 
-                    <div class="card" style="width: 18rem;">
-                        <img src="../../assets/images/GrassBackground3.jpg" class="card-img-top" alt="">
-                        <div class="card-body">
-                            <h5 class="card-title">SU Sports Complex<br>Pitch B</h5>
-                            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                            <a href="#" class="btn btn-primary">Go Again</a>
+
+                        <label for="type">Type</label>
+                        <select name="type" id="type">
+                            <option value="0">Select Sport...</option>
+                            <?php
+                            // print_r($facilityType);
+                            foreach ($facilityType as $row) {
+                                echo '<option value="' . $row['typeId'] . '" ' . (isset($_SESSION['facilityType']) && $_SESSION['facilityType'] === strval($row['typeId']) ? 'selected' : '') . '>' . $row['type'] . '</option>';
+                            }
+                            ?>
+                        </select>
+
+                        <label for="currency-field">Price per Hour</label>
+                        <input type="text" name="currency-field" id="currency-field" pattern="^\KES\d{1,3}(,\d{3})*(\.\d+)?KES" value="" data-type="currency" placeholder="KES 1,000.00">
+                        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+                        <script>
+                            // Jquery Dependency
+
+                            $("input[data-type='currency']").on({
+                                keyup: function() {
+                                    formatCurrency($(this));
+                                },
+                                blur: function() {
+                                    formatCurrency($(this), "blur");
+                                }
+                            });
+
+
+                            function formatNumber(n) {
+                                // format number 1000000 to 1,234,567
+                                return n.replace(/\D/g, "").replace(/\B(?=(\d{3})+(?!\d))/g, ",")
+                            }
+
+
+                            function formatCurrency(input, blur) {
+                                // appends $ to value, validates decimal side
+                                // and puts cursor back in right position.
+
+                                // get input value
+                                var input_val = input.val();
+
+                                // don't validate empty input
+                                if (input_val === "") {
+                                    return;
+                                }
+
+                                // original length
+                                var original_len = input_val.length;
+
+                                // initial caret position 
+                                var caret_pos = input.prop("selectionStart");
+
+                                // check for decimal
+                                if (input_val.indexOf(".") >= 0) {
+
+                                    // get position of first decimal
+                                    // this prevents multiple decimals from
+                                    // being entered
+                                    var decimal_pos = input_val.indexOf(".");
+
+                                    // split number by decimal point
+                                    var left_side = input_val.substring(0, decimal_pos);
+                                    var right_side = input_val.substring(decimal_pos);
+
+                                    // add commas to left side of number
+                                    left_side = formatNumber(left_side);
+
+                                    // validate right side
+                                    right_side = formatNumber(right_side);
+
+                                    // On blur make sure 2 numbers after decimal
+                                    if (blur === "blur") {
+                                        right_side += "00";
+                                    }
+
+                                    // Limit decimal to only 2 digits
+                                    right_side = right_side.substring(0, 2);
+
+                                    // join number by .
+                                    input_val = "KES " + left_side + "." + right_side;
+
+                                } else {
+                                    // no decimal entered
+                                    // add commas to number
+                                    // remove all non-digits
+                                    input_val = formatNumber(input_val);
+                                    input_val = "KES " + input_val;
+
+                                    // final formatting
+                                    if (blur === "blur") {
+                                        input_val += ".00";
+                                    }
+                                }
+
+                                // send updated string to input
+                                input.val(input_val);
+
+                                // put caret back in the right position
+                                var updated_len = input_val.length;
+                                caret_pos = updated_len - original_len + caret_pos;
+                                input[0].setSelectionRange(caret_pos, caret_pos);
+                            }
+                        </script>
+
+                        <label for="date">Date</label>
+                        <input type="date" name="date" id="date">
+
+                        <label for="time">Time</label>
+                        <input type="time" name="time" id="time">
+
+                        <button type="submit" id="search" name="searchFilters"><img src="../../assets/icons/search.png" style="width: 20px;" alt=""></button>
+
+                    </div>
+                </div>
+            <?php
+        }
+        public function captain($searchResults)
+        {
+            ?>
+            <div class="container-fluid mt-5 mb-5">
+        <div id="previous" class="d-flex">
+            <?php
+            if(isset($_SESSION['user'])){
+            $userLocations = [];
+            foreach ($searchResults as $card) {
+                $userLocations[] = [
+                    'lat' => floatval($card['latitude']),
+                    'lng' => floatval($card['longitude']),
+                    'name' => $card['place_id'],
+                    'facilityName'=>$card['name']
+                ];
+            ?>
+                <div class="card" style="width: 18rem">
+                    <img src="../../assets/images/GrassBackground3.jpg" class="card-img-top" alt="">
+                    <?php
+                    if (strval($card['statusId']) === AVAILABLE):
+                    ?>
+                        <div class="available">
+                            Available
+                        </div>
+                    <?php
+                    elseif (strval($card['statusId']) === UNAVAILABLE):
+                    ?>
+                        <div class="unavailable">
+                            Unavailable
+                        </div>
+                    <?php endif; ?>
+
+                    <div class="card-body">
+                        <h5><?= print $card['name']; ?></h5>
+                        <p class="card-text"><?= $card['description'] ?></p>
+                        <p class="card-text"><?= $card['place_id'] ?></p>
+                        <p class="card-text"><b><?= $card['price_per_hour'] ?></b></p>
+
+                        <div class="d-flex justify-content-between">
+                        <button class="btn btn-primary">Book Now</button>
+                        <button class="btn" type="button" id="favouriteButton" onclick="toggleFavourite();"><img id="favouriteImg" src="../../assets/icons/heart.png" alt="Add to Favourites" style="width: 20px;"></button>
+                        <script>
+    function toggleFavourite() {
+        const favouriteIcon = document.getElementById("favouriteImg");
+
+        if (favouriteIcon.src.includes("heart.png")) {
+            favouriteIcon.src = "../../assets/icons/heart_red.png";
+        } else {
+            favouriteIcon.src = "../../assets/icons/heart.png"; 
+        }
+    }
+</script>
+                        </div>
+                        
+                    </div>
+                </div>
+            <?php
+            }
+        }
+            ?>
+            </div>
+    </div>
+                <div class="mt-5">
+                    <h3>Booking History</h3>
+                    <div id="previous" class="d-flex">
+
+                        <div class="card" style="width: 18rem;">
+                            <img src="../../assets/images/GrassBackground3.jpg" class="card-img-top" alt="">
+                            <div class="card-body">
+                                <h5 class="card-title">SU Sports Complex<br>Pitch A</h5>
+                                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                                <a href="#" class="btn btn-primary">Go Again</a>
+                            </div>
+                        </div>
+
+                        <div class="card" style="width: 18rem;">
+                            <img src="../../assets/images/GrassBackground3.jpg" class="card-img-top" alt="">
+                            <div class="card-body">
+                                <h5 class="card-title">SU Sports Complex<br>Pitch B</h5>
+                                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                                <a href="#" class="btn btn-primary">Go Again</a>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
-        
+
+
+        <?php
+        }
+        public function calendar($client)
+        {
+        ?>
+            <div class="container" id="main-content">
+                <div id="calendar">
+                    <?php
+
+                    $service = new Google_Service_Calendar($client);
+
+                    $optParams = [
+                        'maxResults' => 10,
+                        'orderBy' => 'startTime',
+                        'singleEvents' => true,
+                        'timeMin' => date('c')
+                    ];
+                    $results = $service->events->listEvents('primary', $optParams);
+
+                    print_r($results);
+                    ?>
+                </div>
+            </div>
 
     <?php
+        }
     }
-    public function calendar($client)
-    {
-    ?>
-        <div class="container" id="main-content">
-            <div id="calendar">
-                <?php
-
-                $service = new Google_Service_Calendar($client);
-
-                $optParams = [
-                    'maxResults' => 10,
-                    'orderBy' => 'startTime',
-                    'singleEvents' => true,
-                    'timeMin' => date('c')
-                ];
-                $results = $service->events->listEvents('primary', $optParams);
-
-                print_r($results);
-                ?>
-            </div>
-        </div>
-
-<?php
-    }
-}

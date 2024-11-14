@@ -49,6 +49,8 @@ $ObjOwner->facilities($conn, $ObjGlobal);
 $ObjOwner->editFacility($conn, $ObjGlobal);
 $ObjOwner->deleteFacility($conn);
 
+$ObjCaptain=new captain();
+
 
 //html from DB
 if (isset($_SESSION['user'])) {
@@ -67,6 +69,22 @@ if (isset($_SESSION['user'])) {
         ], [
             'userid' => $_SESSION['user']['u_id']
         ]);
+    }
+    if(strval($_SESSION['user']['role']) === CAPTAIN){
+        $facilityCard = $conn->select_join('tbl_facilities',[
+            [
+                'type' => 'left',
+                'table' => 'tbl_status',
+                'on' => 'tbl_facilities.statusId=tbl_status.statusId'
+            ],
+            [
+                'type' => 'left',
+                'table' => 'tbl_f_types',
+                'on' => 'tbl_facilities.typeId=tbl_f_types.typeId'
+            ]
+            ],[]);
+
+            $searchResults = $ObjCaptain->search($conn);
     }
 }
 //print_r($facilityCard);
