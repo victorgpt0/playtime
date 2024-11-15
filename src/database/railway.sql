@@ -26,6 +26,9 @@ SET time_zone = "+00:00";
 --
 -- Table structure for table `tbl_bookings`
 --
+create database if not exists railway;
+
+use railway;
 
 CREATE TABLE `tbl_bookings` (
   `booking_id` bigint(10) NOT NULL,
