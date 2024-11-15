@@ -1,8 +1,9 @@
-<<?php
+<?php
 require_once 'load.php';
 $ObjLayout->head('Dashboard');
 $ObjLayout->navbar();
 
+// Class to handle booking functionality
 class BookFacility
 {
     private $db;
@@ -20,9 +21,7 @@ class BookFacility
 
     public function bookFacility($facilityId, $userId, $startTime, $endTime)
     {
-        // Calculate total price based on duration and facility rate
         $facility = $this->db->select_and('tbl_facilities', ['facilityId' => $facilityId]);
-
         if (!empty($facility)) {
             $pricePerHour = $facility[0]['price_per_hour'];
             $duration = (strtotime($endTime) - strtotime($startTime)) / 3600;
@@ -45,20 +44,10 @@ class BookFacility
     }
 }
 
-// Example usage
+// Initialize booking class and retrieve facilities
 $booking = new BookFacility('localhost', '3308', 'root', 'password', 'railway');
-
-// Fetch facilities
 $facilities = $booking->getFacilities();
-foreach ($facilities as $facility) {
-    echo "Facility: " . $facility['name'] . ", Price per hour: " . $facility['price_per_hour'] . "<br>";
-}
-
-// Book a facility
-$response = $booking->bookFacility(1, 2, '2024-11-06 09:00:00', '2024-11-06 11:00:00');
-echo is_string($response) ? $response : "Booking successful!";
 ?>
-
 
 <!DOCTYPE html>
 <html lang="en">
@@ -66,12 +55,14 @@ echo is_string($response) ? $response : "Booking successful!";
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Book a Facility</title>
+    <link rel="stylesheet" href="owner.css">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" crossorigin="" />
+    <link rel="stylesheet" href="https://unpkg.com/esri-leaflet-geocoder@3.1.4/dist/esri-leaflet-geocoder.css">
 </head>
 <body>
 
-<br> <br>  <br> <br> 
-    <h2>Book a Facility</h2>
-    <form method="POST">
+<h2>Book a Facility</h2>
+<form method="POST">
     <label for="facilityType">Facility Type:</label>
             <select id="facilityType" name="facilityType">
                 <option value="Tennis Court">Tennis Court</option>
@@ -81,14 +72,51 @@ echo is_string($response) ? $response : "Booking successful!";
                 <option value="Bowling Alley">Bowling Alley</option>
             </select>
 
-            <label for="startTime">Start Time:</label>
+    <label for="startTime">Start Time:</label>
 <input type="time" id="startTime" name="startTime" required>
 
 <label for="endTime">End Time:</label>
 <input type="time" id="endTime" name="endTime" required>
 
+<button type="submit">Book Now</button>
 
-        <button type="submit">Book Now</button>
-    </form>
+
+    <!-- Map Container -->
+    <div id="map"></div>
+
+  
+</form>
+
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" crossorigin=""></script>
+<script src="https://unpkg.com/esri-leaflet@3.0.12/dist/esri-leaflet.js"></script>
+<script src="https://unpkg.com/esri-leaflet-geocoder@3.1.4/dist/esri-leaflet-geocoder.js"></script>
+<script>
+    // Initialize map and set a default view
+    const map = L.map('map').setView([0.0, 0.0], 2);
+
+    // Add the tile layer
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        attribution: '© OpenStreetMap contributors'
+    }).addTo(map);
+
+    // Add a search control to the map
+    const geocoder = L.esri.Geocoding.geosearch().addTo(map);
+
+    // Handle the search result event
+    geocoder.on('results', function(data) {
+        map.setView(data.results[0].latlng, 15);
+
+        const marker = L.marker(data.results[0].latlng).addTo(map);
+        document.getElementById('facilityAddress').value = data.results[0].text;
+    });
+</script>
+
+<style>
+    #map {
+        height: 400px;
+        width: 100%;
+        margin-top: 20px;
+    }
+</style>
 </body>
 </html>
