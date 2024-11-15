@@ -16,7 +16,7 @@ class BookFacility
     public function getFacilities()
     {
         // Retrieve all available facilities
-        return $this->db->select_and('tbl_facilities', ['statusId' => 1]);
+        return $this->db->select_and('tbl_facilities', []);
     }
 
     public function bookFacility($facilityId, $userId, $startTime, $endTime)

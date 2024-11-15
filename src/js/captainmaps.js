@@ -1,6 +1,6 @@
 const accessToken = "AAPTxy8BH1VEsoebNVZXo8HurFS7LISrPsZH3DuNlMdWT5xPsVsoHg3YKlpvK6VFP2OaO4ckEkoVxT88VQrbgw7CJ1M-l-1UL7_zOQ3vIgSmOwONl5mn8Wbvz7Ne39p2k57rzkfpfEPduky7hTHxFscAwZYH9BjhrUN4d9tf0wTP3hZn8JAJKnta19N4u21nOD3Ghje4AsDHRlNPUTQMqFIRUOM7QLr-qDzi6Srn3tlW4Fw.AT1_byREAv5a";
 
-const map = L.map("map", {
+const map = L.map("map2", {
   minZoom: 2,
   zoomControl: false // Disable default zoom control to customize its position
 });
@@ -72,35 +72,60 @@ function getCurrentPosition() {
       (error) => {
         console.error("Error getting location:", error);
         // If location access is denied, set a default view
-        map.setView([34.101, -1.339], 13); // Example coordinates
+        map.setView([34.101, -118.339], 13); // Example coordinates
       }
     );
   } else {
     // Fallback if geolocation is not supported
-    map.setView([34.101, -1.339], 13); // Default coordinates
+    map.setView([34.101, -118.339], 13); // Default coordinates
   }
 }
 
 // Call function to get user location
 getCurrentPosition();
 
-function markLocations(userLocations){
-// const userLocation = [
-//  { lat: -1.2921, lng: 36.8219, name: "Facility A" }, // Example data
-//  { lat: -1.2931, lng: 36.8229, name: "Facility B" }
-// ];
-//console.log("Locations received:", userLocations);
+function markLocations(userLocations) {
+  // Add selected locations from the database (assumes `userLocations` array with each location having `lat`, `lng`)
+  // This should be populated dynamically from your backend database
+  // const userLocations = [
+  //   { lat: -1.2921, lng: 36.8219, name: "Facility A" }, // Example data
+  //   { lat: -1.2931, lng: 36.8229, name: "Facility B" }
+  // ];
 
-// Add markers for user-specific locations with a different color
-userLocations.forEach(loc => {
-  const userMarker = L.marker([loc.lat, loc.lng], {
-    icon: L.icon({
-      iconUrl: '../assets/icons/push-pin.png',
-      iconSize: [25, 25],
-      iconAnchor: [12, 41]
-    })
-  }).addTo(map);
+  // Add markers for user-specific locations with a different color
+  userLocations.forEach(loc => {
+    const userMarker = L.marker([loc.lat, loc.lng], {
+      icon: L.icon({
+        iconUrl: '../assets/icons/push-pin.png',
+        iconSize: [25, 25],
+        iconAnchor: [12, 41]
+      })
+    }).addTo(map);
 
-  userMarker.bindPopup(`<b>${loc.facilityName}</b><br><br><b>${loc.name}</b><p>${loc.lat}, ${loc.lng}</p>`);
-});
+    userMarker.bindPopup(`
+      <div class="card" style="width: 18rem">
+      <div class="card-body">
+      <p class="card-text"><b>${loc.facilityName}</b></p>
+      <p class="card-text">${loc.type}</p>
+      <p class="card-text"><b>${loc.name}</b></p>
+      <p class="card-text"><b>KES ${loc.price}</b> per Hour</p>
+      <div class="d-flex justify-content-between">
+      <button class="btn btn-primary" type="button" onclick="window.location.href='booking.php?facilityName=${encodeURIComponent(loc.facilityId)}'">Book Now</button>
+      <button class="btn" type="button" id="favouriteButton" onclick="toggleFavourite();"><img id="favouriteImg" src="../../assets/icons/heart.png" alt="Add to Favourites" style="width: 20px;"></button>
+      </div>
+      </div>
+      </div>
+      `);
+  });
+}
+
+function initMap() {
+  if (id === 'map2' && content.classList.contains('show')) {
+    // Small delay to ensure the container is fully visible
+    setTimeout(() => {
+      if (window.map) {  // Assuming your map instance is stored in window.map
+        window.map.invalidateSize();
+      }
+    }, 100);
+  }
 }
