@@ -191,6 +191,60 @@ class Body
         </main>
     <?php
     }
+
+    public function staffdash()
+    {
+        ?>
+        <main>
+            <h1 id="ownerh1" style="text-align:center; margin-left:5%">Welcome to the Staff Portal</h1>
+
+            <div class="dashboard-content">
+                <div class="dashboard-section">
+                    <div>
+                        <p id="dash-num2">60</p>
+
+                        <p id="dash-p">Hours Worked This Week</p>
+                    </div>
+
+                    <i class="fa-solid fa-clock" id="ic2"></i>
+                </div>
+
+                <div class="dashboard-section">
+                    <div>
+                        <p id="dash-num1">8</p>
+
+                        <p id="dash-p">Hours Worked Overtime</p>
+                    </div>
+
+                    <i class="fa-solid fa-hourglass-half" id="ic1"></i>
+                </div>
+
+                <div class="dashboard-section">
+                    <div>
+                        <p id="dash-num3">90%</p>
+
+                        
+                        <p id="dash-p">Performance Review Score</p>
+                        
+                    </div>
+
+                    <i class="fa-regular fa-star" id="ic3"></i>
+                </div>
+
+
+            </div>
+            <ul class="ul2">
+                <div class="btn1">
+                    <li><a href="equipment.php">
+                            <span> Assign Sporting Equipment </span>
+                            <i class="far fa-arrow-alt-circle-right"></i>
+                        </a>
+                    </li>
+                </div>
+            </ul>
+        </main>
+    <?php
+    }
     public function analytics()
     {
     ?>
