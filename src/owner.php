@@ -1,5 +1,4 @@
 <?php
-// Backend logic (PHP and database connections) can be added here
 require 'load.php';
 $ObjLayout->head('Dashboard');
 $ObjLayout->navbar();

@@ -14,6 +14,9 @@ $ObjLayout->navbar_ownerdash();
             <label for="staffName">Staff Name:</label>
             <input type="text" id="staffName" name="staffName" required>
 
+            <label for="staffPassword">Password:</label>
+            <input type="password" id="staffPassword" name="staffPassword" required>
+
             <label for="staffPosition">Position:</label>
             <input type="text" id="staffPosition" name="staffPosition" required>
 

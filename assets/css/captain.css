@@ -2,8 +2,8 @@
     margin-left: 200px;
 }
 #searchbar{
-    margin-top: 50px;
-    width: 30%;
+    margin-top: 10px;
+    min-width: 30%;
 }
 #maps{
     height: 50vh;

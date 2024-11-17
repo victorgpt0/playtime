@@ -38,7 +38,26 @@ class Dbconnection
     public function getConnection(){
         return $this->connection;
     }
-    public function insert($tbl, $data){
+    public function insert($tbl, $data) {
+        $keys = '`' . implode('`, `', array_keys($data)) . '`';
+        $placeholders = ':' . implode(', :', array_keys($data));
+        $sql = "INSERT INTO $tbl ($keys) VALUES ($placeholders)";
+    
+        try {
+            $stmt = $this->connection->prepare($sql);
+            
+            foreach ($data as $key => $value) {
+                $stmt->bindValue(":$key", $value);
+            }
+            
+            $stmt->execute();
+            return true;
+        } catch (PDOException $e) {
+            return $sql . " <br> " . $e->getMessage();
+        }
+    }
+    
+    public function insert2($tbl, $data){
         ksort($data);
         
         $keys='`' . implode('`, `', array_keys($data)) . '`';
@@ -83,7 +102,7 @@ class Dbconnection
             return $stmt->fetchAll(PDO::FETCH_ASSOC);
             
         }catch(PDOException $e){
-            return $sql. " <br> ".$e->getMessage();
+            return error_log($sql. " <br> ".$e->getMessage(),3,'errors/error.log');
         }
     }
 
@@ -119,15 +138,29 @@ class Dbconnection
             return $sql. " <br> ".$e->getMessage();
         }
     }
-    public function select_join($tbl,$joins){
+    public function select_join($tbl,$joins,$where){
         $sql="SELECT * FROM $tbl";
 
         foreach($joins as $join){
             $sql .=" " . $join['type']. " JOIN ". $join['table']. " ON ". $join['on'];
         }
 
+        $clauses=[];
 
+        if(!empty($where)){
+            $sql .= " WHERE ";        
+        
+        foreach($where as $key => $value){
+            $clauses[]="$key = :$key";
+            
+        }
+        $sql .= implode(" AND ",$clauses);
+        
+        }
         $stmt=$this->connection->prepare($sql);
+        foreach($where as $key => $value){
+            $stmt->bindValue(":$key", $value);
+        }
 
         //return $stmt->debugDumpParams();
 
@@ -180,4 +213,35 @@ class Dbconnection
 
     }
 
+    public function deleteRecord($tbl,$where){
+        $sql="DELETE FROM $tbl";
+
+        $clauses=[];
+
+        if(!empty($where)){
+            $sql .= " WHERE ";        
+        
+        foreach($where as $key => $value){
+            $clauses[]="$key = :$key";
+            
+        }
+        $sql .= implode(" OR ",$clauses);
+        
+        }
+
+        $stmt=$this->connection->prepare($sql);
+        foreach($where as $key => $value){
+            $stmt->bindValue(":$key", $value);
+        }
+
+        //return $stmt->debugDumpParams();
+
+        try{
+            $stmt->execute();
+            return $stmt->fetchAll(PDO::FETCH_ASSOC);
+            
+        }catch(PDOException $e){
+            return $sql. " <br> ".$e->getMessage();
+        }
+    }
 }

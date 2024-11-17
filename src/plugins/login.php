@@ -19,13 +19,13 @@ if (isset($_GET['code'])) {
         $ObjUser = new user($email_exists[0]['userid'], $email_exists[0]['username'], $email_exists[0]['email'], $email_exists[0]['roleId']);
         $ObjUser->setUser();
 
-        if($email_exists[0]['roleId']===2){
+        if($email_exists[0]['roleId']===OWNER){
             header('Location: owner-dash.php');
 
-        }elseif($email_exists[0]['roleId']===3){
+        }elseif($email_exists[0]['roleId']===STAFF){
             header('Location: staff.php');
 
-        }elseif($email_exists[0]['roleId']===4){
+        }elseif($email_exists[0]['roleId']===CAPTAIN){
             header('Location: captain.php');
 
         }
