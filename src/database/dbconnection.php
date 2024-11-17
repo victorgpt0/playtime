@@ -38,7 +38,26 @@ class Dbconnection
     public function getConnection(){
         return $this->connection;
     }
-    public function insert($tbl, $data){
+    public function insert($tbl, $data) {
+        $keys = '`' . implode('`, `', array_keys($data)) . '`';
+        $placeholders = ':' . implode(', :', array_keys($data));
+        $sql = "INSERT INTO $tbl ($keys) VALUES ($placeholders)";
+    
+        try {
+            $stmt = $this->connection->prepare($sql);
+            
+            foreach ($data as $key => $value) {
+                $stmt->bindValue(":$key", $value);
+            }
+            
+            $stmt->execute();
+            return true;
+        } catch (PDOException $e) {
+            return $sql . " <br> " . $e->getMessage();
+        }
+    }
+    
+    public function insert2($tbl, $data){
         ksort($data);
         
         $keys='`' . implode('`, `', array_keys($data)) . '`';
