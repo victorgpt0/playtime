@@ -39,3 +39,12 @@ $ObjLayout->navbar_ownerdash();
         </form>
     </div>
 </div>
+</div>
+
+<!-- Staff Table -->
+<div class="form-section">
+    <div id="staff-table-container">
+    <?php include 'viewstaff.php'; ?>
+    </div>
+</div>
+</div>

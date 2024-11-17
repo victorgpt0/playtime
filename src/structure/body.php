@@ -175,15 +175,19 @@ class Body
 
             </div>
 
-            <ul class="ul2">
-                <div class="btn1">
-                    <li><a href=" ">
-                            <span> Upcoming Booked Sessions </span>
-                            <i class="far fa-arrow-alt-circle-right"></i>
-                        </a>
-                    </li>
-                </div>
-            </ul>
+            <<ul class="ul2">
+    <div class="btn1">
+        <li><a href="#bookingsSection">
+            <span>Upcoming Booked Sessions</span>
+            <i class="far fa-arrow-alt-circle-right"></i>
+        </a></li>
+    </div>
+</ul>
+
+
+</div>
+
+
         </main>
     <?php
     }
@@ -279,6 +283,18 @@ class Body
     <?php
     }
 
+    public function displayBookingsSection() {
+     
+        ?>
+        <div class="form-section">
+            <div id="bookingsSection">
+                <div id="staff-table-container">
+                    <?php include 'viewbookings.php'; ?>
+                </div>
+            </div>
+        </div>
+        <?php
+    }
     public function searchbar($facilityType)
     {
     ?>
@@ -553,3 +569,4 @@ class Body
     <?php
         }
     }
+ 

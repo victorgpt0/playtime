@@ -16,4 +16,4 @@ Failure at owner.php delete(40)
 Failure at owner.php delete(40)
 Failure at owner.php delete(40)
 Failure at owner.php delete(40)
-Failure at owner.php delete(39)
+Failure at owner.php delete(39)Query Error: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'f.facility_name' in 'field list'Query Error: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'f.facility_name' in 'field list'Query Error: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'f.facility_name' in 'field list'

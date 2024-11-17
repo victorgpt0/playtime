@@ -243,5 +243,19 @@ class Dbconnection
         }catch(PDOException $e){
             return $sql. " <br> ".$e->getMessage();
         }
+
+
     }
+    public function select_custom($query)
+    {
+        try {
+            $stmt = $this->connection->prepare($query);
+            $stmt->execute();
+            return $stmt->fetchAll(PDO::FETCH_ASSOC);
+        } catch (PDOException $e) {
+            error_log("Query Error: " . $e->getMessage(), 3, 'errors/error.log');
+            return [];
+        }
+    }
+
 }
