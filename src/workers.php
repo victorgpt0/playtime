@@ -14,21 +14,13 @@ $ObjLayout->navbar_ownerdash();
             <label for="staffName">Staff Name:</label>
             <input type="text" id="staffName" name="staffName" required>
 
-            <label for="staffPassword">Password:</label>
-            <input type="password" id="staffPassword" name="staffPassword" required>
-
-            <label for="staffPosition">Position:</label>
-            <input type="text" id="staffPosition" name="staffPosition" required>
-
-            <label for="staffSalary">Salary:</label>
-            <input type="number" id="staffSalary" name="staffSalary" required>
-
-            <label for="staffContact">Contact:</label>
+            <label for="staffContact">Contact Number:</label>
             <input type="text" id="staffContact" name="staffContact" required>
 
             <button type="submit" name="addStaff">Add Staff</button>
         </form>
     </div>
+    
     <!-- Remove Staff -->
     <div class="form-section">
         <h2>Remove Staff</h2>
