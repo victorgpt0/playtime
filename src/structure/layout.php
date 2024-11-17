@@ -287,6 +287,99 @@ class Layout
 
             }
 
+            public function navbar_staffdash()
+    {
+        ?>
+
+            <body>
+            <nav class="navbar navbar-expand-lg navbar-light bg-light border-bottom">
+    <div class="container-fluid">
+        
+        <!-- Right-aligned content -->
+        <div class="collapse navbar-collapse">
+            <ul class="navbar-nav ms-auto mb-2 mb-lg-0 d-flex align-items-center">
+                <li class="nav-item"><b>
+                    <?php 
+                        print isset($_SESSION['user']['username']) 
+                            ? $_SESSION['user']['username'] 
+                            : '<a href="login.php"><button id="btn1" class="btn btn-primary">Login</button></a>';
+                    ?></b>
+                </li>
+                <li class="nav-item">
+                    <img src="../../assets/images/profile.png" alt="Profile Image" 
+                         style="height:50px; width:50px; border-radius:50%; margin-left:15px;">
+                </li>
+            </ul>
+        </div>
+    </div>
+                    <div class="sidebar">
+                        <h3>PLAYTIME</h3>
+                        <br>
+                        <br>
+
+                        <ul class="nav">
+                            <div class="side-div">
+                                <li><a href="staff.php">
+                                        <i class="fas fa-server"></i>
+                                        <span> Dashboard </span>
+                                    </a>
+                                </li>
+                            </div>
+
+                            <div class="side-div">
+                                <li><a href="equipment.php">
+                                        <i class="fa-solid fa-futbol"></i>
+                                        <span> Equipment </span>
+                                    </a>
+                                </li>
+                            </div>
+
+                            <div class="side-div">
+                                <li><a href="#">
+                                        <i class="fas fa-user"></i>
+                                        <span> Profile </span>
+                                    </a>
+                                </li>
+                            </div>
+        
+                            <div class="side-div">
+                                <li><a href="#">
+                                        <i class="fas fa-cogs"></i>
+                                        <span> Settings </span>
+                                    </a>
+                                </li>
+                            </div>
+
+
+                            
+
+                            <br>
+                            <br>
+                            <br>
+                            <br>
+                            <br>
+                            <br>
+
+                            <div class="side-div">
+                                <li>
+                                    <a href="logout.php">
+                                        <i class="fas fa-sign-out-alt"></i>
+                                        <span> Logout </span>
+                                    </a>
+                                </li>
+                            </div>
+
+
+                        </ul>
+
+                    </div>
+                </nav>
+
+
+
+            <?php
+
+        }
 
             public function loggedout()
             {
