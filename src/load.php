@@ -52,6 +52,7 @@ $ObjOwner->deleteFacility($conn);
 $ObjCaptain=new captain();
 
 
+
 //html from DB
 if (isset($_SESSION['user'])) {
     if (strval($_SESSION['user']['role']) === OWNER) {
@@ -71,7 +72,7 @@ if (isset($_SESSION['user'])) {
         ]);
     }
     if(strval($_SESSION['user']['role']) === CAPTAIN){
-        $facilityCard = $conn->select_join('tbl_facilities',[
+        $facilityCard_captain = $conn->select_join('tbl_facilities',[
             [
                 'type' => 'left',
                 'table' => 'tbl_status',
@@ -85,6 +86,8 @@ if (isset($_SESSION['user'])) {
             ],[]);
 
             $searchResults = $ObjCaptain->search($conn);
+            
+            
     }
 }
 //print_r($facilityCard);

@@ -62,6 +62,7 @@ class Body
 
     <?php
     }
+    
     public function about_us()
     {
     ?>
@@ -175,15 +176,19 @@ class Body
 
             </div>
 
-            <ul class="ul2">
-                <div class="btn1">
-                    <li><a href=" ">
-                            <span> Upcoming Booked Sessions </span>
-                            <i class="far fa-arrow-alt-circle-right"></i>
-                        </a>
-                    </li>
-                </div>
-            </ul>
+            <<ul class="ul2">
+    <div class="btn1">
+        <li><a href="#bookingsSection">
+            <span>Upcoming Booked Sessions</span>
+            <i class="far fa-arrow-alt-circle-right"></i>
+        </a></li>
+    </div>
+</ul>
+
+
+</div>
+
+
         </main>
     <?php
     }
@@ -333,6 +338,18 @@ class Body
     <?php
     }
 
+    public function displayBookingsSection() {
+     
+        ?>
+        <div class="form-section">
+            <div id="bookingsSection">
+                <div id="staff-table-container">
+                    <?php include 'viewbookings.php'; ?>
+                </div>
+            </div>
+        </div>
+        <?php
+    }
     public function searchbar($facilityType)
     {
     ?>
@@ -530,7 +547,7 @@ class Body
                                             <p class="card-text"><b>KES <?= $card['price_per_hour'] ?></b> per Hour</p>
 
                                             <div class="d-flex justify-content-between">
-                                                <button class="btn btn-primary" type="button">Book Now</button>
+                                                <button class="btn btn-primary" type="button" onclick="window.location.href=`book.php?f=<?=$card['facilityId']?>`">Book Now</button>
                                                 <button class="btn" type="button" id="favouriteButton" onclick="toggleFavourite();"><img id="favouriteImg" src="../../assets/icons/heart.png" alt="Add to Favourites" style="width: 20px;"></button>
                                                 <script>
                                                     function toggleFavourite() {
@@ -607,3 +624,4 @@ class Body
     <?php
         }
     }
+ 

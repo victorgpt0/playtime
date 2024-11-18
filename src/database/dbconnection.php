@@ -43,14 +43,20 @@ class Dbconnection
         $placeholders = ':' . implode(', :', array_keys($data));
         $sql = "INSERT INTO $tbl ($keys) VALUES ($placeholders)";
     
-        try {
-            $stmt = $this->connection->prepare($sql);
+        $stmt = $this->connection->prepare($sql);
             
             foreach ($data as $key => $value) {
                 $stmt->bindValue(":$key", $value);
+                //print ":$key=>".$value;
             }
-            
+
+            //echo '<pre>';
+            //print_r($data);
+            //return $stmt->debugDumpParams();
+
+        try {            
             $stmt->execute();
+            //return $stmt->fetchAll(PDO::FETCH_ASSOC);
             return true;
         } catch (PDOException $e) {
             return $sql . " <br> " . $e->getMessage();
@@ -64,7 +70,7 @@ class Dbconnection
         $values= "'" . implode("', '", array_values($data)) . "'";
         $sql="INSERT INTO $tbl ($keys) VALUES ($values)";
 
-        // die($sql);
+        //die($sql);
         try{
             $this->connection->exec($sql);
             return TRUE;
@@ -243,5 +249,19 @@ class Dbconnection
         }catch(PDOException $e){
             return $sql. " <br> ".$e->getMessage();
         }
+
+
     }
+    public function select_custom($query)
+    {
+        try {
+            $stmt = $this->connection->prepare($query);
+            $stmt->execute();
+            return $stmt->fetchAll(PDO::FETCH_ASSOC);
+        } catch (PDOException $e) {
+            error_log("Query Error: " . $e->getMessage(), 3, 'errors/error.log');
+            return [];
+        }
+    }
+
 }

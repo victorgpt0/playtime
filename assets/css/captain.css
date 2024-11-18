@@ -11,3 +11,34 @@
 #previous{
     gap: 30px;
 }
+.collapsible-btn {
+    /* background-color: #000;
+    color: #fff; */
+    /* width: 10%; */
+    cursor: pointer;
+}
+/* .collapsible-btn:hover{
+    color:black;
+    background-color:grey;
+} */
+
+
+.collapsible-content {
+    display: none;
+    overflow: hidden;
+    padding: 10px;
+    transition: max-height 0.3s ease-out;
+}
+
+.collapsible-content.show {
+    display: block;
+}
+.edit-content{
+    display: none;
+    overflow: hidden;
+    padding: 10px;
+    transition: max-height 0.3s ease-out;
+}
+.edit-content.show{
+    display: block;
+}

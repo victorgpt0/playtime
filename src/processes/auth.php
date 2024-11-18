@@ -209,19 +209,19 @@ class auth
             $result = $conn->update('tbl_users', $data, "userId=" . $_SESSION['user']['u_id']);
 
             if ($result === true) {
-                echo 'result';
+                //echo 'result';
                 if ($roleId === OWNER) {
-                    echo 'OWNER';
+                    //echo 'OWNER';
                     header('Location: owner-dash.php');
                     exit();
                 } elseif ($roleId === CAPTAIN) {
-                    echo 'CAPTAIN';
+                    //echo 'CAPTAIN';
                     header('Location: captain.php');
                     exit();
                 }
                 $ObjUser = new user($_SESSION['user']['u_id'], $_SESSION['user']['username'], $_SESSION['user']['email'], $roleId);
                 $ObjUser->setUser();
-                echo 'finished';
+                //echo 'finished';
             }
         }
     }
