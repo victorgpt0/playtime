@@ -2,6 +2,9 @@
 require 'load.php';
 $ObjLayout->head_ownerdash('Staff');
 $ObjLayout->navbar_ownerdash();
+$conditions = ['roleId' => 3];
+
+$staff = $conn->select_and('tbl_users', $conditions);
 ?>
 
 <head>
@@ -36,7 +39,39 @@ $ObjLayout->navbar_ownerdash();
 <!-- Staff Table -->
 <div class="form-section">
     <div id="staff-table-container">
-    <?php include 'viewstaff.php'; ?>
+    <h1>Staff Members</h1>
+    <div id="staff-table-container">
+        <table>
+            <thead>
+                <tr>
+                    <th>Full Name</th>
+                    <th>Email</th>
+                    <th>Phone Number</th>
+                    <th>Username</th>
+                    <th>Gender</th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php if (!empty($staff)): ?>
+                    <?php foreach ($staff as $member): ?>
+                        <tr>
+                            <td><?= htmlspecialchars($member['fullname']); ?></td>
+                            <td><?= htmlspecialchars($member['email']); ?></td>
+                            <td><?= htmlspecialchars($member['phone_number']); ?></td>
+                            <td><?= htmlspecialchars($member['username']); ?></td>
+                            <td>
+                                <?= $member['genderId'] == 1 ? 'Male' : ($member['genderId'] == 2 ? 'Female' : 'Other'); ?>
+                            </td>
+                        </tr>
+                    <?php endforeach; ?>
+                <?php else: ?>
+                    <tr>
+                        <td colspan="5">No staff members found.</td>
+                    </tr>
+                <?php endif; ?>
+            </tbody>
+        </table>
+    </div>
     </div>
 </div>
 </div>
