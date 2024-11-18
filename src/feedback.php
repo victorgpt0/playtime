@@ -8,7 +8,7 @@ $ObjLayout->navbar_ownerdash();
 try {
     // Select all rows from tbl_feedback
 
-    $feedbackData = $conn->select('tbl_feedback', '*');
+    $feedbackData = $conn->select_and('tbl_feedback', '*');
 } catch (Exception $e) {
     $feedbackData = [];
     $errorMessage = "Error retrieving feedback: " . $e->getMessage();

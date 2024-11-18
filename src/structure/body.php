@@ -125,16 +125,27 @@ class Body
     <?php
     }
 
-    public function dashboard($facilityCard)
+    public function dashboard($facilityCard,$bookings)
     {
+        
     ?>
         <main>
             <!-- <h1 id="ownerh1">Welcome back, [OwnerName]!</h1> -->
+             <?php //echo '<pre>';
+        //print_r($bookings);
+        // print_r($facilityCard);?>
+             
 
             <div class="dashboard-content">
                 <div class="dashboard-section">
                     <div>
-                        <p id="dash-num1">Ksh 250,000</p>
+                        <p id="dash-num1">KES <?php 
+                        $total=0;
+                        foreach($bookings as $booked){
+                            $total+=$booked['totalprice'];
+                            }
+                            print $total;?>
+                            </p>
 
                         <p id="dash-p">Earnings</p>
                     </div>
@@ -144,9 +155,9 @@ class Body
 
                 <div class="dashboard-section">
                     <div>
-                        <p id="dash-num2">895</p>
+                        <p id="dash-num2"><?=count($bookings)?></p>
 
-                        <p id="dash-p">Past Bookings</p>
+                        <p id="dash-p">Bookings</p>
                     </div>
 
                     <i class="far fa-calendar-check" id="ic2"></i>
@@ -176,7 +187,7 @@ class Body
 
             </div>
 
-            <<ul class="ul2">
+            <ul class="ul2">
     <div class="btn1">
         <li><a href="#bookingsSection">
             <span>Upcoming Booked Sessions</span>
@@ -348,7 +359,7 @@ class Body
     FROM 
         tbl_bookings b
     LEFT JOIN 
-        tbl_facilities f ON b.facilityId = f.facilityId
+        tbl_facilities f ON b.facilityId_book = f.facilityId
 ";
 
 
