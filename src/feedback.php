@@ -6,9 +6,13 @@ $ObjLayout->navbar_ownerdash();
 
 // Fetch feedback from the database
 try {
-    // Select all rows from tbl_feedback
-
+    // Use the predefined select method to fetch all rows from tbl_feedback
     $feedbackData = $conn->select('tbl_feedback', '*');
+
+    // Validate if the result is an array
+    if (!is_array($feedbackData)) {
+        throw new Exception("Unexpected data type returned from the database.");
+    }
 } catch (Exception $e) {
     $feedbackData = [];
     $errorMessage = "Error retrieving feedback: " . $e->getMessage();
