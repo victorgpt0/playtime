@@ -136,14 +136,7 @@ class Layout
                                 </li>
                             </div>
 
-                            <div class="side-div">
-                                <li><a href="#">
-                                        <i class="fas fa-user"></i>
-                                        <span> Profile </span>
-                                    </a>
-                                </li>
-                            </div>
-
+                            
 
                             <div class="side-div">
                                 <li><a href="workers.php">
@@ -153,13 +146,7 @@ class Layout
                                 </li>
                             </div>
 
-                            <div class="side-div">
-                                <li><a href="#">
-                                        <i class="fas fa-cogs"></i>
-                                        <span> Settings </span>
-                                    </a>
-                                </li>
-                            </div>
+                           
 
                             <div class="side-div">
                                 <li><a href="feedback.php">
