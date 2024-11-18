@@ -79,6 +79,18 @@ class Dbconnection
         }
     
     }
+
+    public function select($table, $columns = '*') {
+        try {
+            $query = "SELECT $columns FROM $table";
+            $stmt = $this->connection->prepare($query);
+            $stmt->execute();
+            return $stmt->fetchAll(PDO::FETCH_ASSOC); // Return array of rows
+        } catch (PDOException $e) {
+            return "Error: " . $e->getMessage(); // Return error message if something goes wrong
+        }
+    }
+    
     public function select_and($tbl, $conditions){
         
         $sql="SELECT * FROM $tbl";
