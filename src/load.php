@@ -85,7 +85,6 @@ if (isset($_SESSION['user'])) {
             ]
             ],[]);
 
-            $searchResults = $ObjCaptain->search($conn);
             
             
     }

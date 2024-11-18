@@ -90,6 +90,7 @@ if(isset($_SESSION['user'])){
 }
 
 }
+$searchResults = $ObjCaptain->search($conn);
 $ObjBody->captain($searchResults);
 $ObjLayout->close_js();
 ?>
