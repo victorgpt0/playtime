@@ -6,7 +6,7 @@ $ObjLayout->navbar_ownerdash();
 
 // Fetch feedback from the database
 try {
-    // Use the predefined select method to fetch all rows from tbl_feedback
+    // Use the predefined select method to fetch the rows from tbl_feedback
     $feedbackData = $conn->select('tbl_feedback', '*');
 
     // Validate if the result is an array
