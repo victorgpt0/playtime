@@ -62,6 +62,7 @@ class Body
 
     <?php
     }
+    
     public function about_us()
     {
     ?>
@@ -124,16 +125,27 @@ class Body
     <?php
     }
 
-    public function dashboard($facilityCard)
+    public function dashboard($facilityCard,$bookings)
     {
+        
     ?>
         <main>
             <!-- <h1 id="ownerh1">Welcome back, [OwnerName]!</h1> -->
+             <?php //echo '<pre>';
+        //print_r($bookings);
+        // print_r($facilityCard);?>
+             
 
             <div class="dashboard-content">
                 <div class="dashboard-section">
                     <div>
-                        <p id="dash-num1">Ksh 250,000</p>
+                        <p id="dash-num1">KES <?php 
+                        $total=0;
+                        foreach($bookings as $booked){
+                            $total+=$booked['totalprice'];
+                            }
+                            print $total;?>
+                            </p>
 
                         <p id="dash-p">Earnings</p>
                     </div>
@@ -143,9 +155,9 @@ class Body
 
                 <div class="dashboard-section">
                     <div>
-                        <p id="dash-num2">895</p>
+                        <p id="dash-num2"><?=count($bookings)?></p>
 
-                        <p id="dash-p">Past Bookings</p>
+                        <p id="dash-p">Bookings</p>
                     </div>
 
                     <i class="far fa-calendar-check" id="ic2"></i>
@@ -176,9 +188,67 @@ class Body
             </div>
 
             <ul class="ul2">
+    <div class="btn1">
+        <li><a href="#bookingsSection">
+            <span>Upcoming Booked Sessions</span>
+            <i class="far fa-arrow-alt-circle-right"></i>
+        </a></li>
+    </div>
+</ul>
+
+
+</div>
+
+
+        </main>
+    <?php
+    }
+
+    public function staffdash()
+    {
+        ?>
+        <main>
+            <h1 id="ownerh1" style="text-align:center; margin-left:5%">Welcome to the Staff Portal</h1>
+
+            <div class="dashboard-content">
+                <div class="dashboard-section">
+                    <div>
+                        <p id="dash-num2">60</p>
+
+                        <p id="dash-p">Hours Worked This Week</p>
+                    </div>
+
+                    <i class="fa-solid fa-clock" id="ic2"></i>
+                </div>
+
+                <div class="dashboard-section">
+                    <div>
+                        <p id="dash-num1">8</p>
+
+                        <p id="dash-p">Hours Worked Overtime</p>
+                    </div>
+
+                    <i class="fa-solid fa-hourglass-half" id="ic1"></i>
+                </div>
+
+                <div class="dashboard-section">
+                    <div>
+                        <p id="dash-num3">90%</p>
+
+                        
+                        <p id="dash-p">Performance Review Score</p>
+                        
+                    </div>
+
+                    <i class="fa-regular fa-star" id="ic3"></i>
+                </div>
+
+
+            </div>
+            <ul class="ul2">
                 <div class="btn1">
-                    <li><a href=" ">
-                            <span> Upcoming Booked Sessions </span>
+                    <li><a href="equipment.php">
+                            <span> Assign Sporting Equipment </span>
                             <i class="far fa-arrow-alt-circle-right"></i>
                         </a>
                     </li>
@@ -279,6 +349,63 @@ class Body
     <?php
     }
 
+    public function displayBookingsSection($conn) {
+        $query = "
+    SELECT 
+        f.name AS facility_name, 
+        b.booked_at, 
+        b.totalprice, 
+        b.statusId 
+    FROM 
+        tbl_bookings b
+    LEFT JOIN 
+        tbl_facilities f ON b.facilityId_book = f.facilityId
+";
+
+
+$bookings = $conn->select_custom($query); 
+     
+        ?>
+        <div class="form-section">
+            <div id="bookingsSection">
+                <div id="staff-table-container">
+                <h1> Bookings</h1>
+    <div id="staff-table-container">
+        <table>
+            <thead>
+                <tr>
+                    <th>Facility Name</th>
+                    <th>Booked At</th>
+                    <th>Total Price</th>
+                    <th>Status</th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php if (!empty($bookings)): ?>
+                    <?php foreach ($bookings as $booking): ?>
+                        <tr>
+                            <td><?= htmlspecialchars($booking['facility_name']); ?></td>
+                            <td><?= htmlspecialchars($booking['booked_at']); ?></td>
+                            <td>Ksh <?= htmlspecialchars(number_format($booking['totalprice'], 2)); ?></td>
+                            <td>
+                                <?= $booking['statusId'] == 1 ? 'Confirmed' : ($booking['statusId'] == 2 ? 'Pending' : 'Cancelled'); ?>
+                            </td>
+                        </tr>
+                    <?php endforeach; ?>
+                <?php else: ?>
+                    <tr>
+                        <td colspan="4" style="text-align: center;">No bookings found.</td>
+                    </tr>
+                <?php endif; ?>
+            </tbody>
+        </table>
+    </div>
+                    
+                </div>
+            </div>
+        </div>
+        <?php
+    }
     public function searchbar($facilityType)
     {
     ?>
@@ -476,7 +603,7 @@ class Body
                                             <p class="card-text"><b>KES <?= $card['price_per_hour'] ?></b> per Hour</p>
 
                                             <div class="d-flex justify-content-between">
-                                                <button class="btn btn-primary" type="button">Book Now</button>
+                                                <button class="btn btn-primary" type="button" onclick="window.location.href=`book.php?f=<?=$card['facilityId']?>`">Book Now</button>
                                                 <button class="btn" type="button" id="favouriteButton" onclick="toggleFavourite();"><img id="favouriteImg" src="../../assets/icons/heart.png" alt="Add to Favourites" style="width: 20px;"></button>
                                                 <script>
                                                     function toggleFavourite() {
@@ -553,3 +680,4 @@ class Body
     <?php
         }
     }
+ 

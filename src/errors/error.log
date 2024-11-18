@@ -16,4 +16,128 @@ Failure at owner.php delete(40)
 Failure at owner.php delete(40)
 Failure at owner.php delete(40)
 Failure at owner.php delete(40)
-Failure at owner.php delete(39)
+Failure at owner.php delete(39)Query Error: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'f.facility_name' in 'field list'Query Error: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'f.facility_name' in 'field list'Query Error: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'f.facility_name' in 'field list'
+Failure at owner.php delete(39)Insert Failure to tbl_bookingInsert Failure to tbl_bookingInsert Failure to tbl_booking\nInsert Failure to tbl_booking\nInsert Failure to tbl_booking
+Insert Failure to tbl_booking
+Insert Failure to tbl_booking
+Insert Failure to tbl_booking
+Insert Failure to tbl_booking
+Insert Failure to tbl_booking
+Insert Failure to tbl_booking
+Insert Failure to tbl_booking
+Insert Failure to tbl_booking
+Insert Failure to tbl_booking
+Insert Failure to tbl_booking
+Insert Failure to tbl_booking
+Insert Failure to tbl_booking
+Insert Failure to tbl_booking
+Insert Failure to tbl_booking
+Insert Failure to tbl_booking
+Insert Failure to tbl_booking
+Insert Failure to tbl_booking
+Insert Failure to tbl_booking
+Insert Failure to tbl_booking
+Insert Failure to tbl_booking
+Insert Failure to tbl_booking
+Insert Failure to tbl_booking
+Insert Failure to tbl_booking
+Insert Failure to tbl_booking
+Insert Failure to tbl_booking
+Insert Failure to tbl_booking
+Insert Failure to tbl_booking
+Insert Failure to tbl_booking
+Insert Failure to tbl_booking
+Insert Failure to tbl_booking
+Insert Failure to tbl_booking
+Insert Failure to tbl_booking
+Insert Failure to tbl_booking
+Insert Failure to tbl_booking
+Insert Failure to tbl_booking
+Insert Failure to tbl_booking
+Insert Failure to tbl_booking
+Insert Failure to tbl_booking
+Insert Failure to tbl_booking
+Insert Failure to tbl_booking
+Insert Failure to tbl_booking
+Insert Failure to tbl_booking
+Insert Failure to tbl_booking
+Insert Failure to tbl_booking
+Insert Failure to tbl_booking
+Insert Failure to tbl_booking
+Insert Failure to tbl_booking
+Insert Failure to tbl_booking
+Insert Failure to tbl_booking
+Insert Failure to tbl_booking
+Insert Failure to tbl_booking
+Insert Failure to tbl_booking
+Insert Failure to tbl_bookingPDOException: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'status_id' in 'field list' in C:\xampp\htdocs\playtime\src\processes\captain.php:423
+Stack trace:
+#0 C:\xampp\htdocs\playtime\src\processes\captain.php(423): PDOStatement->execute()
+#1 C:\xampp\htdocs\playtime\src\book.php(10): captain->bookFacility(Object(Dbconnection))
+#2 {main}PDOException: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'status_id' in 'field list' in C:\xampp\htdocs\playtime\src\processes\captain.php:424
+Stack trace:
+#0 C:\xampp\htdocs\playtime\src\processes\captain.php(424): PDOStatement->execute()
+#1 C:\xampp\htdocs\playtime\src\book.php(10): captain->bookFacility(Object(Dbconnection))
+#2 {main}PDOException: SQLSTATE[21S01]: Insert value list does not match column list: 1136 Column count doesn't match value count at row 1 in C:\xampp\htdocs\playtime\src\processes\captain.php:424
+Stack trace:
+#0 C:\xampp\htdocs\playtime\src\processes\captain.php(424): PDOStatement->execute()
+#1 C:\xampp\htdocs\playtime\src\book.php(10): captain->bookFacility(Object(Dbconnection))
+#2 {main}PDOException: SQLSTATE[21S01]: Insert value list does not match column list: 1136 Column count doesn't match value count at row 1 in C:\xampp\htdocs\playtime\src\processes\captain.php:424
+Stack trace:
+#0 C:\xampp\htdocs\playtime\src\processes\captain.php(424): PDOStatement->execute()
+#1 C:\xampp\htdocs\playtime\src\book.php(10): captain->bookFacility(Object(Dbconnection))
+#2 {main}PDOException: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'status_id' in 'field list' in C:\xampp\htdocs\playtime\src\processes\captain.php:424
+Stack trace:
+#0 C:\xampp\htdocs\playtime\src\processes\captain.php(424): PDOStatement->execute()
+#1 C:\xampp\htdocs\playtime\src\book.php(10): captain->bookFacility(Object(Dbconnection))
+#2 {main}PDOException: SQLSTATE[HY093]: Invalid parameter number: parameter was not defined in C:\xampp\htdocs\playtime\src\processes\captain.php:424
+Stack trace:
+#0 C:\xampp\htdocs\playtime\src\processes\captain.php(424): PDOStatement->execute()
+#1 C:\xampp\htdocs\playtime\src\book.php(10): captain->bookFacility(Object(Dbconnection))
+#2 {main}PDOException: SQLSTATE[HY093]: Invalid parameter number: parameter was not defined in C:\xampp\htdocs\playtime\src\processes\captain.php:425
+Stack trace:
+#0 C:\xampp\htdocs\playtime\src\processes\captain.php(425): PDOStatement->execute()
+#1 C:\xampp\htdocs\playtime\src\book.php(10): captain->bookFacility(Object(Dbconnection))
+#2 {main}PDOException: SQLSTATE[HY093]: Invalid parameter number: parameter was not defined in C:\xampp\htdocs\playtime\src\processes\captain.php:425
+Stack trace:
+#0 C:\xampp\htdocs\playtime\src\processes\captain.php(425): PDOStatement->execute()
+#1 C:\xampp\htdocs\playtime\src\book.php(10): captain->bookFacility(Object(Dbconnection))
+#2 {main}PDOException: SQLSTATE[HY093]: Invalid parameter number: parameter was not defined in C:\xampp\htdocs\playtime\src\processes\captain.php:425
+Stack trace:
+#0 C:\xampp\htdocs\playtime\src\processes\captain.php(425): PDOStatement->execute()
+#1 C:\xampp\htdocs\playtime\src\book.php(10): captain->bookFacility(Object(Dbconnection))
+#2 {main}PDOException: SQLSTATE[HY093]: Invalid parameter number: parameter was not defined in C:\xampp\htdocs\playtime\src\processes\captain.php:425
+Stack trace:
+#0 C:\xampp\htdocs\playtime\src\processes\captain.php(425): PDOStatement->execute()
+#1 C:\xampp\htdocs\playtime\src\book.php(10): captain->bookFacility(Object(Dbconnection))
+#2 {main}
+Insert Failure to tbl_booking
+Insert Failure to tbl_booking
+
+Insert Failure to tbl_booking
+Insert Failure to tbl_booking
+Insert Failure to tbl_booking
+Insert Failure to tbl_booking
+Insert Failure to tbl_booking
+Insert Failure to tbl_booking
+Insert Failure to tbl_booking
+Insert success to tbl_booking
+Insert success to tbl_booking
+Insert Failure to tbl_booking
+Insert Failure to tbl_booking
+Insert Failure to tbl_booking
+Insert Failure to tbl_booking
+Insert Failure to tbl_booking
+Insert Failure to tbl_booking
+Insert Failure to tbl_booking
+Insert Failure to tbl_booking
+Insert Failure to tbl_booking
+Insert success to tbl_booking
+Insert success to tbl_booking
+Insert success to tbl_booking
+Insert success to tbl_booking
+Insert success to tbl_booking
+Insert success to tbl_booking
+Insert success to tbl_booking
+Insert success to tbl_booking
+Insert success to tbl_bookingQuery Error: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'tbl_bookings.facilityId_book' in 'on clause'Query Error: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'tbl_bookings.facilityId_book' in 'on clause'

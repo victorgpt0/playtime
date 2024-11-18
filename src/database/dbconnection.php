@@ -43,14 +43,20 @@ class Dbconnection
         $placeholders = ':' . implode(', :', array_keys($data));
         $sql = "INSERT INTO $tbl ($keys) VALUES ($placeholders)";
     
-        try {
-            $stmt = $this->connection->prepare($sql);
+        $stmt = $this->connection->prepare($sql);
             
             foreach ($data as $key => $value) {
                 $stmt->bindValue(":$key", $value);
+                //print ":$key=>".$value;
             }
-            
+
+            //echo '<pre>';
+            //print_r($data);
+            //return $stmt->debugDumpParams();
+
+        try {            
             $stmt->execute();
+            //return $stmt->fetchAll(PDO::FETCH_ASSOC);
             return true;
         } catch (PDOException $e) {
             return $sql . " <br> " . $e->getMessage();
@@ -64,7 +70,7 @@ class Dbconnection
         $values= "'" . implode("', '", array_values($data)) . "'";
         $sql="INSERT INTO $tbl ($keys) VALUES ($values)";
 
-        // die($sql);
+        //die($sql);
         try{
             $this->connection->exec($sql);
             return TRUE;
@@ -73,6 +79,18 @@ class Dbconnection
         }
     
     }
+
+    public function select($table, $columns = '*') {
+        try {
+            $query = "SELECT $columns FROM $table";
+            $stmt = $this->connection->prepare($query);
+            $stmt->execute();
+            return $stmt->fetchAll(PDO::FETCH_ASSOC); // Return array of rows
+        } catch (PDOException $e) {
+            return "Error: " . $e->getMessage(); // Return error message if something goes wrong
+        }
+    }
+    
     public function select_and($tbl, $conditions){
         
         $sql="SELECT * FROM $tbl";
@@ -102,7 +120,7 @@ class Dbconnection
             return $stmt->fetchAll(PDO::FETCH_ASSOC);
             
         }catch(PDOException $e){
-            return error_log($sql. " <br> ".$e->getMessage(),3,'../errors/error.log');
+            return error_log($sql. " <br> ".$e->getMessage(),3,'errors/error.log');
         }
     }
 
@@ -117,7 +135,6 @@ class Dbconnection
         
         foreach($conditions as $key => $value){
             $clauses[]="$key = :$key";
-            
         }
         $sql .= implode(" OR ",$clauses);
         
@@ -243,5 +260,32 @@ class Dbconnection
         }catch(PDOException $e){
             return $sql. " <br> ".$e->getMessage();
         }
+
+
     }
+    public function select_custom($query)
+    {
+        try {
+            $stmt = $this->connection->prepare($query);
+            $stmt->execute();
+            return $stmt->fetchAll(PDO::FETCH_ASSOC);
+        } catch (PDOException $e) {
+            error_log("Query Error: " . $e->getMessage(), 3, 'errors/error.log');
+            return [];
+        }
+    }
+
+    public function bookings($sql) {
+        try{
+        $stmt=$this->connection->prepare($sql);
+        $stmt->bindValue(':userId', 38);
+        $stmt->execute();
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+        } catch(PDOException $e) {
+            error_log("Query Error: " . $e->getMessage(), 3, 'errors/error.log');
+            return [];
+        }
+        
+    }
+
 }

@@ -20,7 +20,7 @@ username varchar(20)  not null unique,
 password varchar(100) not null,
 created datetime not null default current_timestamp,
 updated datetime not null default current_timestamp,
-roleId tinyint(1) not null,
+roleId tinyint(1) null,
 genderId tinyint(1) not null,
 foreign key (genderId) references tbl_gender(genderId) on delete no action on update no action,
 foreign key(roleId) references tbl_role(roleId) on delete no action on update no action
@@ -78,5 +78,22 @@ CREATE TABLE if not exists `tbl_bookings` (
   foreign key (facilityId) references tbl_facilities(facilityId) on delete no action on update no action,
   foreign key (userid) references tbl_users(userid) on delete no action on update no action,
   foreign key (statusId) references tbl_status(statusId) on delete no action on update no action
+
+
+
+
+  CREATE TABLE if not exists 'tbl_maintenance' (
+    id INT AUTO_INCREMENT NOT NULL PRIMARY KEY,
+    facility VARCHAR(255) NOT NULL,
+    request TEXT NOT NULL
+);
+
+CREATE TABLE if not exists 'tbl_feedback' (
+    id INT AUTO_INCREMENT NOT NULL PRIMARY KEY,
+    customer_name VARCHAR(255) NOT NULL,
+    feedback TEXT NOT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
 );
 

@@ -110,7 +110,7 @@ function markLocations(userLocations) {
       <p class="card-text"><b>${loc.name}</b></p>
       <p class="card-text"><b>KES ${loc.price}</b> per Hour</p>
       <div class="d-flex justify-content-between">
-      <button class="btn btn-primary" type="button" onclick="window.location.href='booking.php?facilityName=${encodeURIComponent(loc.facilityId)}'">Book Now</button>
+      <button class="btn btn-primary" type="button" onclick="window.location.href='book.php?f=${encodeURIComponent(loc.facilityId)}'">Book Now</button>
       <button class="btn" type="button" id="favouriteButton" onclick="toggleFavourite();"><img id="favouriteImg" src="../../assets/icons/heart.png" alt="Add to Favourites" style="width: 20px;"></button>
       </div>
       </div>

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3307
--- Generation Time: Nov 15, 2024 at 08:06 AM
+-- Generation Time: Nov 18, 2024 at 10:40 AM
 -- Server version: 10.6.7-MariaDB
 -- PHP Version: 8.2.12
 
@@ -27,20 +27,48 @@ SET time_zone = "+00:00";
 -- Table structure for table `tbl_bookings`
 --
 create database if not exists railway;
-
 use railway;
-
 CREATE TABLE `tbl_bookings` (
   `booking_id` bigint(10) NOT NULL,
   `facilityId` bigint(10) NOT NULL,
   `userId` bigint(10) NOT NULL,
   `booked_at` timestamp NOT NULL DEFAULT current_timestamp(),
   `updated_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
-  `start_time` datetime NOT NULL,
-  `end_time` datetime NOT NULL,
-  `totalprice` decimal(10,2) NOT NULL,
-  `statusId` tinyint(1) NOT NULL
+  `dateBooked` date NOT NULL,
+  `start_time` varchar(10) NOT NULL,
+  `end_time` varchar(10) NOT NULL,
+  `totalprice` varchar(10) NOT NULL,
+  `to_borrow` text NOT NULL,
+  `paystatus_id` tinyint(1) DEFAULT NULL,
+  `statusId` tinyint(1) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `tbl_bookings`
+--
+
+INSERT INTO `tbl_bookings` (`booking_id`, `facilityId`, `userId`, `booked_at`, `updated_at`, `dateBooked`, `start_time`, `end_time`, `totalprice`, `to_borrow`, `paystatus_id`, `statusId`) VALUES
+(1, 1, 40, '2024-11-18 07:07:46', '2024-11-18 07:07:46', '2024-11-01', '7:00 AM', '7:00 PM', '1000.00', 'Foot', NULL, NULL),
+(2, 1, 39, '2024-11-18 08:51:21', '2024-11-18 08:51:21', '2024-11-18', '7:30 AM', '9:30 AM', '7000.00', 'football', 1, 1),
+(3, 1, 39, '2024-11-18 08:52:00', '2024-11-18 08:52:00', '2024-11-18', '7:30 AM', '9:30 AM', '7000.00', 'football', 1, 1),
+(4, 1, 39, '2024-11-18 08:55:31', '2024-11-18 08:55:31', '2024-11-18', '7:30 AM', '9:30 AM', '7000.00', 'football', 1, 1),
+(5, 1, 39, '2024-11-18 08:59:26', '2024-11-18 08:59:26', '2024-11-18', '7:30 AM', '9:30 AM', '7000.00', 'football', 1, 1),
+(6, 1, 39, '2024-11-18 08:59:31', '2024-11-18 08:59:31', '2024-11-18', '7:30 AM', '9:30 AM', '7000.00', 'football', 1, 1),
+(7, 1, 39, '2024-11-18 08:59:47', '2024-11-18 08:59:47', '2024-11-18', '7:30 AM', '9:30 AM', '7000.00', 'football', 1, 1),
+(8, 1, 39, '2024-11-18 09:00:09', '2024-11-18 09:00:09', '2024-11-18', '7:30 AM', '9:30 AM', '7000.00', 'football', 1, 1),
+(9, 1, 39, '2024-11-18 09:01:36', '2024-11-18 09:01:36', '2024-11-18', '7:30 AM', '9:30 AM', '7000.00', 'football', 1, 1),
+(10, 1, 39, '2024-11-18 09:01:43', '2024-11-18 09:01:43', '2024-11-18', '7:30 AM', '9:30 AM', '7000.00', 'football', 1, 1),
+(11, 1, 39, '2024-11-18 09:02:23', '2024-11-18 09:02:23', '2024-11-18', '7:30 AM', '9:30 AM', '7000.00', 'football', 1, 1),
+(12, 1, 39, '2024-11-18 09:04:07', '2024-11-18 09:04:07', '2024-11-18', '7:30 AM', '9:30 AM', '7000.00', 'football', 1, 1),
+(13, 1, 39, '2024-11-18 09:05:34', '2024-11-18 09:05:34', '2024-11-18', '7:30 AM', '9:30 AM', '7000.00', 'football', 1, 1),
+(14, 1, 39, '2024-11-18 09:05:38', '2024-11-18 09:05:38', '2024-11-18', '7:30 AM', '9:30 AM', '7000.00', 'football', 1, 1),
+(15, 1, 39, '2024-11-18 09:06:19', '2024-11-18 09:06:19', '2024-11-18', '7:30 AM', '9:30 AM', '7000.00', 'football', 1, 1),
+(16, 1, 39, '2024-11-18 09:08:45', '2024-11-18 09:08:45', '2024-11-18', '7:30 AM', '9:30 AM', '7000.00', 'football', 1, 1),
+(17, 1, 39, '2024-11-18 09:10:10', '2024-11-18 09:10:10', '2024-11-18', '7:30 AM', '9:30 AM', '7000.00', 'football', 1, 1),
+(18, 1, 39, '2024-11-18 09:10:36', '2024-11-18 09:10:36', '2024-11-18', '7:30 AM', '9:30 AM', '7000.00', 'football', 1, 1),
+(19, 1, 39, '2024-11-18 09:11:02', '2024-11-18 09:11:02', '2024-11-18', '7:30 AM', '9:30 AM', '7000.00', 'football', 1, 1),
+(20, 1, 39, '2024-11-18 09:13:10', '2024-11-18 09:13:10', '2024-11-18', '7:30 AM', '9:30 AM', '7000.00', 'football', 1, 1),
+(21, 1, 39, '2024-11-18 09:13:48', '2024-11-18 09:13:48', '2024-11-18', '7:30 AM', '9:30 AM', '7000.00', 'football', 1, 1);
 
 -- --------------------------------------------------------
 
@@ -56,6 +84,10 @@ CREATE TABLE `tbl_facilities` (
   `longitude` decimal(11,8) NOT NULL,
   `place_id` varchar(255) NOT NULL,
   `price_per_hour` decimal(10,2) NOT NULL,
+  `max_capacity` int(11) NOT NULL,
+  `open_time` varchar(10) NOT NULL,
+  `contact` varchar(10) NOT NULL,
+  `close_time` varchar(10) NOT NULL,
   `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
   `updated_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
   `userid` bigint(10) NOT NULL,
@@ -67,8 +99,8 @@ CREATE TABLE `tbl_facilities` (
 -- Dumping data for table `tbl_facilities`
 --
 
-INSERT INTO `tbl_facilities` (`facilityId`, `name`, `description`, `latitude`, `longitude`, `place_id`, `price_per_hour`, `created_at`, `updated_at`, `userid`, `statusId`, `typeId`) VALUES
-(1, 'SU Sports Complex Pitch A', '7-a-side Football Astro Turf', -1.30905750, 36.81283260, 'Strathmore University, Ole Sangale Road, Langata, KEN', 3500.00, '2024-11-06 19:19:41', '2024-11-12 15:38:42', 38, 1, 1);
+INSERT INTO `tbl_facilities` (`facilityId`, `name`, `description`, `latitude`, `longitude`, `place_id`, `price_per_hour`, `max_capacity`, `open_time`, `contact`, `close_time`, `created_at`, `updated_at`, `userid`, `statusId`, `typeId`) VALUES
+(1, 'SU Sports Complex Pitch A', '7-a-side Football Astro Turf', -1.30905750, 36.81283260, 'Strathmore University, Ole Sangale Road, Langata, KEN', 3500.00, 20, '7:00 AM', '0745173835', '6:00 PM', '2024-11-06 19:19:41', '2024-11-16 21:06:25', 38, 1, 1);
 
 -- --------------------------------------------------------
 
@@ -115,6 +147,25 @@ CREATE TABLE `tbl_gender` (
 INSERT INTO `tbl_gender` (`genderId`, `gender`) VALUES
 (1, 'Male'),
 (2, 'Female');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tbl_pay_status`
+--
+
+CREATE TABLE `tbl_pay_status` (
+  `paystaus_id` tinyint(1) NOT NULL,
+  `pay_status` varchar(100) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `tbl_pay_status`
+--
+
+INSERT INTO `tbl_pay_status` (`paystaus_id`, `pay_status`) VALUES
+(1, 'Pending'),
+(2, 'Successful');
 
 -- --------------------------------------------------------
 
@@ -190,7 +241,9 @@ INSERT INTO `tbl_users` (`userid`, `fullname`, `email`, `phone_number`, `usernam
 (36, 'Ivan Musila', 'i@gmail.com', '', 'ivann', '$2y$10$Ak1.Yes26gKMyhd8bIyVouGrK3BrIlAJG07iw/jdNCINicqXoHAOa', '2024-11-05 10:31:27', '2024-11-05 10:31:27', 4, 1),
 (37, 'Ian Omondi', 'ian@gmail.com', '', 'ian', '$2y$10$inIyXnyX7Tu7CM8ZDyd3YelNFp64BdOzgSmt6RPd573gutfkk7Aa6', '2024-11-05 11:02:10', '2024-11-05 11:02:10', 2, 1),
 (38, 'Owner ', 'owner@gmail.com', '', 'owner', '$2y$10$auftHaBy9Hv0fDw5K./EOeCfVJ7E5MALs8ew3IvyRKoB4c1hJZovm', '2024-11-05 14:07:50', '2024-11-05 14:07:50', 2, 1),
-(39, 'Captain ', 'captain@gmail.com', '', 'captain', '$2y$10$hp2funbvgVlhngu5L0P11umHnaaaNHFoWYc6hMkF.VaJXMB2OZ1Xm', '2024-11-10 14:31:26', '2024-11-10 14:31:26', 4, 1);
+(39, 'Captain ', 'captain@gmail.com', '', 'captain', '$2y$10$hp2funbvgVlhngu5L0P11umHnaaaNHFoWYc6hMkF.VaJXMB2OZ1Xm', '2024-11-10 14:31:26', '2024-11-10 14:31:26', 4, 1),
+(40, 'Captain ', 'captain2@gmail.com', '', 'captain2', '$2y$10$sMQzpP.YPfi7ygzAdAAWA.j.dwDlbjSyY3He.dYTCM2a4aKURjrZu', '2024-11-15 11:13:58', '2024-11-15 11:13:58', 4, 1),
+(41, 'Captain ', 'captain3@gmail.com', '', 'captain3', '$2y$10$.0DE4311H7KGH4bcta/LYua8LAowOx3l8ylLgVfTPliR2cUl4WFbO', '2024-11-18 11:26:38', '2024-11-18 11:26:38', 4, 1);
 
 --
 -- Indexes for dumped tables
@@ -200,7 +253,11 @@ INSERT INTO `tbl_users` (`userid`, `fullname`, `email`, `phone_number`, `usernam
 -- Indexes for table `tbl_bookings`
 --
 ALTER TABLE `tbl_bookings`
-  ADD PRIMARY KEY (`booking_id`);
+  ADD PRIMARY KEY (`booking_id`),
+  ADD KEY `paystatus` (`paystatus_id`),
+  ADD KEY `user` (`userId`),
+  ADD KEY `facility` (`facilityId`),
+  ADD KEY `statusid` (`statusId`);
 
 --
 -- Indexes for table `tbl_facilities`
@@ -222,6 +279,12 @@ ALTER TABLE `tbl_f_types`
 --
 ALTER TABLE `tbl_gender`
   ADD PRIMARY KEY (`genderId`);
+
+--
+-- Indexes for table `tbl_pay_status`
+--
+ALTER TABLE `tbl_pay_status`
+  ADD PRIMARY KEY (`paystaus_id`);
 
 --
 -- Indexes for table `tbl_role`
@@ -253,7 +316,7 @@ ALTER TABLE `tbl_users`
 -- AUTO_INCREMENT for table `tbl_bookings`
 --
 ALTER TABLE `tbl_bookings`
-  MODIFY `booking_id` bigint(10) NOT NULL AUTO_INCREMENT;
+  MODIFY `booking_id` bigint(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
 
 --
 -- AUTO_INCREMENT for table `tbl_facilities`
@@ -274,6 +337,12 @@ ALTER TABLE `tbl_gender`
   MODIFY `genderId` tinyint(1) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
+-- AUTO_INCREMENT for table `tbl_pay_status`
+--
+ALTER TABLE `tbl_pay_status`
+  MODIFY `paystaus_id` tinyint(1) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
 -- AUTO_INCREMENT for table `tbl_role`
 --
 ALTER TABLE `tbl_role`
@@ -283,11 +352,20 @@ ALTER TABLE `tbl_role`
 -- AUTO_INCREMENT for table `tbl_users`
 --
 ALTER TABLE `tbl_users`
-  MODIFY `userid` bigint(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=40;
+  MODIFY `userid` bigint(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=42;
 
 --
 -- Constraints for dumped tables
 --
+
+--
+-- Constraints for table `tbl_bookings`
+--
+ALTER TABLE `tbl_bookings`
+  ADD CONSTRAINT `facility` FOREIGN KEY (`facilityId`) REFERENCES `tbl_facilities` (`facilityId`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  ADD CONSTRAINT `paystatus` FOREIGN KEY (`paystatus_id`) REFERENCES `tbl_pay_status` (`paystaus_id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  ADD CONSTRAINT `statusid` FOREIGN KEY (`statusId`) REFERENCES `tbl_status` (`statusId`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  ADD CONSTRAINT `user` FOREIGN KEY (`userId`) REFERENCES `tbl_users` (`userid`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
 -- Constraints for table `tbl_facilities`
@@ -304,6 +382,21 @@ ALTER TABLE `tbl_users`
   ADD CONSTRAINT `tbl_users_ibfk_1` FOREIGN KEY (`genderId`) REFERENCES `tbl_gender` (`genderId`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   ADD CONSTRAINT `tbl_users_ibfk_2` FOREIGN KEY (`roleId`) REFERENCES `tbl_role` (`roleId`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 COMMIT;
+
+
+ CREATE TABLE if not exists tbl_maintenance (
+    id INT AUTO_INCREMENT NOT NULL PRIMARY KEY,
+    facility VARCHAR(255) NOT NULL,
+    request TEXT NOT NULL
+);
+
+CREATE TABLE if not exists tbl_feedback (
+    id INT AUTO_INCREMENT NOT NULL PRIMARY KEY,
+    customer_name VARCHAR(255) NOT NULL,
+    feedback TEXT NOT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

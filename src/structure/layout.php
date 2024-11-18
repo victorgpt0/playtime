@@ -10,7 +10,7 @@ class Layout
         <head>
             <meta charset='utf-8'>
             <meta http-equiv='X-UA-Compatible' content='IE=edge'>
-            <title><?php echo $title.' | Playtime' ; ?></title>
+            <title><?php echo $title . ' | Playtime'; ?></title>
             <link rel="icon" href="../assets/icons/favicon.svg" type="image/svg+xml">
             <meta name='viewport' content='width=device-width, initial-scale=1'>
             <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
@@ -25,24 +25,35 @@ class Layout
     public function head_ownerdash($title)
     {
     ?>
-        
+
         <html lang="en">
 
         <head>
 
             <meta charset='utf-8'>
             <meta http-equiv='X-UA-Compatible' content='IE=edge'>
-            <title><?php echo $title.' | Playtime'; ?></title>
+            <title><?php echo $title . ' | Playtime'; ?></title>
             <link rel="icon" href="../assets/icons/favicon.svg" type="image/svg+xml">
             <meta name='viewport' content='width=device-width, initial-scale=1'>
             <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
             <link href="../../assets/css/globals.css" rel="stylesheet">
             <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-            <script src="https://kit.fontawesome.com/yourcode.js" crossorigin="anonymous"></script>
             <link rel='stylesheet' type='text/css' media='screen' href='../assets/css/owner-dash.css'>
             <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
             <link href="../../assets/css/captain.css" rel="stylesheet">
             <link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.min.css">
+            <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+            <link href="../../assets/datepicker/css/bootstrap-datepicker.min.css" rel="stylesheet">
+            <script src="../../assets/datepicker/js/bootstrap-datepicker.min.js"></script>
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/timepicker/1.3.5/jquery.timepicker.min.js"></script>
+            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/timepicker/1.3.5/jquery.timepicker.min.css">
+            <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-formhelpers/2.3.0/css/bootstrap-formhelpers.min.css" rel="stylesheet">
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-formhelpers/2.3.0/js/bootstrap-formhelpers.min.js"></script>
+            <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/intl-tel-input@24.7.0/build/css/intlTelInput.css">
+            <script src="https://cdn.jsdelivr.net/npm/intl-tel-input@24.7.0/build/js/intlTelInput.min.js"></script>
+            <link rel="stylesheet" href="owner.css">
+
 
         </head>
 
@@ -84,26 +95,26 @@ class Layout
         ?>
 
             <body>
-            <nav class="navbar navbar-expand-lg navbar-light bg-light border-bottom">
-    <div class="container-fluid">
-        
-        <!-- Right-aligned content -->
-        <div class="collapse navbar-collapse">
-            <ul class="navbar-nav ms-auto mb-2 mb-lg-0 d-flex align-items-center">
-                <li class="nav-item"><b>
-                    <?php 
-                        print isset($_SESSION['user']['username']) 
-                            ? $_SESSION['user']['username'] 
-                            : '<a href="login.php"><button id="btn1" class="btn btn-primary">Login</button></a>';
-                    ?></b>
-                </li>
-                <li class="nav-item">
-                    <img src="../../assets/images/profile.png" alt="Profile Image" 
-                         style="height:50px; width:50px; border-radius:50%; margin-left:15px;">
-                </li>
-            </ul>
-        </div>
-    </div>
+                <nav class="navbar navbar-expand-lg navbar-light bg-light border-bottom">
+                    <div class="container-fluid">
+
+                        <!-- Right-aligned content -->
+                        <div class="collapse navbar-collapse">
+                            <ul class="navbar-nav ms-auto mb-2 mb-lg-0 d-flex align-items-center">
+                                <li class="nav-item"><b>
+                                        <?php
+                                        print isset($_SESSION['user']['username'])
+                                            ? $_SESSION['user']['username']
+                                            : '<a href="login.php"><button id="btn1" class="btn btn-primary">Login</button></a>';
+                                        ?></b>
+                                </li>
+                                <li class="nav-item">
+                                    <img src="../../assets/images/profile.png" alt="Profile Image"
+                                        style="height:50px; width:50px; border-radius:50%; margin-left:15px;">
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
                     <div class="sidebar">
                         <h3>PLAYTIME</h3>
                         <br>
@@ -126,14 +137,7 @@ class Layout
                                 </li>
                             </div>
 
-                            <div class="side-div">
-                                <li><a href="#">
-                                        <i class="fas fa-user"></i>
-                                        <span> Profile </span>
-                                    </a>
-                                </li>
-                            </div>
-
+                            
 
                             <div class="side-div">
                                 <li><a href="workers.php">
@@ -143,13 +147,7 @@ class Layout
                                 </li>
                             </div>
 
-                            <div class="side-div">
-                                <li><a href="#">
-                                        <i class="fas fa-cogs"></i>
-                                        <span> Settings </span>
-                                    </a>
-                                </li>
-                            </div>
+                           
 
                             <div class="side-div">
                                 <li><a href="feedback.php">
@@ -199,25 +197,24 @@ class Layout
                 <body>
 
                     <nav class="navbar navbar-expand-lg navbar-light bg-light border-bottom">
-                    <div class="container-fluid">
-        
-        <!-- Right-aligned content -->
-        <div class="collapse navbar-collapse">
-            <ul class="navbar-nav ms-auto mb-2 mb-lg-0 d-flex align-items-center">
-                <li class="nav-item"><b>
-                    <?php 
-                        print isset($_SESSION['user']['username']) 
-                            ? $_SESSION['user']['username'] 
-                            : '<a href="login.php"><button id="btn1" class="btn btn-primary">Login</button></a>';
-                    ?></b>
-                </li>
-                <li class="nav-item">
-                    <img src="../../assets/images/profile.png" alt="Profile Image" 
-                         style="height:50px; width:50px; border-radius:50%; margin-left:15px;">
-                </li>
-            </ul>
-        </div>
-    </div>
+                        <div class="container-fluid">
+
+                            <!-- Right-aligned content -->
+                            <div class="collapse navbar-collapse">
+                                <ul class="navbar-nav ms-auto mb-2 mb-lg-0 d-flex align-items-center">
+                                    <li class="nav-item"><b>
+                                            <?php
+                                            print isset($_SESSION['user']['username'])
+                                                ? $_SESSION['user']['username']
+                                                : '<a href="login.php"><button id="btn1" class="btn btn-primary">Login</button></a>';?></b>
+                                    </li>
+                                    <li class="nav-item">
+                                        <img src="../../assets/images/profile.png" alt="Profile Image"
+                                            style="height:50px; width:50px; border-radius:50%; margin-left:15px;">
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
                         <div class="sidebar">
                             <h3>PLAYTIME</h3>
                             <br>
@@ -287,6 +284,99 @@ class Layout
 
             }
 
+            public function navbar_staffdash()
+    {
+        ?>
+
+            <body>
+            <nav class="navbar navbar-expand-lg navbar-light bg-light border-bottom">
+    <div class="container-fluid">
+        
+        <!-- Right-aligned content -->
+        <div class="collapse navbar-collapse">
+            <ul class="navbar-nav ms-auto mb-2 mb-lg-0 d-flex align-items-center">
+                <li class="nav-item"><b>
+                    <?php 
+                        print isset($_SESSION['user']['username']) 
+                            ? $_SESSION['user']['username'] 
+                            : '<a href="login.php"><button id="btn1" class="btn btn-primary">Login</button></a>';
+                    ?></b>
+                </li>
+                <li class="nav-item">
+                    <img src="../../assets/images/profile.png" alt="Profile Image" 
+                         style="height:50px; width:50px; border-radius:50%; margin-left:15px;">
+                </li>
+            </ul>
+        </div>
+    </div>
+                    <div class="sidebar">
+                        <h3>PLAYTIME</h3>
+                        <br>
+                        <br>
+
+                        <ul class="nav">
+                            <div class="side-div">
+                                <li><a href="staff.php">
+                                        <i class="fas fa-server"></i>
+                                        <span> Dashboard </span>
+                                    </a>
+                                </li>
+                            </div>
+
+                            <div class="side-div">
+                                <li><a href="equipment.php">
+                                        <i class="fa-solid fa-futbol"></i>
+                                        <span> Equipment </span>
+                                    </a>
+                                </li>
+                            </div>
+
+                            <div class="side-div">
+                                <li><a href="#">
+                                        <i class="fas fa-user"></i>
+                                        <span> Profile </span>
+                                    </a>
+                                </li>
+                            </div>
+        
+                            <div class="side-div">
+                                <li><a href="#">
+                                        <i class="fas fa-cogs"></i>
+                                        <span> Settings </span>
+                                    </a>
+                                </li>
+                            </div>
+
+
+                            
+
+                            <br>
+                            <br>
+                            <br>
+                            <br>
+                            <br>
+                            <br>
+
+                            <div class="side-div">
+                                <li>
+                                    <a href="logout.php">
+                                        <i class="fas fa-sign-out-alt"></i>
+                                        <span> Logout </span>
+                                    </a>
+                                </li>
+                            </div>
+
+
+                        </ul>
+
+                    </div>
+                </nav>
+
+
+
+            <?php
+
+        }
 
             public function loggedout()
             {

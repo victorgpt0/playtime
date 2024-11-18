@@ -28,38 +28,37 @@ $ObjBody->searchbar($facilityType);
         margin-top: 20px;
         scroll-behavior: auto;
     }
-
     .collapsible-btn {
-        /* background-color: #000;
-        color: #fff; */
-        width: 10%;
-        cursor: pointer;
-    }
-    /* .collapsible-btn:hover{
-        color:black;
-        background-color:grey;
-    } */
+    /* background-color: #000;
+    color: #fff; */
+    /* width: 10%; */
+    cursor: pointer;
+}
+/* .collapsible-btn:hover{
+    color:black;
+    background-color:grey;
+} */
 
 
-    .collapsible-content {
-        display: none;
-        overflow: hidden;
-        padding: 10px;
-        transition: max-height 0.3s ease-out;
-    }
+.collapsible-content {
+    display: none;
+    overflow: hidden;
+    padding: 10px;
+    transition: max-height 0.3s ease-out;
+}
 
-    .collapsible-content.show {
-        display: block;
-    }
-    .edit-content{
-        display: none;
-        overflow: hidden;
-        padding: 10px;
-        transition: max-height 0.3s ease-out;
-    }
-    .edit-content.show{
-        display: block;
-    }
+.collapsible-content.show {
+    display: block;
+}
+.edit-content{
+    display: none;
+    overflow: hidden;
+    padding: 10px;
+    transition: max-height 0.3s ease-out;
+}
+.edit-content.show{
+    display: block;
+}
 </style>
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" crossorigin=""></script>
 
@@ -75,7 +74,8 @@ $ObjBody->searchbar($facilityType);
 <?php
 if(isset($_SESSION['user'])){
     $userLocations=[];
-    foreach($facilityCard as $card){
+    if($facilityCard_captain){
+    foreach($facilityCard_captain as $card){
         $userLocations[]=[
             'lat' => floatval($card['latitude']),
             'lng' => floatval($card['longitude']),
@@ -87,8 +87,10 @@ if(isset($_SESSION['user'])){
             'status'=>$card['status']
         ];
     }
+}
 
 }
+$searchResults = $ObjCaptain->search($conn);
 $ObjBody->captain($searchResults);
 $ObjLayout->close_js();
 ?>
@@ -105,7 +107,7 @@ $ObjLayout->close_js();
         if (id === 'map2' && content.classList.contains('show')) {
         // Small delay to ensure the container is fully visible
         setTimeout(() => {
-            if (map) {  // Assuming your map instance is stored in window.map
+            if (map) {
                 map.invalidateSize();
             }
         }, 100);
