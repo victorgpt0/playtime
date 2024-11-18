@@ -4,4 +4,4 @@
     $ObjLayout->navbar_ownerdash();
     $ObjBody->dashboard($facilityCard);
     $ObjBody->analytics();
-    $ObjBody->displayBookingsSection();
+    $ObjBody->displayBookingsSection($conn);

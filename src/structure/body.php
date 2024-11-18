@@ -338,13 +338,58 @@ class Body
     <?php
     }
 
-    public function displayBookingsSection() {
+    public function displayBookingsSection($conn) {
+        $query = "
+    SELECT 
+        f.name AS facility_name, 
+        b.booked_at, 
+        b.totalprice, 
+        b.statusId 
+    FROM 
+        tbl_bookings b
+    LEFT JOIN 
+        tbl_facilities f ON b.facilityId = f.facilityId
+";
+
+
+$bookings = $conn->select_custom($query); 
      
         ?>
         <div class="form-section">
             <div id="bookingsSection">
                 <div id="staff-table-container">
-                    <?php include 'viewbookings.php'; ?>
+                <h1> Bookings</h1>
+    <div id="staff-table-container">
+        <table>
+            <thead>
+                <tr>
+                    <th>Facility Name</th>
+                    <th>Booked At</th>
+                    <th>Total Price</th>
+                    <th>Status</th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php if (!empty($bookings)): ?>
+                    <?php foreach ($bookings as $booking): ?>
+                        <tr>
+                            <td><?= htmlspecialchars($booking['facility_name']); ?></td>
+                            <td><?= htmlspecialchars($booking['booked_at']); ?></td>
+                            <td>Ksh <?= htmlspecialchars(number_format($booking['totalprice'], 2)); ?></td>
+                            <td>
+                                <?= $booking['statusId'] == 1 ? 'Confirmed' : ($booking['statusId'] == 2 ? 'Pending' : 'Cancelled'); ?>
+                            </td>
+                        </tr>
+                    <?php endforeach; ?>
+                <?php else: ?>
+                    <tr>
+                        <td colspan="4" style="text-align: center;">No bookings found.</td>
+                    </tr>
+                <?php endif; ?>
+            </tbody>
+        </table>
+    </div>
+                    
                 </div>
             </div>
         </div>
