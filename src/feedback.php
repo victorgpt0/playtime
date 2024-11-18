@@ -1,8 +1,11 @@
 <?php
 require 'load.php';
+
+
 $ObjLayout->head_ownerdash('Feedback');
 $ObjLayout->navbar_ownerdash();
 ?>
+
 <head><link rel="stylesheet" href="owner.css"></head>
 
 <div class="container" id="main-content">

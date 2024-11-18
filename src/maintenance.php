@@ -11,9 +11,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $request = $_POST['issueDescription'];
 
     try {
-        // Insert into tbl_maintenance
-        $db = new Dbconnection($DB_HOST, $DB_PORT, $DB_USER, $DB_PASS, $DB_NAME);
-        $db->insert('tbl_maintenance', [
+        // Insert i$dbnto tbl_maintenance
+        $conn->insert('tbl_maintenance', [
             'facility' => $facility,
             'request' => $request,
         ]);
