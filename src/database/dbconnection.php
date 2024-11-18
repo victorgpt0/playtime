@@ -135,7 +135,6 @@ class Dbconnection
         
         foreach($conditions as $key => $value){
             $clauses[]="$key = :$key";
-            
         }
         $sql .= implode(" OR ",$clauses);
         
@@ -274,6 +273,19 @@ class Dbconnection
             error_log("Query Error: " . $e->getMessage(), 3, 'errors/error.log');
             return [];
         }
+    }
+
+    public function bookings($sql) {
+        try{
+        $stmt=$this->connection->prepare($sql);
+        $stmt->bindValue(':userId', 38);
+        $stmt->execute();
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+        } catch(PDOException $e) {
+            error_log("Query Error: " . $e->getMessage(), 3, 'errors/error.log');
+            return [];
+        }
+        
     }
 
 }
