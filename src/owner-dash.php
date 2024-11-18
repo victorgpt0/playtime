@@ -3,7 +3,7 @@
     $ObjLayout->head_ownerdash('Dashboard');
     $ObjLayout->navbar_ownerdash();
     
-    $ObjBody->dashboard($facilityCard,$bookings);
-    $ObjBody->analytics();
-    $ObjBody->displayBookingsSection($conn);
+    $ObjBody->dashboard($facilityCard ?? [],$bookings ?? [],$staffs ?? []);
+    //$ObjBody->analytics();
+    $ObjBody->displayBookingsSection($conn,$bookings);
     

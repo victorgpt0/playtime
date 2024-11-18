@@ -125,7 +125,7 @@ class Body
     <?php
     }
 
-    public function dashboard($facilityCard,$bookings)
+    public function dashboard($facilityCard,$bookings,$staffs)
     {
         
     ?>
@@ -139,12 +139,17 @@ class Body
             <div class="dashboard-content">
                 <div class="dashboard-section">
                     <div>
-                        <p id="dash-num1">KES <?php 
+                        <p id="dash-num1">KES <?php
+                        if(!empty($bookings)){ 
                         $total=0;
                         foreach($bookings as $booked){
                             $total+=$booked['totalprice'];
                             }
-                            print $total;?>
+                            print $total;
+                            }else {
+                                echo 0;
+                            }
+                            ?>
                             </p>
 
                         <p id="dash-p">Earnings</p>
@@ -155,7 +160,12 @@ class Body
 
                 <div class="dashboard-section">
                     <div>
-                        <p id="dash-num2"><?=count($bookings)?></p>
+                        <p id="dash-num2"><?php if(!empty($bookings)){
+                            echo count($bookings);
+                        }else{
+                            echo 0;
+                        }
+                            ?></p>
 
                         <p id="dash-p">Bookings</p>
                     </div>
@@ -165,7 +175,12 @@ class Body
 
                 <div class="dashboard-section">
                     <div>
-                        <p id="dash-num3"><?= count($facilityCard) ?></p>
+                        <p id="dash-num3"><?php
+                        if(!empty($facilityCard)){
+                            echo count($facilityCard);
+                         }else{
+                            echo 0;
+                         } ?></p>
 
                         <a href="facilities.php">
                             <p id="dash-p">Facilities</p>
@@ -177,7 +192,7 @@ class Body
 
                 <div class="dashboard-section">
                     <div>
-                        <p id="dash-num4">14</p>
+                        <p id="dash-num4">-</p>
 
                         <p id="dash-p">Employees</p>
                     </div>
@@ -349,21 +364,22 @@ class Body
     <?php
     }
 
-    public function displayBookingsSection($conn) {
-        $query = "
-    SELECT 
-        f.name AS facility_name, 
-        b.booked_at, 
-        b.totalprice, 
-        b.statusId 
-    FROM 
-        tbl_bookings b
-    LEFT JOIN 
-        tbl_facilities f ON b.facilityId_book = f.facilityId
-";
+    public function displayBookingsSection($conn,$bookings) {
+//         $query = "
+//     SELECT 
+//         f.name AS facility_name, 
+//         b.booked_at, 
+//         b.totalprice, 
+//         b.statusId 
+//     FROM 
+//         tbl_bookings b
+//     LEFT JOIN 
+//         tbl_facilities f ON b.facilityId_book = f.facilityId
+//         WHERE b.
+// ";
 
 
-$bookings = $conn->select_custom($query); 
+// $bookings = $conn->select_custom($query); 
      
         ?>
         <div class="form-section">
@@ -384,7 +400,7 @@ $bookings = $conn->select_custom($query);
                 <?php if (!empty($bookings)): ?>
                     <?php foreach ($bookings as $booking): ?>
                         <tr>
-                            <td><?= htmlspecialchars($booking['facility_name']); ?></td>
+                            <td><?= htmlspecialchars($booking['name']); ?></td>
                             <td><?= htmlspecialchars($booking['booked_at']); ?></td>
                             <td>Ksh <?= htmlspecialchars(number_format($booking['totalprice'], 2)); ?></td>
                             <td>
@@ -411,7 +427,7 @@ $bookings = $conn->select_custom($query);
     ?>
         <form action="<?php print basename($_SERVER['PHP_SELF']); ?>" method="get">
             <div class="container" id="main-content">
-                <div style="border: grey solid 1px; border-radius:10px;">
+                <div class="p-4" style="border: grey solid 1px; border-radius:10px;">
                     <h4 class=" d-flex mt-3 justify-content-center">Search or Pick Marker on Map</h4>
                     <div class="d-flex justify-content-center align-items-center">
                         <div class="container">

@@ -189,9 +189,11 @@ class captain
 
                     </form>
 
+                    <?php if(isset($err['success'])):?>
                     <div class="alert alert-success mt-5 mb-5" role="alert" >
                             <h5><?php print isset($err['success'])? $err['success']: '' ;?></h5>
                     </div>
+                    <?php endif ?>
 
                     <div class="d-flex justify-content-between mb-2 pb-2 mt-5">
                         <button type="button" class="btn btn-secondary-outline">

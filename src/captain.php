@@ -74,7 +74,7 @@ $ObjBody->searchbar($facilityType);
 <?php
 if(isset($_SESSION['user'])){
     $userLocations=[];
-    if($facilityCard_captain){
+    if(!empty($facilityCard_captain)){
     foreach($facilityCard_captain as $card){
         $userLocations[]=[
             'lat' => floatval($card['latitude']),

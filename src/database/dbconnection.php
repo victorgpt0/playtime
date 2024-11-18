@@ -266,7 +266,7 @@ class Dbconnection
     public function bookings($sql) {
         try{
         $stmt=$this->connection->prepare($sql);
-        $stmt->bindValue(':userId', 38);
+        $stmt->bindValue(':userId', $_SESSION['user']['u_id']);
         $stmt->execute();
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
         } catch(PDOException $e) {

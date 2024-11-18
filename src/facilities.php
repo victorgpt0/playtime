@@ -24,6 +24,7 @@ $editerr = $ObjGlobal->getMsg('f_editerror');
             <?php
             if(isset($_SESSION['user'])){
             $userLocations = [];
+            if(!empty($facilityCard)){
             foreach ($facilityCard as $card) {
                 $userLocations[] = [
                     'lat' => floatval($card['latitude']),
@@ -46,7 +47,8 @@ $editerr = $ObjGlobal->getMsg('f_editerror');
                         <div class="unavailable">
                             Unavailable
                         </div>
-                    <?php endif; ?>
+                    <?php endif;
+                } ?>
 
                     <div class="card-body">
                         <h5><?= print $card['name']; ?></h5>

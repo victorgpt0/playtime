@@ -69,7 +69,7 @@ if (isset($_SESSION['user'])) {
             ]
         ], [
             'userid' => $_SESSION['user']['u_id']
-        ]);
+        ]) ?? [];
 
 
         $bookings = $conn->bookings("SELECT *
@@ -79,6 +79,8 @@ LEFT JOIN tbl_pay_status ON tbl_bookings.paystatus_id = tbl_pay_status.paystatus
 LEFT JOIN tbl_status ON tbl_bookings.statusId = tbl_status.statusId
 WHERE tbl_facilities.userid = :userId;
 ");
+
+        $staffs=null;
     }
     if (strval($_SESSION['user']['role']) === CAPTAIN) {
         $facilityCard_captain = $conn->select_join('tbl_facilities', [
@@ -92,7 +94,7 @@ WHERE tbl_facilities.userid = :userId;
                 'table' => 'tbl_f_types',
                 'on' => 'tbl_facilities.typeId=tbl_f_types.typeId'
             ]
-        ], []);
+        ], []) ?? [];
     }
 }
 //print_r($facilityCard);
