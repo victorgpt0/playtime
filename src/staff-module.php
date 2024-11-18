@@ -1,12 +1,11 @@
 <?php
-require 'load.php'; // Assuming you have a file for loading common resources
-$ObjLayout->head_ownerdash('Equipment Release');
-$ObjLayout->navbar_staffdash();
+require 'load.php';
 
+$ObjLayout->head('Staff Dashboard');
+$ObjLayout->navbar();
 
 try {
     // Handle equipment logging
-    $connn = $conn->getConnection();
     if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['log_equipment'])) {
         $equipment_id = htmlspecialchars($_POST['equipment_id']);
         $captain_id = htmlspecialchars($_POST['captain_id']);
@@ -32,7 +31,7 @@ try {
 ?>
 
 <div class="container mt-5" style="color:Black;">
-    <form method="POST" class="form-log-equipment border p-4 rounded bg-light" style="margin-left:200px">
+    <form method="POST" class="form-log-equipment border p-4 rounded bg-light" >
         <h2 class="text-center mb-4">Log Rented Equipment</h2>
         <div class="form-group" >
             <label for="equipment_id">Equipment:</label>
@@ -63,7 +62,7 @@ try {
 </div>
 
     <!-- Table to Display Rented Equipment -->
-    <div class="container mt-5"style="margin-left:200px">
+    <div class="container mt-5">
     <h2 class="text-center mb-4">Rented Equipment</h2>
     <table class="table table-striped table-hover">
         <thead class="thead-dark">
@@ -93,3 +92,6 @@ try {
         </tbody>
     </table>
 </div>
+
+
+

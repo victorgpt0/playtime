@@ -225,7 +225,7 @@ class Body
         <main>
             <h1 id="ownerh1" style="text-align:center; margin-left:5%">Welcome to the Staff Portal</h1>
 
-            <div class="dashboard-content">
+            <div class="dashboard-content" style="margin-left:150px">
                 <div class="dashboard-section">
                     <div>
                         <p id="dash-num2">60</p>
@@ -261,7 +261,7 @@ class Body
 
             </div>
             <ul class="ul2">
-                <div class="btn1">
+                <div class="btn1" style="margin-left:450px">
                     <li><a href="equipment.php">
                             <span> Assign Sporting Equipment </span>
                             <i class="far fa-arrow-alt-circle-right"></i>
