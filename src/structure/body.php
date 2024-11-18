@@ -62,6 +62,7 @@ class Body
 
     <?php
     }
+    
     public function about_us()
     {
     ?>
@@ -546,7 +547,7 @@ class Body
                                             <p class="card-text"><b>KES <?= $card['price_per_hour'] ?></b> per Hour</p>
 
                                             <div class="d-flex justify-content-between">
-                                                <button class="btn btn-primary" type="button">Book Now</button>
+                                                <button class="btn btn-primary" type="button" onclick="window.location.href=`book.php?f=<?=$card['facilityId']?>`">Book Now</button>
                                                 <button class="btn" type="button" id="favouriteButton" onclick="toggleFavourite();"><img id="favouriteImg" src="../../assets/icons/heart.png" alt="Add to Favourites" style="width: 20px;"></button>
                                                 <script>
                                                     function toggleFavourite() {
