@@ -4,8 +4,8 @@ class stkpush
     public function stkPush($phoneNum)
     {
         //GET ACCESS TOKEN
-        $consumerKey = "nzuzutCEscuBhCxdUjxc735AsXqvFD9EgpRguo580ojXQaGU";
-        $consumerSecret = "73uQZtjYXS28lNyLiGcew4oT0fHVEV747JgXJJJmXmekG7YbLGociwrb13k2Fi2p";
+        $consumerKey = "";
+        $consumerSecret = "";
         $access_token_url = 'https://sandbox.safaricom.co.ke/oauth/v1/generate?grant_type=client_credentials';
         $headers = ['Content-Type:application/json; charset=utf-8'];
         $curl = curl_init($access_token_url);
@@ -25,7 +25,7 @@ class stkpush
         date_default_timezone_set('Africa/Nairobi');
         $processrequestUrl = 'https://sandbox.safaricom.co.ke/mpesa/stkpush/v1/processrequest';
         $callbackurl = 'https://playtime.infy.uk/callback.php';
-        $passkey = "bfb279f9aa9bdbcf158e97dd71a467cd2e0c893059b10f78e6b72ada1ed2c919";
+        $passkey = "";
         $BusinessShortCode = '174379';
         $Timestamp = date('YmdHis');
         // ENCRIPT  DATA TO GET PASSWORD

@@ -1,4 +1,4 @@
-const accessToken = "AAPTxy8BH1VEsoebNVZXo8HurFS7LISrPsZH3DuNlMdWT5xPsVsoHg3YKlpvK6VFP2OaO4ckEkoVxT88VQrbgw7CJ1M-l-1UL7_zOQ3vIgSmOwONl5mn8Wbvz7Ne39p2k57rzkfpfEPduky7hTHxFscAwZYH9BjhrUN4d9tf0wTP3hZn8JAJKnta19N4u21nOD3Ghje4AsDHRlNPUTQMqFIRUOM7QLr-qDzi6Srn3tlW4Fw.AT1_byREAv5a";
+const accessToken = "";
 
 const map = L.map("map2", {
   minZoom: 2,
